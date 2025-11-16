@@ -15,7 +15,10 @@ const filesToBundle = [
     'types.js',
     'svg-utils.js',
     'chart-renderer.js',
+    'chart-data.js',
     'charts.js',
+    'chart-initializer.js',
+    'chart-tester.js',
     'index.js'
 ];
 

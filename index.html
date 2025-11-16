@@ -1507,11 +1507,43 @@ ddaf_destroy_context(ctx);</code></pre>
     
     <!-- Custom JavaScript -->
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
-    <!-- Original charts.js (fallback) -->
+    <!-- Original charts.js (primary chart rendering) -->
     <script src="{{ '/assets/js/charts.js' | relative_url }}"></script>
     <!-- Enhanced TypeScript-compiled charts with SVG verification and AJAX -->
     <script src="{{ '/assets/js/charts-enhanced.js' | relative_url }}" defer></script>
     <!-- Dynamic Chart Loader with AJAX support -->
     <script src="{{ '/assets/js/dynamic-charts.js' | relative_url }}" defer></script>
+    
+    <!-- Chart Initialization Script -->
+    <script>
+        // Ensure all charts are initialized after all scripts load
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                // Initialize comprehensive chart system
+                if (typeof window.ComprehensiveChartInitializer !== 'undefined') {
+                    window.ComprehensiveChartInitializer.initializeAll();
+                }
+                
+                // Also ensure original charts.js functions are called
+                if (typeof initBenchmarkCharts === 'function') {
+                    initBenchmarkCharts();
+                }
+                if (typeof initD3Charts === 'function') {
+                    initD3Charts();
+                }
+                if (typeof initSVGDiagrams === 'function') {
+                    initSVGDiagrams();
+                }
+                if (typeof initActivationFunctionPlots === 'function') {
+                    initActivationFunctionPlots();
+                }
+                
+                // Run tests
+                if (typeof window.ChartTester !== 'undefined') {
+                    window.ChartTester.runAllTests();
+                }
+            }, 1000);
+        });
+    </script>
 </body>
 </html>

@@ -213,12 +213,12 @@ function initBenchmarkTabs() {
     // Animate chart bars with enhanced animation
     function animateChartBars(container) {
         const chartBars = container.querySelectorAll('.chart-bar');
-        chartBars.forEach((bar, index) => {
+        chartBars.forEach(function(bar, index) {
             const width = bar.style.width || bar.getAttribute('data-width') || '0%';
             bar.style.width = '0%';
             bar.setAttribute('data-width', width);
             
-            setTimeout(() => {
+            setTimeout(function() {
                 bar.style.width = width;
                 bar.style.transition = 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
             }, index * 100);
