@@ -759,8 +759,9 @@
             <!-- Accuracy Tab -->
             <div class="tab-content active" id="accuracy-tab">
                 <!-- ImageNet -->
-                <div class="benchmark-chart">
-                    <h3 class="subsection-title" style="margin-top: 0; text-align: center;">ImageNet Classification (ResNet-50)</h3>
+                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 mb-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-primary-500/10 rounded-full blur-3xl group-hover:bg-primary-500/20 transition-colors duration-700"></div>
+                    <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">ImageNet Classification (ResNet-50)</h3>
                     <div class="chart-bars">
                         <div class="chart-bar-wrapper">
                             <div class="chart-label">ReLU</div>
@@ -819,12 +820,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="chart-note">Top-1 Accuracy (10 runs, mean ± std: 83.42% ± 0.19%, 95% CI: [83.30%, 83.54%]) | Improvement over ReLU: +7.29% | Improvement over best baseline: +2.75%</div>
+                    <div class="text-center text-gray-600 dark:text-gray-300 text-sm font-semibold mt-6 bg-gradient-to-r from-primary-50/50 to-purple-50/50 dark:from-primary-900/20 dark:to-purple-900/20 rounded-xl p-4">
+                        Top-1 Accuracy (10 runs, mean ± std: <span class="font-black text-primary-600 dark:text-primary-400">83.42% ± 0.19%</span>, 95% CI: [83.30%, 83.54%]) | Improvement over ReLU: <span class="font-black text-green-600 dark:text-green-400">+7.29%</span> | Improvement over best baseline: <span class="font-black text-green-600 dark:text-green-400">+2.75%</span>
+                    </div>
                 </div>
 
                 <!-- CIFAR-10 -->
-                <div class="benchmark-chart" style="margin-top: 3rem;">
-                    <h3 class="subsection-title" style="margin-top: 0; text-align: center;">CIFAR-10 Classification (ResNet-32)</h3>
+                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 mb-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="150">
+                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-colors duration-700"></div>
+                    <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">CIFAR-10 Classification (ResNet-32)</h3>
                     <div class="chart-bars">
                         <div class="chart-bar-wrapper">
                             <div class="chart-label">ReLU</div>
@@ -867,12 +871,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="chart-note">Test Accuracy (10 runs, mean ± std: 96.08% ± 0.12%, 95% CI: [96.00%, 96.16%]) | Improvement over ReLU: +3.74% | Improvement over best baseline: +1.90%</div>
+                    <div class="text-center text-gray-600 dark:text-gray-300 text-sm font-semibold mt-6 bg-gradient-to-r from-purple-50/50 to-pink-50/50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-4">
+                        Test Accuracy (10 runs, mean ± std: <span class="font-black text-purple-600 dark:text-purple-400">96.08% ± 0.12%</span>, 95% CI: [96.00%, 96.16%]) | Improvement over ReLU: <span class="font-black text-green-600 dark:text-green-400">+3.74%</span> | Improvement over best baseline: <span class="font-black text-green-600 dark:text-green-400">+1.90%</span>
+                    </div>
                 </div>
 
                 <!-- GLUE Benchmark -->
-                <div class="benchmark-chart" style="margin-top: 3rem;">
-                    <h3 class="subsection-title" style="margin-top: 0; text-align: center;">GLUE Benchmark (BERT-base)</h3>
+                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 mb-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-colors duration-700"></div>
+                    <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">GLUE Benchmark (BERT-base)</h3>
                     <div class="chart-bars">
                         <div class="chart-bar-wrapper">
                             <div class="chart-label">GELU</div>
@@ -907,12 +914,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="chart-note">Average GLUE Score (10 runs, mean ± std: 82.67 ± 0.28, 95% CI: [82.50, 82.84]) | Improvement over GELU: +4.15 points | Improvement over best baseline: +2.39 points</div>
+                    <div class="text-center text-gray-600 dark:text-gray-300 text-sm font-semibold mt-6 bg-gradient-to-r from-blue-50/50 to-cyan-50/50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-xl p-4">
+                        Average GLUE Score (10 runs, mean ± std: <span class="font-black text-blue-600 dark:text-blue-400">82.67 ± 0.28</span>, 95% CI: [82.50, 82.84]) | Improvement over GELU: <span class="font-black text-green-600 dark:text-green-400">+4.15 points</span> | Improvement over best baseline: <span class="font-black text-green-600 dark:text-green-400">+2.39 points</span>
+                    </div>
                 </div>
 
                 <!-- CIFAR-100 -->
-                <div class="benchmark-chart" style="margin-top: 3rem;">
-                    <h3 class="subsection-title" style="margin-top: 0; text-align: center;">CIFAR-100 Classification (ResNet-32)</h3>
+                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 mb-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="250">
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-accent-500/10 rounded-full blur-3xl group-hover:bg-accent-500/20 transition-colors duration-700"></div>
+                    <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">CIFAR-100 Classification (ResNet-32)</h3>
                     <div class="chart-bars">
                         <div class="chart-bar-wrapper">
                             <div class="chart-label">ReLU</div>
@@ -963,12 +973,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="chart-note">Test Accuracy (10 runs, mean ± std: 74.23% ± 0.24%, 95% CI: [74.08%, 74.38%]) | Improvement over ReLU: +5.81% | Improvement over best baseline: +2.29%</div>
+                    <div class="text-center text-gray-600 dark:text-gray-300 text-sm font-semibold mt-6 bg-gradient-to-r from-accent-50/50 to-rose-50/50 dark:from-accent-900/20 dark:to-rose-900/20 rounded-xl p-4">
+                        Test Accuracy (10 runs, mean ± std: <span class="font-black text-accent-600 dark:text-accent-400">74.23% ± 0.24%</span>, 95% CI: [74.08%, 74.38%]) | Improvement over ReLU: <span class="font-black text-green-600 dark:text-green-400">+5.81%</span> | Improvement over best baseline: <span class="font-black text-green-600 dark:text-green-400">+2.29%</span>
+                    </div>
                 </div>
 
                 <!-- SQuAD v2.0 -->
-                <div class="benchmark-chart" style="margin-top: 3rem;">
-                    <h3 class="subsection-title" style="margin-top: 0; text-align: center;">SQuAD v2.0 Question Answering (BERT-base)</h3>
+                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 mb-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl group-hover:bg-indigo-500/20 transition-colors duration-700"></div>
+                    <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">SQuAD v2.0 Question Answering (BERT-base)</h3>
                     <div class="chart-bars">
                         <div class="chart-bar-wrapper">
                             <div class="chart-label">GELU</div>
@@ -1003,7 +1016,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="chart-note">F1 Score (10 runs, mean ± std: 80.34 ± 0.38, 95% CI: [80.10, 80.58]) | Improvement over GELU: +3.51 points | Improvement over best baseline: +1.43 points</div>
+                    <div class="text-center text-gray-600 dark:text-gray-300 text-sm font-semibold mt-6 bg-gradient-to-r from-indigo-50/50 to-purple-50/50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-xl p-4">
+                        F1 Score (10 runs, mean ± std: <span class="font-black text-indigo-600 dark:text-indigo-400">80.34 ± 0.38</span>, 95% CI: [80.10, 80.58]) | Improvement over GELU: <span class="font-black text-green-600 dark:text-green-400">+3.51 points</span> | Improvement over best baseline: <span class="font-black text-green-600 dark:text-green-400">+1.43 points</span>
+                    </div>
                 </div>
             </div>
 
@@ -1404,162 +1419,233 @@
             </div>
 
             <!-- Comprehensive Dataset Breakdown -->
-            <div class="benchmark-datasets" style="margin-top: 4rem;">
-                <h3 class="subsection-title">Comprehensive Dataset Results</h3>
-                <div class="comparison-table-wrapper" style="margin-top: 2rem;">
-                    <table class="comparison-table">
-                        <thead>
-                            <tr>
-                                <th>Dataset</th>
-                                <th>Architecture</th>
-                                <th>ReLU</th>
-                                <th>GELU</th>
-                                <th>Swish</th>
-                                <th>Adaptive</th>
-                                <th>DDAF (Ours)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>ImageNet</strong></td>
-                                <td>ResNet-50</td>
-                                <td>76.13%</td>
-                                <td>77.84%</td>
-                                <td>78.92%</td>
-                                <td>80.67%</td>
-                                <td class="yes"><strong>83.42%</strong></td>
-                            </tr>
-                            <tr>
-                                <td><strong>CIFAR-10</strong></td>
-                                <td>ResNet-32</td>
-                                <td>92.34%</td>
-                                <td>93.12%</td>
-                                <td>93.68%</td>
-                                <td>94.18%</td>
-                                <td class="yes"><strong>96.08%</strong></td>
-                            </tr>
-                            <tr>
-                                <td><strong>CIFAR-100</strong></td>
-                                <td>ResNet-32</td>
-                                <td>68.42%</td>
-                                <td>69.87%</td>
-                                <td>70.56%</td>
-                                <td>71.94%</td>
-                                <td class="yes"><strong>74.23%</strong></td>
-                            </tr>
-                            <tr>
-                                <td><strong>GLUE</strong></td>
-                                <td>BERT-base</td>
-                                <td>N/A</td>
-                                <td>78.52</td>
-                                <td>79.14</td>
-                                <td>80.28</td>
-                                <td class="yes"><strong>82.67</strong></td>
-                            </tr>
-                            <tr>
-                                <td><strong>SQuAD v2.0</strong></td>
-                                <td>BERT-base</td>
-                                <td>N/A</td>
-                                <td>76.83</td>
-                                <td>77.42</td>
-                                <td>78.91</td>
-                                <td class="yes"><strong>80.34</strong></td>
-                            </tr>
-                            <tr>
-                                <td><strong>WikiText-103</strong></td>
-                                <td>GPT-2 Small</td>
-                                <td>N/A</td>
-                                <td>37.12</td>
-                                <td>37.89</td>
-                                <td>38.67</td>
-                                <td class="yes"><strong>40.23</strong></td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="mt-16" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="text-3xl sm:text-4xl font-black text-center mb-12 text-gray-900 dark:text-white">
+                    <span class="bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]">Comprehensive Dataset Results</span>
+                </h3>
+                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 overflow-hidden" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="overflow-x-auto">
+                        <table class="w-full min-w-[900px]">
+                            <thead class="bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 text-white">
+                                <tr>
+                                    <th class="px-6 py-4 text-left font-black text-sm uppercase tracking-wider">Dataset</th>
+                                    <th class="px-6 py-4 text-left font-black text-sm uppercase tracking-wider">Architecture</th>
+                                    <th class="px-6 py-4 text-center font-black text-sm uppercase tracking-wider">ReLU</th>
+                                    <th class="px-6 py-4 text-center font-black text-sm uppercase tracking-wider">GELU</th>
+                                    <th class="px-6 py-4 text-center font-black text-sm uppercase tracking-wider">Swish</th>
+                                    <th class="px-6 py-4 text-center font-black text-sm uppercase tracking-wider">Adaptive</th>
+                                    <th class="px-6 py-4 text-center font-black text-sm uppercase tracking-wider">DDAF (Ours)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                                <tr class="hover:bg-primary-50/50 dark:hover:bg-primary-900/20 transition-colors duration-300 group">
+                                    <td class="px-6 py-4 font-bold text-gray-900 dark:text-white">ImageNet</td>
+                                    <td class="px-6 py-4 text-gray-600 dark:text-gray-300">ResNet-50</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">76.13%</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">77.84%</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">78.92%</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">80.67%</td>
+                                    <td class="px-6 py-4 text-center font-black text-lg text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">83.42%</td>
+                                </tr>
+                                <tr class="hover:bg-primary-50/50 dark:hover:bg-primary-900/20 transition-colors duration-300 group">
+                                    <td class="px-6 py-4 font-bold text-gray-900 dark:text-white">CIFAR-10</td>
+                                    <td class="px-6 py-4 text-gray-600 dark:text-gray-300">ResNet-32</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">92.34%</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">93.12%</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">93.68%</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">94.18%</td>
+                                    <td class="px-6 py-4 text-center font-black text-lg text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">96.08%</td>
+                                </tr>
+                                <tr class="hover:bg-primary-50/50 dark:hover:bg-primary-900/20 transition-colors duration-300 group">
+                                    <td class="px-6 py-4 font-bold text-gray-900 dark:text-white">CIFAR-100</td>
+                                    <td class="px-6 py-4 text-gray-600 dark:text-gray-300">ResNet-32</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">68.42%</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">69.87%</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">70.56%</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">71.94%</td>
+                                    <td class="px-6 py-4 text-center font-black text-lg text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">74.23%</td>
+                                </tr>
+                                <tr class="hover:bg-primary-50/50 dark:hover:bg-primary-900/20 transition-colors duration-300 group">
+                                    <td class="px-6 py-4 font-bold text-gray-900 dark:text-white">GLUE</td>
+                                    <td class="px-6 py-4 text-gray-600 dark:text-gray-300">BERT-base</td>
+                                    <td class="px-6 py-4 text-center text-gray-400 dark:text-gray-600">N/A</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">78.52</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">79.14</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">80.28</td>
+                                    <td class="px-6 py-4 text-center font-black text-lg text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">82.67</td>
+                                </tr>
+                                <tr class="hover:bg-primary-50/50 dark:hover:bg-primary-900/20 transition-colors duration-300 group">
+                                    <td class="px-6 py-4 font-bold text-gray-900 dark:text-white">SQuAD v2.0</td>
+                                    <td class="px-6 py-4 text-gray-600 dark:text-gray-300">BERT-base</td>
+                                    <td class="px-6 py-4 text-center text-gray-400 dark:text-gray-600">N/A</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">76.83</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">77.42</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">78.91</td>
+                                    <td class="px-6 py-4 text-center font-black text-lg text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">80.34</td>
+                                </tr>
+                                <tr class="hover:bg-primary-50/50 dark:hover:bg-primary-900/20 transition-colors duration-300 group">
+                                    <td class="px-6 py-4 font-bold text-gray-900 dark:text-white">WikiText-103</td>
+                                    <td class="px-6 py-4 text-gray-600 dark:text-gray-300">GPT-2 Small</td>
+                                    <td class="px-6 py-4 text-center text-gray-400 dark:text-gray-600">N/A</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">37.12</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">37.89</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">38.67</td>
+                                    <td class="px-6 py-4 text-center font-black text-lg text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">40.23</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div style="margin-top: 2rem; text-align: center; color: var(--text-secondary);">
-                    <p><strong>Statistical Summary:</strong> All results are averaged over 10 independent runs with different random seeds. Standard deviations: ImageNet ±0.19%, CIFAR-10 ±0.12%, CIFAR-100 ±0.24%, GLUE ±0.28, SQuAD ±0.38, WikiText-103 ±0.16. All improvements over baselines are statistically significant (p &lt; 0.01, paired t-test).</p>
-                    <p class="mt-3"><strong>Key Findings:</strong> DDAF consistently outperforms all baselines across all metrics. Average accuracy improvement: +5.2% over ReLU, +2.1% over best baseline. Speed overhead: only 9% vs ReLU. Memory overhead: 10% vs ReLU, but 7% less than Adaptive methods.</p>
+                <div class="mt-8 bg-gradient-to-r from-primary-50/50 via-purple-50/50 to-accent-50/50 dark:from-primary-900/20 dark:via-purple-900/20 dark:to-accent-900/20 rounded-2xl p-8 border-2 border-primary-200/50 dark:border-primary-700/50" data-aos="fade-up" data-aos-delay="500">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-xl p-6 border border-primary-200/50 dark:border-primary-700/50">
+                            <h4 class="font-black text-lg mb-3 text-gray-900 dark:text-white flex items-center gap-2">
+                                <i class="fas fa-chart-line text-primary-500"></i>
+                                <span>Statistical Summary</span>
+                            </h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                                All results are averaged over 10 independent runs with different random seeds. Standard deviations: ImageNet ±0.19%, CIFAR-10 ±0.12%, CIFAR-100 ±0.24%, GLUE ±0.28, SQuAD ±0.38, WikiText-103 ±0.16. All improvements over baselines are statistically significant (p < 0.01, paired t-test).
+                            </p>
+                        </div>
+                        <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-xl p-6 border border-primary-200/50 dark:border-primary-700/50">
+                            <h4 class="font-black text-lg mb-3 text-gray-900 dark:text-white flex items-center gap-2">
+                                <i class="fas fa-trophy text-accent-500"></i>
+                                <span>Key Findings</span>
+                            </h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                                DDAF consistently outperforms all baselines across all metrics. Average accuracy improvement: <span class="font-bold text-green-600 dark:text-green-400">+5.2%</span> over ReLU, <span class="font-bold text-green-600 dark:text-green-400">+2.1%</span> over best baseline. Speed overhead: only <span class="font-bold text-primary-600 dark:text-primary-400">9%</span> vs ReLU. Memory overhead: <span class="font-bold text-primary-600 dark:text-primary-400">10%</span> vs ReLU, but <span class="font-bold text-green-600 dark:text-green-400">7% less</span> than Adaptive methods.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Prior Art Section -->
-    <section id="prior-art" class="section">
-        <div class="container">
-            <h2 class="section-title">Prior Art & Related Work</h2>
-            <p class="section-description">DDAF builds upon and extends previous work in adaptive activation functions and neural network optimization.</p>
+    <section id="prior-art" class="relative py-24 bg-gradient-to-b from-white via-primary-50/20 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+        <!-- Background Effects -->
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-primary-400/20 to-purple-400/20 rounded-full blur-3xl animate-blob"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tr from-accent-400/20 to-pink-400/20 rounded-full blur-3xl animate-blob" style="animation-delay: 3s;"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(99,102,241,0.1)_1px,transparent_0)] bg-[size:40px_40px] opacity-40"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto] drop-shadow-2xl">
+                    Prior Art & Related Work
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                    DDAF builds upon and extends previous work in adaptive activation functions and neural network optimization.
+                </p>
+            </div>
             
-            <div class="prior-art-timeline">
-                <div class="timeline-item">
-                    <div class="timeline-year">2010</div>
-                    <div class="timeline-content">
-                        <h4>ReLU Activation</h4>
-                        <p>Rectified Linear Unit introduced as a solution to vanishing gradients, becoming the standard activation function for deep networks.</p>
-                        <div class="timeline-reference">Nair & Hinton, 2010</div>
+            <div class="relative" data-aos="fade-up" data-aos-delay="100">
+                <div class="absolute left-8 md:left-16 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-500 via-purple-500 to-accent-500 rounded-full opacity-30"></div>
+                
+                <div class="space-y-12">
+                    <div class="relative pl-20 md:pl-32 group" data-aos="fade-right" data-aos-delay="100">
+                        <div class="absolute left-6 md:left-14 top-2 w-6 h-6 bg-primary-500 rounded-full border-4 border-white dark:border-gray-900 shadow-lg shadow-primary-500/50 animate-pulse"></div>
+                        <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-6 rounded-2xl shadow-xl border-2 border-primary-200/50 dark:border-primary-700/50 hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2">
+                            <div class="text-2xl font-black text-primary-600 dark:text-primary-400 mb-2">2010</div>
+                            <h4 class="text-xl font-black text-gray-900 dark:text-white mb-3">ReLU Activation</h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-3">Rectified Linear Unit introduced as a solution to vanishing gradients, becoming the standard activation function for deep networks.</p>
+                            <div class="text-sm text-gray-500 dark:text-gray-400 italic">Nair & Hinton, 2010</div>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2016</div>
-                    <div class="timeline-content">
-                        <h4>PReLU & Leaky ReLU</h4>
-                        <p>Parametric and Leaky ReLU variants introduced learnable parameters for negative inputs, improving upon standard ReLU.</p>
-                        <div class="timeline-reference">He et al., 2015; Maas et al., 2013</div>
+                    
+                    <div class="relative pl-20 md:pl-32 group" data-aos="fade-right" data-aos-delay="200">
+                        <div class="absolute left-6 md:left-14 top-2 w-6 h-6 bg-purple-500 rounded-full border-4 border-white dark:border-gray-900 shadow-lg shadow-purple-500/50 animate-pulse"></div>
+                        <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-6 rounded-2xl shadow-xl border-2 border-purple-200/50 dark:border-purple-700/50 hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2">
+                            <div class="text-2xl font-black text-purple-600 dark:text-purple-400 mb-2">2016</div>
+                            <h4 class="text-xl font-black text-gray-900 dark:text-white mb-3">PReLU & Leaky ReLU</h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-3">Parametric and Leaky ReLU variants introduced learnable parameters for negative inputs, improving upon standard ReLU.</p>
+                            <div class="text-sm text-gray-500 dark:text-gray-400 italic">He et al., 2015; Maas et al., 2013</div>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2017</div>
-                    <div class="timeline-content">
-                        <h4>Swish Activation</h4>
-                        <p>Self-gated activation function discovered through neural architecture search, showing improved performance over ReLU.</p>
-                        <div class="timeline-reference">Ramachandran et al., 2017</div>
+                    
+                    <div class="relative pl-20 md:pl-32 group" data-aos="fade-right" data-aos-delay="300">
+                        <div class="absolute left-6 md:left-14 top-2 w-6 h-6 bg-blue-500 rounded-full border-4 border-white dark:border-gray-900 shadow-lg shadow-blue-500/50 animate-pulse"></div>
+                        <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-6 rounded-2xl shadow-xl border-2 border-blue-200/50 dark:border-blue-700/50 hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2">
+                            <div class="text-2xl font-black text-blue-600 dark:text-blue-400 mb-2">2017</div>
+                            <h4 class="text-xl font-black text-gray-900 dark:text-white mb-3">Swish Activation</h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-3">Self-gated activation function discovered through neural architecture search, showing improved performance over ReLU.</p>
+                            <div class="text-sm text-gray-500 dark:text-gray-400 italic">Ramachandran et al., 2017</div>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2018</div>
-                    <div class="timeline-content">
-                        <h4>GELU Activation</h4>
-                        <p>Gaussian Error Linear Unit introduced for Transformer architectures, providing smoother gradients.</p>
-                        <div class="timeline-reference">Hendrycks & Gimpel, 2016</div>
+                    
+                    <div class="relative pl-20 md:pl-32 group" data-aos="fade-right" data-aos-delay="400">
+                        <div class="absolute left-6 md:left-14 top-2 w-6 h-6 bg-cyan-500 rounded-full border-4 border-white dark:border-gray-900 shadow-lg shadow-cyan-500/50 animate-pulse"></div>
+                        <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-6 rounded-2xl shadow-xl border-2 border-cyan-200/50 dark:border-cyan-700/50 hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2">
+                            <div class="text-2xl font-black text-cyan-600 dark:text-cyan-400 mb-2">2018</div>
+                            <h4 class="text-xl font-black text-gray-900 dark:text-white mb-3">GELU Activation</h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-3">Gaussian Error Linear Unit introduced for Transformer architectures, providing smoother gradients.</p>
+                            <div class="text-sm text-gray-500 dark:text-gray-400 italic">Hendrycks & Gimpel, 2016</div>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2019-2023</div>
-                    <div class="timeline-content">
-                        <h4>Adaptive Activation Functions</h4>
-                        <p>Various works explored learnable activation parameters, data-dependent activations, and architecture-specific adaptations.</p>
-                        <div class="timeline-reference">Multiple works</div>
+                    
+                    <div class="relative pl-20 md:pl-32 group" data-aos="fade-right" data-aos-delay="500">
+                        <div class="absolute left-6 md:left-14 top-2 w-6 h-6 bg-pink-500 rounded-full border-4 border-white dark:border-gray-900 shadow-lg shadow-pink-500/50 animate-pulse"></div>
+                        <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-6 rounded-2xl shadow-xl border-2 border-pink-200/50 dark:border-pink-700/50 hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2">
+                            <div class="text-2xl font-black text-pink-600 dark:text-pink-400 mb-2">2019-2023</div>
+                            <h4 class="text-xl font-black text-gray-900 dark:text-white mb-3">Adaptive Activation Functions</h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-3">Various works explored learnable activation parameters, data-dependent activations, and architecture-specific adaptations.</p>
+                            <div class="text-sm text-gray-500 dark:text-gray-400 italic">Multiple works</div>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item highlight-timeline">
-                    <div class="timeline-year">2025</div>
-                    <div class="timeline-content">
-                        <h4>DDAF (Ours)</h4>
-                        <p>Unified framework combining data-driven statistics, dynamic parameter evolution, online learning, and attention mechanisms across multiple architectures.</p>
-                        <div class="timeline-reference">Chandra, 2025</div>
+                    
+                    <div class="relative pl-20 md:pl-32 group" data-aos="fade-right" data-aos-delay="600">
+                        <div class="absolute left-6 md:left-14 top-2 w-8 h-8 bg-gradient-to-r from-primary-500 via-purple-500 to-accent-500 rounded-full border-4 border-white dark:border-gray-900 shadow-xl shadow-primary-500/70 animate-pulse"></div>
+                        <div class="bg-gradient-to-br from-primary-50/50 via-purple-50/50 to-accent-50/50 dark:from-primary-900/30 dark:via-purple-900/30 dark:to-accent-900/30 backdrop-blur-2xl p-6 rounded-2xl shadow-2xl border-4 border-primary-500 dark:border-primary-400 hover:shadow-glow-lg transition-all duration-500 transform hover:scale-110 hover:-translate-y-3 relative overflow-hidden">
+                            <div class="absolute -top-10 -right-10 w-32 h-32 bg-primary-500/20 rounded-full blur-2xl"></div>
+                            <div class="relative z-10">
+                                <div class="text-2xl font-black bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent mb-2">2025</div>
+                                <h4 class="text-xl font-black text-gray-900 dark:text-white mb-3">DDAF (Ours)</h4>
+                                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-3">Unified framework combining data-driven statistics, dynamic parameter evolution, online learning, and attention mechanisms across multiple architectures.</p>
+                                <div class="text-sm font-bold text-primary-600 dark:text-primary-400">Chandra, 2025</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="related-work-section">
-                <h3 class="subsection-title">Key Contributions Over Prior Art</h3>
-                <div class="contributions-grid">
-                    <div class="contribution-item">
-                        <h4>Unified Framework</h4>
-                        <p>First comprehensive library integrating four activation paradigms (data-driven, dynamic, online, attention-based) in a single framework.</p>
+            <div class="mt-16" data-aos="fade-up" data-aos-delay="700">
+                <h3 class="text-3xl sm:text-4xl font-black text-center mb-12 text-gray-900 dark:text-white">
+                    <span class="bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]">Key Contributions Over Prior Art</span>
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="group bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-6 rounded-2xl border-2 border-primary-200/50 dark:border-primary-700/50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-110 hover:-translate-y-4 hover:rotate-1 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative z-10">
+                            <div class="text-4xl mb-4">🎯</div>
+                            <h4 class="text-lg font-black text-gray-900 dark:text-white mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Unified Framework</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">First comprehensive library integrating four activation paradigms (data-driven, dynamic, online, attention-based) in a single framework.</p>
+                        </div>
                     </div>
-                    <div class="contribution-item">
-                        <h4>Multi-Architecture Support</h4>
-                        <p>Extensive support for 8 different architectures, from traditional CNNs to modern Transformers and MoE models.</p>
+                    <div class="group bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-6 rounded-2xl border-2 border-purple-200/50 dark:border-purple-700/50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-110 hover:-translate-y-4 hover:-rotate-1 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative z-10">
+                            <div class="text-4xl mb-4">🏗️</div>
+                            <h4 class="text-lg font-black text-gray-900 dark:text-white mb-3 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Multi-Architecture Support</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Extensive support for 8 different architectures, from traditional CNNs to modern Transformers and MoE models.</p>
+                        </div>
                     </div>
-                    <div class="contribution-item">
-                        <h4>Online Learning</h4>
-                        <p>Real-time adaptation capabilities for streaming data, enabling deployment in production environments with continuous learning.</p>
+                    <div class="group bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-6 rounded-2xl border-2 border-blue-200/50 dark:border-blue-700/50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-110 hover:-translate-y-4 hover:rotate-1 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative z-10">
+                            <div class="text-4xl mb-4">🔄</div>
+                            <h4 class="text-lg font-black text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Online Learning</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Real-time adaptation capabilities for streaming data, enabling deployment in production environments with continuous learning.</p>
+                        </div>
                     </div>
-                    <div class="contribution-item">
-                        <h4>Attention Integration</h4>
-                        <p>Novel integration of attention mechanisms with activation functions, improving performance on sequence and attention-based models.</p>
+                    <div class="group bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-6 rounded-2xl border-2 border-accent-200/50 dark:border-accent-700/50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-110 hover:-translate-y-4 hover:-rotate-1 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-accent-500/10 to-rose-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative z-10">
+                            <div class="text-4xl mb-4">🎯</div>
+                            <h4 class="text-lg font-black text-gray-900 dark:text-white mb-3 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">Attention Integration</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Novel integration of attention mechanisms with activation functions, improving performance on sequence and attention-based models.</p>
+                        </div>
                     </div>
                 </div>
             </div>
