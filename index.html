@@ -1516,34 +1516,90 @@ ddaf_destroy_context(ctx);</code></pre>
     
     <!-- Chart Initialization Script -->
     <script>
-        // Ensure all charts are initialized after all scripts load
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                // Initialize comprehensive chart system
-                if (typeof window.ComprehensiveChartInitializer !== 'undefined') {
-                    window.ComprehensiveChartInitializer.initializeAll();
-                }
+        // Comprehensive chart initialization - ensures everything works
+        (function() {
+            let initialized = false;
+            
+            function initializeAll() {
+                if (initialized) return;
+                initialized = true;
                 
-                // Also ensure original charts.js functions are called
-                if (typeof initBenchmarkCharts === 'function') {
+                console.log('🚀 Starting comprehensive chart initialization...');
+                
+                // Step 1: Initialize original charts.js functions (primary)
+                if (typeof initializeAllCharts === 'function') {
+                    initializeAllCharts();
+                    console.log('✅ Called initializeAllCharts from charts.js');
+                } else if (typeof initBenchmarkCharts === 'function') {
                     initBenchmarkCharts();
-                }
-                if (typeof initD3Charts === 'function') {
-                    initD3Charts();
-                }
-                if (typeof initSVGDiagrams === 'function') {
-                    initSVGDiagrams();
-                }
-                if (typeof initActivationFunctionPlots === 'function') {
-                    initActivationFunctionPlots();
+                    console.log('✅ Called initBenchmarkCharts');
                 }
                 
-                // Run tests
-                if (typeof window.ChartTester !== 'undefined') {
-                    window.ChartTester.runAllTests();
+                // Step 2: Initialize D3.js charts
+                if (typeof initD3Charts === 'function') {
+                    setTimeout(function() {
+                        initD3Charts();
+                        console.log('✅ Initialized D3.js charts');
+                    }, 500);
                 }
-            }, 1000);
-        });
+                
+                // Step 3: Initialize diagrams
+                if (typeof initSVGDiagrams === 'function') {
+                    setTimeout(function() {
+                        initSVGDiagrams();
+                        console.log('✅ Initialized SVG diagrams');
+                    }, 500);
+                }
+                
+                // Step 4: Initialize activation function plots
+                if (typeof initActivationFunctionPlots === 'function') {
+                    setTimeout(function() {
+                        initActivationFunctionPlots();
+                        console.log('✅ Initialized activation function plots');
+                    }, 500);
+                }
+                
+                // Step 5: Initialize comprehensive TypeScript system (if available)
+                if (typeof window.ComprehensiveChartInitializer !== 'undefined') {
+                    setTimeout(function() {
+                        window.ComprehensiveChartInitializer.initializeAll();
+                        console.log('✅ Initialized comprehensive chart system');
+                    }, 800);
+                }
+                
+                // Step 6: Run tests after everything is loaded
+                setTimeout(function() {
+                    if (typeof window.ChartTester !== 'undefined') {
+                        window.ChartTester.runAllTests();
+                    }
+                    
+                    // Final verification
+                    const allCharts = document.querySelectorAll('[id$="-chart"], [id$="-plot"]');
+                    let renderedCount = 0;
+                    allCharts.forEach(function(container) {
+                        const svg = container.querySelector('svg');
+                        if (svg && svg.children.length > 0) {
+                            renderedCount++;
+                        }
+                    });
+                    console.log('📊 Final status: ' + renderedCount + ' / ' + allCharts.length + ' charts rendered');
+                }, 2000);
+            }
+            
+            // Initialize on DOM ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    setTimeout(initializeAll, 500);
+                });
+            } else {
+                setTimeout(initializeAll, 500);
+            }
+            
+            // Also try on window load
+            window.addEventListener('load', function() {
+                setTimeout(initializeAll, 1000);
+            });
+        })();
     </script>
 </body>
 </html>

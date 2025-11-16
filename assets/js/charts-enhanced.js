@@ -1029,10 +1029,21 @@ export class ComprehensiveChartInitializer {
      * Render all benchmark charts
      */
     static renderAllBenchmarkCharts(chartData) {
-        // First try using original charts.js function if available
+        // Always use original charts.js function - it has all the chart configurations
         if (typeof window.createBenchmarkSVGCharts === 'function') {
             window.createBenchmarkSVGCharts();
-            console.log('✅ Used createBenchmarkSVGCharts from charts.js');
+            console.log('✅ Rendered all benchmark charts using charts.js');
+            // Mark all charts as rendered
+            const chartIds = [
+                'imagenet-chart', 'cifar10-chart', 'glue-chart', 'cifar100-chart', 'squad-chart',
+                'inference-speed-chart', 'training-throughput-chart',
+                'memory-usage-chart', 'memory-efficiency-chart',
+                'time-to-target-chart', 'total-training-time-chart',
+                'epochs-convergence-chart', 'final-loss-chart'
+            ];
+            chartIds.forEach(function (id) {
+                ComprehensiveChartInitializer.chartsRendered.add(id);
+            });
             return;
         }
         // Fallback to TypeScript ChartRenderer
@@ -1078,49 +1089,12 @@ export class ComprehensiveChartInitializer {
      * Render charts for a specific tab
      */
     static renderTabCharts(tabName, chartData) {
-        const tabCharts = {
-            'accuracy': ['imagenet-chart', 'cifar10-chart', 'glue-chart', 'cifar100-chart', 'squad-chart'],
-            'speed': ['inference-speed-chart', 'training-throughput-chart'],
-            'memory': ['memory-usage-chart', 'memory-efficiency-chart'],
-            'training': ['time-to-target-chart', 'total-training-time-chart'],
-            'convergence': ['epochs-convergence-chart', 'final-loss-chart']
-        };
-        const chartIds = tabCharts[tabName] || [];
-        const chartMap = {
-            'imagenet-chart': 'imagenet',
-            'cifar10-chart': 'cifar10',
-            'glue-chart': 'glue',
-            'cifar100-chart': 'cifar100',
-            'squad-chart': 'squad',
-            'inference-speed-chart': 'inferenceSpeed',
-            'training-throughput-chart': 'trainingThroughput',
-            'memory-usage-chart': 'memoryUsage',
-            'memory-efficiency-chart': 'memoryEfficiency',
-            'time-to-target-chart': 'timeToTarget',
-            'total-training-time-chart': 'totalTrainingTime',
-            'epochs-convergence-chart': 'epochsConvergence',
-            'final-loss-chart': 'finalLoss'
-        };
-        chartIds.forEach(function (containerId) {
-            const container = document.getElementById(containerId);
-            if (container) {
-                // Check if chart already rendered
-                const svg = container.querySelector('svg');
-                if (!svg || svg.children.length === 0) {
-                    const configKey = chartMap[containerId];
-                    const config = chartData[configKey];
-                    if (config) {
-                        try {
-                            ChartRenderer.renderBarChart(containerId, config);
-                            ComprehensiveChartInitializer.chartsRendered.add(containerId);
-                        }
-                        catch (error) {
-                            console.error('Error rendering ' + containerId + ':', error);
-                        }
-                    }
-                }
-            }
-        });
+        // Re-render all charts when tab switches (charts.js handles this)
+        if (typeof window.createBenchmarkSVGCharts === 'function') {
+            setTimeout(function () {
+                window.createBenchmarkSVGCharts();
+            }, 200);
+        }
     }
     /**
      * Initialize D3.js charts
