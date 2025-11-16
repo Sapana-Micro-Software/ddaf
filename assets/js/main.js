@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Sparkle Effects for Special Elements
 function initSparkleEffects() {
     const sparkleElements = document.querySelectorAll('.section-title, .hero-title');
-    sparkleElements.forEach(el => {
+    sparkleElements.forEach(function(el) {
         el.classList.add('sparkle');
     });
 }

@@ -17,6 +17,11 @@ function initializeAllCharts() {
     
     // Re-initialize charts when tabs are switched (for hidden containers)
     setupTabChartReinitialization();
+    
+    // Verify all charts were created after a delay
+    setTimeout(function() {
+        verifyChartsCreated();
+    }, 1000);
 }
 
 // Try multiple times to ensure D3.js is loaded
@@ -59,9 +64,54 @@ function setupTabChartReinitialization() {
                 if (typeof d3 !== 'undefined') {
                     initD3Charts();
                 }
+                // Verify charts were created
+                verifyChartsCreated();
             }, 300);
         });
     });
+}
+
+// Verify all charts were created successfully
+function verifyChartsCreated() {
+    const requiredCharts = [
+        'imagenet-chart', 'cifar10-chart', 'glue-chart', 'cifar100-chart', 'squad-chart',
+        'inference-speed-chart', 'training-throughput-chart',
+        'memory-usage-chart', 'memory-efficiency-chart',
+        'time-to-target-chart', 'total-training-time-chart',
+        'epochs-convergence-chart', 'final-loss-chart',
+        'performance-line-chart', 'comparison-bar-chart',
+        'accuracy-scatter-plot', 'training-curve-chart',
+        'relu-plot', 'gelu-plot', 'swish-plot', 'ddaf-plot',
+        'benchmark-bar-chart',
+        'architecture-diagram', 'data-flow-diagram', 'network-diagram'
+    ];
+    
+    let missingCharts = [];
+    let createdCharts = 0;
+    
+    requiredCharts.forEach(function(chartId) {
+        const container = document.getElementById(chartId);
+        if (!container) {
+            missingCharts.push(chartId + ' (container not found)');
+        } else if (container.innerHTML.trim() === '') {
+            missingCharts.push(chartId + ' (empty)');
+        } else {
+            createdCharts++;
+        }
+    });
+    
+    if (missingCharts.length > 0) {
+        console.warn('Some charts are missing or empty:', missingCharts);
+        // Retry creating missing charts
+        setTimeout(function() {
+            createBenchmarkSVGCharts();
+            if (typeof d3 !== 'undefined') {
+                initD3Charts();
+            }
+        }, 500);
+    } else {
+        console.log('✅ All ' + createdCharts + ' charts created successfully!');
+    }
 }
 
 // Initialize D3.js based charts
