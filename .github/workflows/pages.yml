@@ -40,7 +40,13 @@ jobs:
       - name: Install npm dependencies
         run: |
           echo "📦 Installing Node.js dependencies..."
-          npm ci
+          if [ -f "package-lock.json" ]; then
+            echo "📋 package-lock.json found, using npm ci"
+            npm ci
+          else
+            echo "📋 package-lock.json not found, using npm install"
+            npm install
+          fi
           echo "✅ Node.js dependencies installed successfully"
 
       - name: Build TypeScript
