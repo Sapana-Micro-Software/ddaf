@@ -225,15 +225,15 @@ function createPerformanceLineChart() {
         .append('svg')
         .attr('width', width)
         .attr('height', height)
-        .attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('viewBox', '0 0 ' + width + ' ' + height)
         .classed('chart-svg', true);
 
     const g = svg.append('g')
-        .attr('transform', `translate(${margin.left},${margin.top})`);
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
     // Scales
     const xScale = d3.scaleLinear()
-        .domain([0, d3.max(data, d => d.epoch)])
+        .domain([0, d3.max(data, function(d) { return d.epoch; })])
         .range([0, chartWidth]);
 
     const yScale = d3.scaleLinear()
@@ -242,8 +242,8 @@ function createPerformanceLineChart() {
 
     // Line generator
     const line = d3.line()
-        .x(d => xScale(d.epoch))
-        .y(d => yScale(d.value))
+        .x(function(d) { return xScale(d.epoch); })
+        .y(function(d) { return yScale(d.value); })
         .curve(d3.curveMonotoneX);
 
     // Colors
@@ -257,7 +257,7 @@ function createPerformanceLineChart() {
     // Draw grid
     g.append('g')
         .attr('class', 'grid')
-        .attr('transform', `translate(0,${chartHeight})`)
+        .attr('transform', 'translate(0,' + chartHeight + ')')
         .call(d3.axisBottom(xScale)
             .ticks(10)
             .tickSize(-chartHeight)
@@ -277,8 +277,10 @@ function createPerformanceLineChart() {
         .attr('stroke-dasharray', '4,4');
 
     // Draw lines with enhanced styling
-    ['relu', 'gelu', 'swish', 'ddaf'].forEach(key => {
-        const lineData = data.map(d => ({ epoch: d.epoch, value: d[key] }));
+    ['relu', 'gelu', 'swish', 'ddaf'].forEach(function(key) {
+        const lineData = data.map(function(d) {
+            return { epoch: d.epoch, value: d[key] };
+        });
         
         g.append('path')
             .datum(lineData)
@@ -289,7 +291,7 @@ function createPerformanceLineChart() {
             .attr('stroke-linejoin', 'round')
             .attr('stroke-dasharray', key === 'relu' ? '5,5' : 'none')
             .attr('d', line)
-            .attr('class', `line-${key}`)
+            .attr('class', 'line-' + key)
             .attr('filter', key === 'ddaf' ? 'url(#lineGlow)' : 'none')
             .style('opacity', 0)
             .transition()
@@ -298,12 +300,12 @@ function createPerformanceLineChart() {
             .style('opacity', 1);
 
         // Add dots
-        g.selectAll(`.dot-${key}`)
+        g.selectAll('.dot-' + key)
             .data(lineData)
             .enter()
             .append('circle')
-            .attr('cx', d => xScale(d.epoch))
-            .attr('cy', d => yScale(d.value))
+            .attr('cx', function(d) { return xScale(d.epoch); })
+            .attr('cy', function(d) { return yScale(d.value); })
             .attr('r', 4)
             .attr('fill', colors[key])
             .attr('stroke', '#fff')
@@ -317,7 +319,7 @@ function createPerformanceLineChart() {
 
     // Axes
     g.append('g')
-        .attr('transform', `translate(0,${chartHeight})`)
+        .attr('transform', 'translate(0,' + chartHeight + ')')
         .call(d3.axisBottom(xScale).ticks(10))
         .append('text')
         .attr('x', chartWidth / 2)
@@ -340,11 +342,11 @@ function createPerformanceLineChart() {
 
     // Legend
     const legend = svg.append('g')
-        .attr('transform', `translate(${width - 200}, 20)`);
+        .attr('transform', 'translate(' + (width - 200) + ', 20)');
 
-    ['relu', 'gelu', 'swish', 'ddaf'].forEach((key, i) => {
+    ['relu', 'gelu', 'swish', 'ddaf'].forEach(function(key, i) {
         const legendItem = legend.append('g')
-            .attr('transform', `translate(0, ${i * 25})`);
+            .attr('transform', 'translate(0, ' + (i * 25) + ')');
 
         legendItem.append('line')
             .attr('x1', 0)
@@ -399,14 +401,14 @@ function createComparisonBarChart() {
         .append('svg')
         .attr('width', width)
         .attr('height', height)
-        .attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('viewBox', '0 0 ' + width + ' ' + height)
         .classed('chart-svg', true);
 
     const g = svg.append('g')
-        .attr('transform', `translate(${margin.left},${margin.top})`);
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
     const xScale = d3.scaleBand()
-        .domain(data.map(d => d.label))
+        .domain(data.map(function(d) { return d.label; }))
         .range([0, chartWidth])
         .padding(0.2);
 
@@ -431,17 +433,18 @@ function createComparisonBarChart() {
         .enter()
         .append('rect')
         .attr('class', 'bar')
-        .attr('x', d => xScale(d.label))
+        .attr('x', function(d) { return xScale(d.label); })
         .attr('width', xScale.bandwidth())
         .attr('y', chartHeight)
         .attr('height', 0)
-        .attr('fill', d => d.color)
+        .attr('fill', function(d) { return d.color; })
         .attr('rx', 4)
         .on('mouseenter', function(event, d) {
+            var xPos = xScale(d.label) + xScale.bandwidth() / 2;
             d3.select(this)
                 .attr('opacity', 0.8)
                 .attr('transform', 'scale(1.05)')
-                .attr('transform-origin', `${xScale(d.label) + xScale.bandwidth()/2} ${chartHeight}`);
+                .attr('transform-origin', xPos + ' ' + chartHeight);
         })
         .on('mouseleave', function() {
             d3.select(this)
@@ -451,9 +454,9 @@ function createComparisonBarChart() {
 
     bars.transition()
         .duration(1000)
-        .delay((d, i) => i * 100)
-        .attr('y', d => yScale(d.value))
-        .attr('height', d => chartHeight - yScale(d.value));
+        .delay(function(d, i) { return i * 100; })
+        .attr('y', function(d) { return yScale(d.value); })
+        .attr('height', function(d) { return chartHeight - yScale(d.value); });
 
     // Value labels
     g.selectAll('.value-label')
@@ -461,14 +464,14 @@ function createComparisonBarChart() {
         .enter()
         .append('text')
         .attr('class', 'value-label')
-        .attr('x', d => xScale(d.label) + xScale.bandwidth() / 2)
-        .attr('y', d => yScale(d.value) - 5)
+        .attr('x', function(d) { return xScale(d.label) + xScale.bandwidth() / 2; })
+        .attr('y', function(d) { return yScale(d.value) - 5; })
         .attr('text-anchor', 'middle')
         .attr('fill', '#1e293b')
         .attr('font-size', '12')
         .attr('font-weight', '600')
         .style('opacity', 0)
-        .text(d => d.value.toFixed(2))
+        .text(function(d) { return d.value.toFixed(2); })
         .transition()
         .delay(1000)
         .duration(500)
@@ -476,7 +479,7 @@ function createComparisonBarChart() {
 
     // Axes
     g.append('g')
-        .attr('transform', `translate(0,${chartHeight})`)
+        .attr('transform', 'translate(0,' + chartHeight + ')')
         .call(d3.axisBottom(xScale))
         .selectAll('text')
         .attr('transform', 'rotate(-45)')
@@ -530,11 +533,11 @@ function createAccuracyScatterPlot() {
         .append('svg')
         .attr('width', width)
         .attr('height', height)
-        .attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('viewBox', '0 0 ' + width + ' ' + height)
         .classed('chart-svg', true);
 
     const g = svg.append('g')
-        .attr('transform', `translate(${margin.left},${margin.top})`);
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
     const xScale = d3.scaleLinear()
         .domain([1000, 1250])
@@ -547,7 +550,7 @@ function createAccuracyScatterPlot() {
     // Grid
     g.append('g')
         .attr('class', 'grid')
-        .attr('transform', `translate(0,${chartHeight})`)
+        .attr('transform', 'translate(0,' + chartHeight + ')')
         .call(d3.axisBottom(xScale).ticks(10).tickSize(-chartHeight).tickFormat(''))
         .selectAll('line')
         .attr('stroke', '#e2e8f0')
@@ -560,22 +563,35 @@ function createAccuracyScatterPlot() {
         .attr('stroke', '#e2e8f0')
         .attr('stroke-dasharray', '4,4');
 
+    // Tooltip (needs to be created before points for reference)
+    const tooltip = d3.select('body').append('div')
+        .attr('class', 'chart-tooltip')
+        .style('opacity', 0)
+        .style('position', 'absolute')
+        .style('background', 'rgba(0, 0, 0, 0.8)')
+        .style('color', '#fff')
+        .style('padding', '8px 12px')
+        .style('border-radius', '4px')
+        .style('font-size', '12px')
+        .style('pointer-events', 'none')
+        .style('z-index', '10000');
+
     // Points
     g.selectAll('.point')
         .data(data)
         .enter()
         .append('circle')
         .attr('class', 'point')
-        .attr('cx', d => xScale(d.x))
-        .attr('cy', d => yScale(d.y))
+        .attr('cx', function(d) { return xScale(d.x); })
+        .attr('cy', function(d) { return yScale(d.y); })
         .attr('r', 0)
-        .attr('fill', d => d.color)
+        .attr('fill', function(d) { return d.color; })
         .attr('stroke', '#fff')
         .attr('stroke-width', 2)
         .on('mouseenter', function(event, d) {
             d3.select(this).attr('r', 10);
             tooltip.style('opacity', 1)
-                .html(`${d.label}<br/>Speed: ${d.x} img/s<br/>Accuracy: ${d.y}%`)
+                .html(d.label + '<br/>Speed: ' + d.x + ' img/s<br/>Accuracy: ' + d.y + '%')
                 .style('left', (event.pageX + 10) + 'px')
                 .style('top', (event.pageY - 10) + 'px');
         })
@@ -585,7 +601,7 @@ function createAccuracyScatterPlot() {
         })
         .transition()
         .duration(1000)
-        .delay((d, i) => i * 150)
+        .delay(function(d, i) { return i * 150; })
         .attr('r', 6);
 
     // Labels
@@ -594,13 +610,13 @@ function createAccuracyScatterPlot() {
         .enter()
         .append('text')
         .attr('class', 'label')
-        .attr('x', d => xScale(d.x))
-        .attr('y', d => yScale(d.y) - 10)
+        .attr('x', function(d) { return xScale(d.x); })
+        .attr('y', function(d) { return yScale(d.y) - 10; })
         .attr('text-anchor', 'middle')
         .attr('fill', '#1e293b')
         .attr('font-size', '10')
         .style('opacity', 0)
-        .text(d => d.label)
+        .text(function(d) { return d.label; })
         .transition()
         .delay(1000)
         .duration(500)
@@ -608,7 +624,7 @@ function createAccuracyScatterPlot() {
 
     // Axes
     g.append('g')
-        .attr('transform', `translate(0,${chartHeight})`)
+        .attr('transform', 'translate(0,' + chartHeight + ')')
         .call(d3.axisBottom(xScale))
         .append('text')
         .attr('x', chartWidth / 2)
@@ -629,19 +645,6 @@ function createAccuracyScatterPlot() {
         .attr('text-anchor', 'middle')
         .text('Accuracy (%)');
 
-    // Tooltip
-    const tooltip = d3.select('body').append('div')
-        .attr('class', 'chart-tooltip')
-        .style('opacity', 0)
-        .style('position', 'absolute')
-        .style('background', 'rgba(0, 0, 0, 0.8)')
-        .style('color', '#fff')
-        .style('padding', '8px 12px')
-        .style('border-radius', '4px')
-        .style('font-size', '12px')
-        .style('pointer-events', 'none')
-        .style('z-index', '10000');
-
     // Title
     svg.append('text')
         .attr('x', width / 2)
@@ -658,11 +661,13 @@ function createTrainingCurveChart() {
     const container = document.getElementById('training-curve-chart');
     if (!container || typeof d3 === 'undefined') return;
 
-    const data = Array.from({ length: 100 }, (_, i) => ({
-        epoch: i,
-        train: 100 - 50 * Math.exp(-i / 20) + (Math.random() - 0.5) * 2,
-        val: 100 - 55 * Math.exp(-i / 22) + (Math.random() - 0.5) * 2
-    }));
+    const data = Array.from({ length: 100 }, function(_, i) {
+        return {
+            epoch: i,
+            train: 100 - 50 * Math.exp(-i / 20) + (Math.random() - 0.5) * 2,
+            val: 100 - 55 * Math.exp(-i / 22) + (Math.random() - 0.5) * 2
+        };
+    });
 
     const margin = { top: 40, right: 40, bottom: 60, left: 80 };
     const width = container.clientWidth || 800;
@@ -674,11 +679,11 @@ function createTrainingCurveChart() {
         .append('svg')
         .attr('width', width)
         .attr('height', height)
-        .attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('viewBox', '0 0 ' + width + ' ' + height)
         .classed('chart-svg', true);
 
     const g = svg.append('g')
-        .attr('transform', `translate(${margin.left},${margin.top})`);
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
     const xScale = d3.scaleLinear()
         .domain([0, 100])
@@ -688,47 +693,7 @@ function createTrainingCurveChart() {
         .domain([40, 100])
         .range([chartHeight, 0]);
 
-    const area = d3.area()
-        .x(d => xScale(d.epoch))
-        .y0(chartHeight)
-        .y1(d => yScale(d.train))
-        .curve(d3.curveMonotoneX);
-
-    // Area for training
-    g.append('path')
-        .datum(data)
-        .attr('fill', 'url(#trainGradient)')
-        .attr('d', area)
-        .style('opacity', 0.3);
-
-    // Line for training
-    const trainLine = d3.line()
-        .x(d => xScale(d.epoch))
-        .y(d => yScale(d.train))
-        .curve(d3.curveMonotoneX);
-
-    g.append('path')
-        .datum(data)
-        .attr('fill', 'none')
-        .attr('stroke', '#6366f1')
-        .attr('stroke-width', 2)
-        .attr('d', trainLine);
-
-    // Line for validation
-    const valLine = d3.line()
-        .x(d => xScale(d.epoch))
-        .y(d => yScale(d.val))
-        .curve(d3.curveMonotoneX);
-
-    g.append('path')
-        .datum(data)
-        .attr('fill', 'none')
-        .attr('stroke', '#ec4899')
-        .attr('stroke-width', 2)
-        .attr('stroke-dasharray', '5,5')
-        .attr('d', valLine);
-
-    // Gradient definition
+    // Gradient definition (needs to be before area)
     const defs = svg.append('defs');
     const gradient = defs.append('linearGradient')
         .attr('id', 'trainGradient')
@@ -745,9 +710,49 @@ function createTrainingCurveChart() {
         .attr('stop-color', '#6366f1')
         .attr('stop-opacity', 0);
 
+    const area = d3.area()
+        .x(function(d) { return xScale(d.epoch); })
+        .y0(chartHeight)
+        .y1(function(d) { return yScale(d.train); })
+        .curve(d3.curveMonotoneX);
+
+    // Area for training
+    g.append('path')
+        .datum(data)
+        .attr('fill', 'url(#trainGradient)')
+        .attr('d', area)
+        .style('opacity', 0.3);
+
+    // Line for training
+    const trainLine = d3.line()
+        .x(function(d) { return xScale(d.epoch); })
+        .y(function(d) { return yScale(d.train); })
+        .curve(d3.curveMonotoneX);
+
+    g.append('path')
+        .datum(data)
+        .attr('fill', 'none')
+        .attr('stroke', '#6366f1')
+        .attr('stroke-width', 2)
+        .attr('d', trainLine);
+
+    // Line for validation
+    const valLine = d3.line()
+        .x(function(d) { return xScale(d.epoch); })
+        .y(function(d) { return yScale(d.val); })
+        .curve(d3.curveMonotoneX);
+
+    g.append('path')
+        .datum(data)
+        .attr('fill', 'none')
+        .attr('stroke', '#ec4899')
+        .attr('stroke-width', 2)
+        .attr('stroke-dasharray', '5,5')
+        .attr('d', valLine);
+
     // Axes
     g.append('g')
-        .attr('transform', `translate(0,${chartHeight})`)
+        .attr('transform', 'translate(0,' + chartHeight + ')')
         .call(d3.axisBottom(xScale).ticks(10))
         .append('text')
         .attr('x', chartWidth / 2)
@@ -770,11 +775,11 @@ function createTrainingCurveChart() {
 
     // Legend
     const legend = svg.append('g')
-        .attr('transform', `translate(${width - 150}, 20)`);
+        .attr('transform', 'translate(' + (width - 150) + ', 20)');
 
-    ['Training', 'Validation'].forEach((label, i) => {
+    ['Training', 'Validation'].forEach(function(label, i) {
         const legendItem = legend.append('g')
-            .attr('transform', `translate(0, ${i * 25})`);
+            .attr('transform', 'translate(0, ' + (i * 25) + ')');
 
         legendItem.append('line')
             .attr('x1', 0)
@@ -1316,7 +1321,7 @@ function createBenchmarkSVGCharts() {
         colors: ['#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#6366f1'],
         yLabel: 'Images/sec',
         maxValue: 1300,
-        formatValue: (v) => `${v.toLocaleString()} img/s`
+        formatValue: function(v) { return v.toLocaleString() + ' img/s'; }
     });
     
     createBenchmarkBarChart('training-throughput-chart', {
@@ -1325,7 +1330,7 @@ function createBenchmarkSVGCharts() {
         colors: ['#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#6366f1'],
         yLabel: 'Samples/sec',
         maxValue: 1000,
-        formatValue: (v) => `${v} samples/s`
+        formatValue: function(v) { return v + ' samples/s'; }
     });
     
     // Memory Tab Charts
@@ -1335,7 +1340,7 @@ function createBenchmarkSVGCharts() {
         colors: ['#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#6366f1'],
         yLabel: 'Peak Memory (GB)',
         maxValue: 5.5,
-        formatValue: (v) => `${v} GB`
+        formatValue: function(v) { return v + ' GB'; }
     });
     
     createBenchmarkBarChart('memory-efficiency-chart', {
@@ -1344,7 +1349,7 @@ function createBenchmarkSVGCharts() {
         colors: ['#94a3b8', '#94a3b8', '#94a3b8', '#6366f1'],
         yLabel: 'Parameter Overhead (%)',
         maxValue: 0.1,
-        formatValue: (v) => `${v}%`
+        formatValue: function(v) { return v + '%'; }
     });
     
     // Training Time Tab Charts
@@ -1354,7 +1359,7 @@ function createBenchmarkSVGCharts() {
         colors: ['#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#6366f1'],
         yLabel: 'Time (hours)',
         maxValue: 20,
-        formatValue: (v) => `${v} hrs`,
+        formatValue: function(v) { return v + ' hrs'; },
         lowerIsBetter: true
     });
     
@@ -1374,7 +1379,7 @@ function createBenchmarkSVGCharts() {
         colors: ['#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#6366f1'],
         yLabel: 'Epochs',
         maxValue: 150,
-        formatValue: (v) => `${v} epochs`,
+        formatValue: function(v) { return v + ' epochs'; },
         lowerIsBetter: true
     });
     
@@ -1418,11 +1423,11 @@ function createD3BenchmarkChart(container, config) {
         .append('svg')
         .attr('width', width)
         .attr('height', height)
-        .attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('viewBox', '0 0 ' + width + ' ' + height)
         .classed('chart-svg', true);
 
     const g = svg.append('g')
-        .attr('transform', `translate(${margin.left},${margin.top})`);
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
     const xScale = d3.scaleBand()
         .domain(config.labels)
@@ -1447,8 +1452,11 @@ function createD3BenchmarkChart(container, config) {
 
     // Add gradient definitions for jazzy bars
     const defs = svg.append('defs');
+    const gradientId = 'barGradient-' + containerId.replace(/[^a-zA-Z0-9]/g, '_');
+    const filterId = 'glow-' + containerId.replace(/[^a-zA-Z0-9]/g, '_');
+    
     const gradient = defs.append('linearGradient')
-        .attr('id', `barGradient-${containerId}`)
+        .attr('id', gradientId)
         .attr('x1', '0%')
         .attr('y1', '0%')
         .attr('x2', '0%')
@@ -1466,9 +1474,13 @@ function createD3BenchmarkChart(container, config) {
         .attr('stop-color', '#ec4899')
         .attr('stop-opacity', 0.9);
     
-    // Add glow filter
+    // Add glow filter with proper namespacing for browser compatibility
     const glowFilter = defs.append('filter')
-        .attr('id', `glow-${containerId}`);
+        .attr('id', filterId)
+        .attr('x', '-50%')
+        .attr('y', '-50%')
+        .attr('width', '200%')
+        .attr('height', '200%');
     glowFilter.append('feGaussianBlur')
         .attr('stdDeviation', '3')
         .attr('result', 'coloredBlur');
@@ -1476,52 +1488,64 @@ function createD3BenchmarkChart(container, config) {
     feMerge.append('feMergeNode').attr('in', 'coloredBlur');
     feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
 
-    // Bars with enhanced styling
+    // Bars with enhanced styling - using function expressions for better browser compatibility
     const bars = g.selectAll('.bar')
         .data(config.values)
         .enter()
         .append('rect')
         .attr('class', 'bar')
-        .attr('x', (d, i) => xScale(config.labels[i]))
+        .attr('x', function(d, i) { return xScale(config.labels[i]); })
         .attr('width', xScale.bandwidth())
         .attr('y', chartHeight)
         .attr('height', 0)
-        .attr('fill', (d, i) => {
+        .attr('fill', function(d, i) {
             // Use gradient for DDAF (last item), regular colors for others
             if (i === config.values.length - 1 && config.labels[i] === 'DDAF') {
-                return `url(#barGradient-${containerId})`;
+                return 'url(#' + gradientId + ')';
             }
             return config.colors[i] || '#6366f1';
         })
         .attr('rx', 6)
         .attr('ry', 6)
-        .attr('stroke', (d, i) => i === config.values.length - 1 && config.labels[i] === 'DDAF' ? '#fff' : 'rgba(255,255,255,0.8)')
-        .attr('stroke-width', (d, i) => i === config.values.length - 1 && config.labels[i] === 'DDAF' ? 3 : 2)
-        .attr('filter', (d, i) => i === config.values.length - 1 && config.labels[i] === 'DDAF' ? `url(#glow-${containerId})` : 'none')
+        .attr('stroke', function(d, i) {
+            return i === config.values.length - 1 && config.labels[i] === 'DDAF' ? '#fff' : 'rgba(255,255,255,0.8)';
+        })
+        .attr('stroke-width', function(d, i) {
+            return i === config.values.length - 1 && config.labels[i] === 'DDAF' ? 3 : 2;
+        })
+        .attr('filter', function(d, i) {
+            return i === config.values.length - 1 && config.labels[i] === 'DDAF' ? 'url(#' + filterId + ')' : 'none';
+        })
         .attr('opacity', 0)
+        .each(function(d, i) {
+            // Store index for later use in event handlers
+            this.setAttribute('data-index', i);
+        })
         .on('mouseenter', function(event, d) {
+            var index = parseInt(this.getAttribute('data-index'), 10);
+            var label = config.labels[index];
+            var xPos = xScale(label) + xScale.bandwidth() / 2;
             d3.select(this)
                 .attr('opacity', 0.9)
                 .attr('transform', 'scale(1.08) translate(0, -5)')
-                .attr('transform-origin', `${xScale(config.labels[config.values.indexOf(d)]) + xScale.bandwidth()/2} ${chartHeight}`)
-                .attr('filter', `url(#glow-${containerId})`);
+                .attr('transform-origin', xPos + ' ' + chartHeight)
+                .attr('filter', 'url(#' + filterId + ')');
         })
         .on('mouseleave', function() {
+            var index = parseInt(this.getAttribute('data-index'), 10);
+            var isDDAF = index === config.values.length - 1 && config.labels[index] === 'DDAF';
             d3.select(this)
                 .attr('opacity', 1)
                 .attr('transform', 'scale(1)')
-                .attr('filter', (d, i) => {
-                    const idx = config.values.indexOf(d);
-                    return idx === config.values.length - 1 && config.labels[idx] === 'DDAF' ? `url(#glow-${containerId})` : 'none';
-                });
+                .attr('filter', isDDAF ? 'url(#' + filterId + ')' : 'none');
         });
 
     bars.transition()
         .duration(1500)
-        .delay((d, i) => i * 120)
+        .delay(function(d, i) { return i * 120; })
         .ease(d3.easeElasticOut)
-        .attr('y', d => yScale(d))
-        .attr('height', d => chartHeight - yScale(d))
+        .attr('y', function(d) { return yScale(d); })
+        .attr('height', function(d) { return chartHeight - yScale(d); })
         .attr('opacity', 1);
 
     // Value labels on bars with enhanced styling
@@ -1530,31 +1554,41 @@ function createD3BenchmarkChart(container, config) {
         .enter()
         .append('text')
         .attr('class', 'value-label')
-        .attr('x', (d, i) => xScale(config.labels[i]) + xScale.bandwidth() / 2)
-        .attr('y', d => yScale(d) - 8)
+        .attr('x', function(d, i) { return xScale(config.labels[i]) + xScale.bandwidth() / 2; })
+        .attr('y', function(d) { return yScale(d) - 8; })
         .attr('text-anchor', 'middle')
-        .attr('fill', (d, i) => {
+        .attr('fill', function(d, i) {
             if (i === config.values.length - 1 && config.labels[i] === 'DDAF') {
                 return '#6366f1';
             }
             return '#1e293b';
         })
-        .attr('font-size', (d, i) => i === config.values.length - 1 && config.labels[i] === 'DDAF' ? '13' : '11')
-        .attr('font-weight', (d, i) => i === config.values.length - 1 && config.labels[i] === 'DDAF' ? '900' : '600')
-        .attr('stroke', (d, i) => i === config.values.length - 1 && config.labels[i] === 'DDAF' ? '#fff' : 'none')
-        .attr('stroke-width', (d, i) => i === config.values.length - 1 && config.labels[i] === 'DDAF' ? '0.5' : '0')
+        .attr('font-size', function(d, i) {
+            return i === config.values.length - 1 && config.labels[i] === 'DDAF' ? '13' : '11';
+        })
+        .attr('font-weight', function(d, i) {
+            return i === config.values.length - 1 && config.labels[i] === 'DDAF' ? '900' : '600';
+        })
+        .attr('stroke', function(d, i) {
+            return i === config.values.length - 1 && config.labels[i] === 'DDAF' ? '#fff' : 'none';
+        })
+        .attr('stroke-width', function(d, i) {
+            return i === config.values.length - 1 && config.labels[i] === 'DDAF' ? '0.5' : '0';
+        })
         .style('opacity', 0)
-        .text(d => config.formatValue ? config.formatValue(d) : d.toFixed(2))
+        .text(function(d) {
+            return config.formatValue ? config.formatValue(d) : d.toFixed(2);
+        })
         .transition()
         .delay(1500)
         .duration(800)
         .ease(d3.easeBounceOut)
         .style('opacity', 1)
-        .attr('y', d => yScale(d) - 5);
+        .attr('y', function(d) { return yScale(d) - 5; });
 
     // X-axis
     g.append('g')
-        .attr('transform', `translate(0,${chartHeight})`)
+        .attr('transform', 'translate(0,' + chartHeight + ')')
         .call(d3.axisBottom(xScale))
         .selectAll('text')
         .attr('transform', 'rotate(-45)')
