@@ -42,13 +42,13 @@ function initSparkleEffects() {
 // Animated Progress Bars
 function initProgressBars() {
     const progressBars = document.querySelectorAll('.chart-bar');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
             if (entry.isIntersecting) {
                 const bar = entry.target;
                 const width = bar.style.width || bar.getAttribute('data-width') || '0%';
                 bar.style.width = '0%';
-                setTimeout(() => {
+                setTimeout(function() {
                     bar.style.transition = 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
                     bar.style.width = width;
                 }, 100);
@@ -57,7 +57,7 @@ function initProgressBars() {
         });
     }, { threshold: 0.1 });
 
-    progressBars.forEach(bar => {
+    progressBars.forEach(function(bar) {
         observer.observe(bar);
     });
 }
@@ -77,7 +77,7 @@ function initNavigation() {
     }
 
     // Close mobile menu when clicking a link
-    navLinks.forEach(link => {
+    navLinks.forEach(function(link) {
         link.addEventListener('click', function() {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
@@ -109,7 +109,7 @@ function initNavigation() {
     });
 
     // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
@@ -137,9 +137,9 @@ function initScrollEffects() {
     };
 
     const observer = new IntersectionObserver(function(entries) {
-        entries.forEach((entry, index) => {
+        entries.forEach(function(entry, index) {
             if (entry.isIntersecting) {
-                setTimeout(() => {
+                setTimeout(function() {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
                 }, index * 100);
@@ -153,7 +153,7 @@ function initScrollEffects() {
         '.feature-card, .doc-card, .advantage-item, .contribution-item, .timeline-item, .stat-item'
     );
     
-    animatedElements.forEach((el, index) => {
+    animatedElements.forEach(function(el, index) {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
@@ -165,10 +165,10 @@ function initScrollEffects() {
         const scrolled = window.pageYOffset;
         const parallaxElements = document.querySelectorAll('.section-title, .hero-content');
         
-        parallaxElements.forEach((el, index) => {
+        parallaxElements.forEach(function(el, index) {
             const speed = 0.1 + (index * 0.05);
             const yPos = -(scrolled * speed);
-            el.style.transform = `translateY(${yPos}px)`;
+            el.style.transform = 'translateY(' + yPos + 'px)';
         });
     });
 }
@@ -178,17 +178,17 @@ function initBenchmarkTabs() {
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContents = document.querySelectorAll('.tab-content');
 
-    tabButtons.forEach(button => {
+    tabButtons.forEach(function(button) {
         button.addEventListener('click', function() {
             const targetTab = this.getAttribute('data-tab');
 
             // Remove active class from all buttons and contents
-            tabButtons.forEach(btn => {
+            tabButtons.forEach(function(btn) {
                 btn.classList.remove('active');
                 btn.classList.remove('bg-gradient-to-r', 'from-primary-600', 'to-purple-600', 'text-white', 'shadow-lg', 'shadow-primary-500/50');
                 btn.classList.add('bg-white', 'border-2', 'border-primary-200', 'text-gray-700');
             });
-            tabContents.forEach(content => {
+            tabContents.forEach(function(content) {
                 content.classList.remove('active');
                 content.style.opacity = '0';
             });
@@ -202,7 +202,7 @@ function initBenchmarkTabs() {
             
             if (targetContent) {
                 targetContent.classList.add('active');
-                setTimeout(() => {
+                setTimeout(function() {
                     targetContent.style.opacity = '1';
                     animateChartBars(targetContent);
                 }, 100);
@@ -228,7 +228,7 @@ function initBenchmarkTabs() {
     // Initial animation for first tab
     const firstTab = document.querySelector('.tab-content.active');
     if (firstTab) {
-        setTimeout(() => {
+        setTimeout(function() {
             animateChartBars(firstTab);
         }, 500);
     }
@@ -238,13 +238,13 @@ function initBenchmarkTabs() {
 function initAnimations() {
     // Floating animation for icons
     const icons = document.querySelectorAll('.feature-icon, .doc-icon, .advantage-icon');
-    icons.forEach((icon, index) => {
-        icon.style.animationDelay = `${index * 0.2}s`;
+    icons.forEach(function(icon, index) {
+        icon.style.animationDelay = (index * 0.2) + 's';
     });
 
     // Hover effect for cards
     const cards = document.querySelectorAll('.feature-card, .doc-card');
-    cards.forEach(card => {
+    cards.forEach(function(card) {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-10px) scale(1.02)';
         });
@@ -256,7 +256,7 @@ function initAnimations() {
 
     // Ripple effect on buttons
     const buttons = document.querySelectorAll('.btn, .tab-button');
-    buttons.forEach(button => {
+    buttons.forEach(function(button) {
         button.addEventListener('click', function(e) {
             const ripple = document.createElement('span');
             const rect = this.getBoundingClientRect();
@@ -271,7 +271,7 @@ function initAnimations() {
             
             this.appendChild(ripple);
             
-            setTimeout(() => {
+            setTimeout(function() {
                 ripple.remove();
             }, 600);
         });
@@ -351,14 +351,14 @@ function initParticles() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // Update and draw particles
-        particles.forEach(particle => {
+        particles.forEach(function(particle) {
             particle.update();
             particle.draw();
         });
 
         // Draw connections
-        particles.forEach((particle, i) => {
-            particles.slice(i + 1).forEach(otherParticle => {
+        particles.forEach(function(particle, i) {
+            particles.slice(i + 1).forEach(function(otherParticle) {
                 const dx = particle.x - otherParticle.x;
                 const dy = particle.y - otherParticle.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
@@ -382,7 +382,7 @@ function initParticles() {
     animate();
 
     // Recreate particles on resize
-    window.addEventListener('resize', () => {
+    window.addEventListener('resize', function() {
         createParticles();
     });
 }
@@ -393,11 +393,11 @@ function initParallax() {
         const scrolled = window.pageYOffset;
         const orbs = document.querySelectorAll('.gradient-orb');
         
-        orbs.forEach((orb, index) => {
+        orbs.forEach(function(orb, index) {
             const speed = 0.3 + (index * 0.15);
             const yPos = -(scrolled * speed);
             const xPos = Math.sin(scrolled * 0.001 + index) * 20;
-            orb.style.transform = `translate(${xPos}px, ${yPos}px)`;
+            orb.style.transform = 'translate(' + xPos + 'px, ' + yPos + 'px)';
         });
     });
 }
@@ -410,15 +410,15 @@ function initActiveNav() {
     function highlightNavLink() {
         const scrollY = window.pageYOffset + 150;
 
-        sections.forEach(section => {
+        sections.forEach(function(section) {
             const sectionHeight = section.offsetHeight;
             const sectionTop = section.offsetTop;
             const sectionId = section.getAttribute('id');
 
             if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                navLinks.forEach(link => {
+                navLinks.forEach(function(link) {
                     link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
+                    if (link.getAttribute('href') === '#' + sectionId) {
                         link.classList.add('active');
                     }
                 });
@@ -434,7 +434,7 @@ function initActiveNav() {
 function initTypewriter() {
     const typewriterElements = document.querySelectorAll('[data-typewriter]');
     
-    typewriterElements.forEach(element => {
+    typewriterElements.forEach(function(element) {
         const text = element.textContent;
         element.textContent = '';
         element.style.opacity = '1';
@@ -460,11 +460,11 @@ function initCounters() {
     };
 
     const counterObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
+        entries.forEach(function(entry) {
             if (entry.isIntersecting) {
                 const counter = entry.target;
                 const target = counter.textContent;
-                const isPercentage = target.includes('%');
+                const isPercentage = target.indexOf('%') !== -1;
                 const isNumber = !isNaN(parseFloat(target));
                 
                 if (isNumber) {
@@ -473,7 +473,7 @@ function initCounters() {
                     const increment = finalValue / (duration / 16);
                     let current = 0;
                     
-                    const updateCounter = () => {
+                    function updateCounter() {
                         current += increment;
                         if (current < finalValue) {
                             counter.textContent = Math.floor(current) + (isPercentage ? '%' : '');
@@ -481,7 +481,7 @@ function initCounters() {
                         } else {
                             counter.textContent = target;
                         }
-                    };
+                    }
                     
                     updateCounter();
                     counterObserver.unobserve(counter);
@@ -490,7 +490,7 @@ function initCounters() {
         });
     }, observerOptions);
 
-    counters.forEach(counter => {
+    counters.forEach(function(counter) {
         counterObserver.observe(counter);
     });
 }
@@ -527,7 +527,7 @@ document.head.appendChild(style);
 function initMagneticEffect() {
     const magneticElements = document.querySelectorAll('.btn, .feature-card, .doc-card, .tab-button, .arch-badge');
     
-    magneticElements.forEach(element => {
+    magneticElements.forEach(function(element) {
         element.addEventListener('mousemove', function(e) {
             const rect = this.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
@@ -536,7 +536,7 @@ function initMagneticEffect() {
             const moveX = x * 0.15;
             const moveY = y * 0.15;
             
-            this.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
+            this.style.transform = 'translate(' + moveX + 'px, ' + moveY + 'px) scale(1.05)';
         });
         
         element.addEventListener('mouseleave', function() {
@@ -551,37 +551,35 @@ function initCursorEffects() {
     
     const cursor = document.createElement('div');
     cursor.className = 'custom-cursor';
-    cursor.style.cssText = `
-        width: 20px;
-        height: 20px;
-        border: 2px solid rgba(99, 102, 241, 0.8);
-        border-radius: 50%;
-        position: fixed;
-        pointer-events: none;
-        z-index: 9999;
-        transition: transform 0.1s ease;
-        mix-blend-mode: difference;
-    `;
+    cursor.style.cssText = 
+        'width: 20px;' +
+        'height: 20px;' +
+        'border: 2px solid rgba(99, 102, 241, 0.8);' +
+        'border-radius: 50%;' +
+        'position: fixed;' +
+        'pointer-events: none;' +
+        'z-index: 9999;' +
+        'transition: transform 0.1s ease;' +
+        'mix-blend-mode: difference;';
     document.body.appendChild(cursor);
     
     const cursorFollower = document.createElement('div');
     cursorFollower.className = 'cursor-follower';
-    cursorFollower.style.cssText = `
-        width: 40px;
-        height: 40px;
-        border: 1px solid rgba(99, 102, 241, 0.3);
-        border-radius: 50%;
-        position: fixed;
-        pointer-events: none;
-        z-index: 9998;
-        transition: transform 0.3s ease;
-    `;
+    cursorFollower.style.cssText = 
+        'width: 40px;' +
+        'height: 40px;' +
+        'border: 1px solid rgba(99, 102, 241, 0.3);' +
+        'border-radius: 50%;' +
+        'position: fixed;' +
+        'pointer-events: none;' +
+        'z-index: 9998;' +
+        'transition: transform 0.3s ease;';
     document.body.appendChild(cursorFollower);
     
     let mouseX = 0, mouseY = 0;
     let followerX = 0, followerY = 0;
     
-    document.addEventListener('mousemove', (e) => {
+    document.addEventListener('mousemove', function(e) {
         mouseX = e.clientX;
         mouseY = e.clientY;
         
@@ -602,12 +600,12 @@ function initCursorEffects() {
     
     // Scale cursor on hover
     const interactiveElements = document.querySelectorAll('a, button, .btn, .feature-card, .doc-card');
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
+    interactiveElements.forEach(function(el) {
+        el.addEventListener('mouseenter', function() {
             cursor.style.transform = 'scale(1.5)';
             cursorFollower.style.transform = 'scale(1.5)';
         });
-        el.addEventListener('mouseleave', () => {
+        el.addEventListener('mouseleave', function() {
             cursor.style.transform = 'scale(1)';
             cursorFollower.style.transform = 'scale(1)';
         });
@@ -618,8 +616,8 @@ function initCursorEffects() {
 function initSmoothReveal() {
     const revealElements = document.querySelectorAll('.section, .feature-card, .doc-card, .advantage-item');
     
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+    const revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
@@ -631,7 +629,7 @@ function initSmoothReveal() {
         rootMargin: '0px 0px -50px 0px'
     });
     
-    revealElements.forEach(el => {
+    revealElements.forEach(function(el) {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
@@ -643,7 +641,7 @@ function initSmoothReveal() {
 function init3DEffects() {
     const tiltElements = document.querySelectorAll('.feature-card, .doc-card, .advantage-item');
     
-    tiltElements.forEach(element => {
+    tiltElements.forEach(function(element) {
         element.addEventListener('mousemove', function(e) {
             const rect = this.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -655,7 +653,7 @@ function init3DEffects() {
             const rotateX = (y - centerY) / 10;
             const rotateY = (centerX - x) / 10;
             
-            this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+            this.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateZ(10px)';
         });
         
         element.addEventListener('mouseleave', function() {
@@ -668,7 +666,7 @@ function init3DEffects() {
 function initConfetti() {
     const buttons = document.querySelectorAll('.btn-primary, .tab-button.active');
     
-    buttons.forEach(button => {
+    buttons.forEach(function(button) {
         button.addEventListener('click', function(e) {
             createConfetti(e.clientX, e.clientY);
         });
@@ -681,17 +679,17 @@ function createConfetti(x, y) {
     
     for (let i = 0; i < confettiCount; i++) {
         const confetti = document.createElement('div');
-        confetti.style.cssText = `
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            background: ${colors[Math.floor(Math.random() * colors.length)]};
-            left: ${x}px;
-            top: ${y}px;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10000;
-        `;
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.cssText = 
+            'position: fixed;' +
+            'width: 8px;' +
+            'height: 8px;' +
+            'background: ' + randomColor + ';' +
+            'left: ' + x + 'px;' +
+            'top: ' + y + 'px;' +
+            'border-radius: 50%;' +
+            'pointer-events: none;' +
+            'z-index: 10000;';
         
         document.body.appendChild(confetti);
         
@@ -751,24 +749,26 @@ function debounce(func, wait) {
 }
 
 // Apply throttling to scroll-heavy functions
-window.addEventListener('scroll', throttle(() => {
+window.addEventListener('scroll', throttle(function() {
     // Scroll-based animations are handled by individual functions
 }, 16));
 
 // Add page load animation
-window.addEventListener('load', () => {
+window.addEventListener('load', function() {
     document.body.classList.add('loaded');
     const loader = document.querySelector('.page-loader');
     if (loader) {
         loader.style.opacity = '0';
-        setTimeout(() => loader.remove(), 500);
+        setTimeout(function() {
+            loader.remove();
+        }, 500);
     }
     
     // Add stagger animation to cards
     const cards = document.querySelectorAll('.feature-card, .doc-card, .advantage-item');
-    cards.forEach((card, index) => {
+    cards.forEach(function(card, index) {
         card.classList.add('stagger-item');
-        card.style.animationDelay = `${index * 0.1}s`;
+        card.style.animationDelay = (index * 0.1) + 's';
     });
 });
 
@@ -779,8 +779,8 @@ function initAdvancedScrollAnimations() {
         rootMargin: '0px 0px -50px 0px'
     };
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
                 
@@ -793,7 +793,7 @@ function initAdvancedScrollAnimations() {
     }, observerOptions);
 
     // Observe all elements that should fade in on scroll
-    document.querySelectorAll('.fade-in-scroll, .stat-item, .benchmark-chart').forEach(el => {
+    document.querySelectorAll('.fade-in-scroll, .stat-item, .benchmark-chart').forEach(function(el) {
         el.classList.add('fade-in-scroll');
         observer.observe(el);
     });
@@ -803,7 +803,7 @@ function initAdvancedScrollAnimations() {
 function initEnhancedHoverEffects() {
     // Add glow effect to interactive elements
     const interactiveElements = document.querySelectorAll('.btn, .feature-card, .doc-card, .tab-button');
-    interactiveElements.forEach(el => {
+    interactiveElements.forEach(function(el) {
         el.addEventListener('mouseenter', function() {
             this.style.transition = 'all 0.3s ease';
         });
@@ -811,7 +811,7 @@ function initEnhancedHoverEffects() {
 
     // Add ripple effect to buttons
     const buttons = document.querySelectorAll('.btn, .tab-button');
-    buttons.forEach(button => {
+    buttons.forEach(function(button) {
         button.addEventListener('click', function(e) {
             const ripple = document.createElement('span');
             const rect = this.getBoundingClientRect();
@@ -819,24 +819,25 @@ function initEnhancedHoverEffects() {
             const x = e.clientX - rect.left - size / 2;
             const y = e.clientY - rect.top - size / 2;
             
-            ripple.style.cssText = `
-                position: absolute;
-                width: ${size}px;
-                height: ${size}px;
-                left: ${x}px;
-                top: ${y}px;
-                border-radius: 50%;
-                background: rgba(255, 255, 255, 0.6);
-                transform: scale(0);
-                animation: ripple 0.6s ease-out;
-                pointer-events: none;
-            `;
+            ripple.style.cssText = 
+                'position: absolute;' +
+                'width: ' + size + 'px;' +
+                'height: ' + size + 'px;' +
+                'left: ' + x + 'px;' +
+                'top: ' + y + 'px;' +
+                'border-radius: 50%;' +
+                'background: rgba(255, 255, 255, 0.6);' +
+                'transform: scale(0);' +
+                'animation: ripple 0.6s ease-out;' +
+                'pointer-events: none;';
             
             this.style.position = 'relative';
             this.style.overflow = 'hidden';
             this.appendChild(ripple);
             
-            setTimeout(() => ripple.remove(), 600);
+            setTimeout(function() {
+                ripple.remove();
+            }, 600);
         });
     });
 }
