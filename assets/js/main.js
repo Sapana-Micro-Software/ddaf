@@ -17,7 +17,42 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothReveal();
     init3DEffects();
     initConfetti();
+    initAdvancedScrollAnimations();
+    initEnhancedHoverEffects();
+    initSparkleEffects();
+    initProgressBars();
 });
+
+// Sparkle Effects for Special Elements
+function initSparkleEffects() {
+    const sparkleElements = document.querySelectorAll('.section-title, .hero-title');
+    sparkleElements.forEach(el => {
+        el.classList.add('sparkle');
+    });
+}
+
+// Animated Progress Bars
+function initProgressBars() {
+    const progressBars = document.querySelectorAll('.chart-bar');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const bar = entry.target;
+                const width = bar.style.width || bar.getAttribute('data-width') || '0%';
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.transition = 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                    bar.style.width = width;
+                }, 100);
+                observer.unobserve(bar);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    progressBars.forEach(bar => {
+        observer.observe(bar);
+    });
+}
 
 // Navigation Functions
 function initNavigation() {
@@ -720,4 +755,98 @@ window.addEventListener('load', () => {
         loader.style.opacity = '0';
         setTimeout(() => loader.remove(), 500);
     }
+    
+    // Add stagger animation to cards
+    const cards = document.querySelectorAll('.feature-card, .doc-card, .advantage-item');
+    cards.forEach((card, index) => {
+        card.classList.add('stagger-item');
+        card.style.animationDelay = `${index * 0.1}s`;
+    });
+});
+
+// Enhanced Scroll Animations
+function initAdvancedScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                
+                // Add bounce effect to numbers
+                if (entry.target.classList.contains('stat-number')) {
+                    entry.target.style.animation = 'bounceIn 0.8s ease-out';
+                }
+            }
+        });
+    }, observerOptions);
+
+    // Observe all elements that should fade in on scroll
+    document.querySelectorAll('.fade-in-scroll, .stat-item, .benchmark-chart').forEach(el => {
+        el.classList.add('fade-in-scroll');
+        observer.observe(el);
+    });
+}
+
+// Enhanced Hover Effects
+function initEnhancedHoverEffects() {
+    // Add glow effect to interactive elements
+    const interactiveElements = document.querySelectorAll('.btn, .feature-card, .doc-card, .tab-button');
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', function() {
+            this.style.transition = 'all 0.3s ease';
+        });
+    });
+
+    // Add ripple effect to buttons
+    const buttons = document.querySelectorAll('.btn, .tab-button');
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.6);
+                transform: scale(0);
+                animation: ripple 0.6s ease-out;
+                pointer-events: none;
+            `;
+            
+            this.style.position = 'relative';
+            this.style.overflow = 'hidden';
+            this.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 600);
+        });
+    });
+}
+
+// Add ripple animation to styles
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(rippleStyle);
+
+// Initialize all enhanced features
+document.addEventListener('DOMContentLoaded', function() {
+    initAdvancedScrollAnimations();
+    initEnhancedHoverEffects();
 });
