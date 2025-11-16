@@ -34,6 +34,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -60,43 +61,175 @@
                             700: '#be185d',
                             800: '#9f1239',
                             900: '#831843',
+                        },
+                        neon: {
+                            blue: '#00f5ff',
+                            purple: '#b026ff',
+                            pink: '#ff00ff',
+                            cyan: '#00ffff',
                         }
                     },
                     fontFamily: {
                         sans: ['Inter', 'system-ui', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
+                        display: ['Inter', 'system-ui', 'sans-serif'],
                     },
                     animation: {
                         'gradient': 'gradient 15s ease infinite',
+                        'gradient-x': 'gradient-x 15s ease infinite',
+                        'gradient-y': 'gradient-y 15s ease infinite',
+                        'gradient-xy': 'gradient-xy 15s ease infinite',
                         'float': 'float 6s ease-in-out infinite',
+                        'float-slow': 'float 8s ease-in-out infinite',
                         'glow': 'glow 2s ease-in-out infinite alternate',
+                        'glow-pulse': 'glow-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                         'shimmer': 'shimmer 2s linear infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'ping-slow': 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'tilt': 'tilt 10s infinite linear',
+                        'blob': 'blob 7s infinite',
+                        'fade-in': 'fadeIn 0.5s ease-in',
+                        'fade-in-up': 'fadeInUp 0.5s ease-out',
+                        'slide-in-right': 'slideInRight 0.5s ease-out',
+                        'slide-in-left': 'slideInLeft 0.5s ease-out',
+                        'zoom-in': 'zoomIn 0.5s ease-out',
+                        'bounce-in': 'bounceIn 0.6s ease-out',
+                        'rotate-in': 'rotateIn 0.6s ease-out',
                     },
                     keyframes: {
                         gradient: {
                             '0%, 100%': { 'background-position': '0% 50%' },
                             '50%': { 'background-position': '100% 50%' },
                         },
+                        'gradient-x': {
+                            '0%, 100%': { 'background-position': '0% 50%' },
+                            '50%': { 'background-position': '100% 50%' },
+                        },
+                        'gradient-y': {
+                            '0%, 100%': { 'background-position': '50% 0%' },
+                            '50%': { 'background-position': '50% 100%' },
+                        },
+                        'gradient-xy': {
+                            '0%, 100%': { 'background-position': '0% 50%, 50% 0%' },
+                            '50%': { 'background-position': '100% 50%, 50% 100%' },
+                        },
                         float: {
                             '0%, 100%': { transform: 'translateY(0px)' },
                             '50%': { transform: 'translateY(-20px)' },
                         },
                         glow: {
-                            '0%': { 'box-shadow': '0 0 5px rgba(99, 102, 241, 0.5)' },
-                            '100%': { 'box-shadow': '0 0 20px rgba(99, 102, 241, 0.8), 0 0 30px rgba(139, 92, 246, 0.6)' },
+                            '0%': { 'box-shadow': '0 0 5px rgba(99, 102, 241, 0.5), 0 0 10px rgba(99, 102, 241, 0.3)' },
+                            '100%': { 'box-shadow': '0 0 20px rgba(99, 102, 241, 0.8), 0 0 30px rgba(139, 92, 246, 0.6), 0 0 40px rgba(236, 72, 153, 0.4)' },
+                        },
+                        'glow-pulse': {
+                            '0%, 100%': { opacity: 1, 'box-shadow': '0 0 20px rgba(99, 102, 241, 0.5)' },
+                            '50%': { opacity: 0.8, 'box-shadow': '0 0 40px rgba(99, 102, 241, 0.8)' },
                         },
                         shimmer: {
                             '0%': { 'background-position': '-1000px 0' },
                             '100%': { 'background-position': '1000px 0' },
                         },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                        tilt: {
+                            '0%, 50%, 100%': { transform: 'rotate(0deg)' },
+                            '25%': { transform: 'rotate(0.5deg)' },
+                            '75%': { transform: 'rotate(-0.5deg)' },
+                        },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: 0, transform: 'translateY(20px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' },
+                        },
+                        slideInRight: {
+                            '0%': { opacity: 0, transform: 'translateX(100px)' },
+                            '100%': { opacity: 1, transform: 'translateX(0)' },
+                        },
+                        slideInLeft: {
+                            '0%': { opacity: 0, transform: 'translateX(-100px)' },
+                            '100%': { opacity: 1, transform: 'translateX(0)' },
+                        },
+                        zoomIn: {
+                            '0%': { opacity: 0, transform: 'scale(0.5)' },
+                            '100%': { opacity: 1, transform: 'scale(1)' },
+                        },
+                        bounceIn: {
+                            '0%': { opacity: 0, transform: 'scale(0.3)' },
+                            '50%': { opacity: 1, transform: 'scale(1.05)' },
+                            '70%': { transform: 'scale(0.9)' },
+                            '100%': { transform: 'scale(1)' },
+                        },
+                        rotateIn: {
+                            '0%': { opacity: 0, transform: 'rotate(-200deg) scale(0.5)' },
+                            '100%': { opacity: 1, transform: 'rotate(0deg) scale(1)' },
+                        },
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+                        'mesh-gradient': 'radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.15) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%), radial-gradient(at 0% 100%, rgba(59, 130, 246, 0.15) 0px, transparent 50%)',
+                    },
+                    backdropBlur: {
+                        xs: '2px',
+                    },
+                    boxShadow: {
+                        'glow': '0 0 20px rgba(99, 102, 241, 0.5)',
+                        'glow-lg': '0 0 40px rgba(99, 102, 241, 0.6), 0 0 80px rgba(139, 92, 246, 0.4)',
+                        'neon': '0 0 5px rgba(0, 245, 255, 0.8), 0 0 10px rgba(0, 245, 255, 0.6), 0 0 15px rgba(0, 245, 255, 0.4)',
+                        'neon-lg': '0 0 10px rgba(0, 245, 255, 1), 0 0 20px rgba(0, 245, 255, 0.8), 0 0 30px rgba(0, 245, 255, 0.6), 0 0 40px rgba(176, 38, 255, 0.4)',
                     },
                 }
-            }
+            },
+            plugins: []
         }
     </script>
     
     <!-- AOS - Animate On Scroll -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Animate.css for additional animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+    
+    <!-- Three.js for 3D effects (optional) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Particles.js for enhanced particle effects -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <!-- Lottie for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    
+    <!-- Splitting.js for text animations -->
+    <script src="https://cdn.jsdelivr.net/npm/splitting@1.0.6/dist/splitting.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/splitting@1.0.6/dist/splitting.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/splitting@1.0.6/dist/splitting-cells.css">
+    
+    <!-- Google Fonts - Enhanced -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Custom Stylesheets -->
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
@@ -111,27 +244,71 @@
     <link rel="preload" href="{{ '/assets/css/style.css' | relative_url }}" as="style">
     <link rel="preload" href="{{ '/assets/js/main.js' | relative_url }}" as="script">
 </head>
-<body class="font-sans antialiased">
+<body class="font-sans antialiased bg-gradient-to-br from-slate-50 via-white to-purple-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-x-hidden transition-colors duration-300">
+    <!-- Animated Background Elements -->
+    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <!-- Gradient Orbs -->
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-gradient-to-br from-primary-400/30 via-purple-400/30 to-pink-400/30 rounded-full blur-3xl animate-blob"></div>
+        <div class="absolute top-1/2 -right-40 w-96 h-96 bg-gradient-to-bl from-accent-400/30 via-pink-400/30 to-rose-400/30 rounded-full blur-3xl animate-blob" style="animation-delay: 2s;"></div>
+        <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-gradient-to-tr from-blue-400/30 via-cyan-400/30 to-teal-400/30 rounded-full blur-3xl animate-blob" style="animation-delay: 4s;"></div>
+        
+        <!-- Grid Pattern -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] opacity-40"></div>
+        
+        <!-- Animated Mesh Gradient -->
+        <div class="absolute inset-0 bg-mesh-gradient opacity-30 animate-pulse-slow"></div>
+    </div>
     <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-xl border-b border-primary-200/50 shadow-sm">
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/70 dark:bg-gray-900/70 backdrop-blur-2xl border-b border-primary-200/30 dark:border-primary-800/30 shadow-lg shadow-primary-500/5 hover:shadow-xl hover:shadow-primary-500/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0">
-                    <span class="text-2xl font-black bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent animate-glow">DDAF</span>
+                <div class="flex-shrink-0 group">
+                    <span class="text-3xl font-black bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto] hover:scale-110 transition-transform duration-300 inline-block cursor-pointer relative">
+                        DDAF
+                        <span class="absolute -top-1 -right-1 text-xs animate-ping">✨</span>
+                    </span>
                 </div>
-                <ul class="hidden md:flex items-center space-x-8" id="nav-menu">
-                    <li><a href="#home" class="nav-link text-gray-700 hover:text-primary-600 font-semibold transition-colors duration-300 relative group">Home</a></li>
-                    <li><a href="#overview" class="nav-link text-gray-700 hover:text-primary-600 font-semibold transition-colors duration-300 relative group">Overview</a></li>
-                    <li><a href="#docs" class="nav-link text-gray-700 hover:text-primary-600 font-semibold transition-colors duration-300 relative group">Documentation</a></li>
-                    <li><a href="#sota" class="nav-link text-gray-700 hover:text-primary-600 font-semibold transition-colors duration-300 relative group">SoTA Comparison</a></li>
-                    <li><a href="#benchmarks" class="nav-link text-gray-700 hover:text-primary-600 font-semibold transition-colors duration-300 relative group">Benchmarks</a></li>
-                    <li><a href="#prior-art" class="nav-link text-gray-700 hover:text-primary-600 font-semibold transition-colors duration-300 relative group">Prior Art</a></li>
-                    <li><a href="#github" class="nav-link text-gray-700 hover:text-primary-600 font-semibold transition-colors duration-300 relative group">GitHub</a></li>
+                <ul class="hidden md:flex items-center space-x-6" id="nav-menu">
+                    <li><a href="#home" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-semibold transition-all duration-300 relative group px-3 py-2 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20">
+                        <span class="relative z-10">Home</span>
+                        <span class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    </a></li>
+                    <li><a href="#overview" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-semibold transition-all duration-300 relative group px-3 py-2 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20">
+                        <span class="relative z-10">Overview</span>
+                        <span class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    </a></li>
+                    <li><a href="#docs" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-semibold transition-all duration-300 relative group px-3 py-2 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20">
+                        <span class="relative z-10">Documentation</span>
+                        <span class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    </a></li>
+                    <li><a href="#sota" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-semibold transition-all duration-300 relative group px-3 py-2 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20">
+                        <span class="relative z-10">SoTA</span>
+                        <span class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    </a></li>
+                    <li><a href="#benchmarks" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-semibold transition-all duration-300 relative group px-3 py-2 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20">
+                        <span class="relative z-10">Benchmarks</span>
+                        <span class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    </a></li>
+                    <li><a href="#prior-art" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-semibold transition-all duration-300 relative group px-3 py-2 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20">
+                        <span class="relative z-10">Prior Art</span>
+                        <span class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    </a></li>
+                    <li><a href="#github" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-semibold transition-all duration-300 relative group px-3 py-2 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20">
+                        <span class="relative z-10">GitHub</span>
+                        <span class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    </a></li>
                 </ul>
-                <div class="md:hidden hamburger" id="hamburger">
-                    <span class="block w-7 h-0.5 bg-gray-800 mb-1.5 transition-all"></span>
-                    <span class="block w-7 h-0.5 bg-gray-800 mb-1.5 transition-all"></span>
-                    <span class="block w-7 h-0.5 bg-gray-800 transition-all"></span>
+                <div class="flex items-center gap-4">
+                    <!-- Dark Mode Toggle -->
+                    <button id="darkModeToggle" class="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-12 group border-2 border-primary-200 dark:border-primary-700">
+                        <i class="fas fa-moon text-gray-700 dark:text-yellow-400 dark:hidden transition-all duration-300"></i>
+                        <i class="fas fa-sun text-yellow-400 hidden dark:inline-block transition-all duration-300"></i>
+                    </button>
+                    <div class="md:hidden hamburger" id="hamburger">
+                        <span class="block w-7 h-0.5 bg-gray-800 dark:bg-gray-200 mb-1.5 transition-all"></span>
+                        <span class="block w-7 h-0.5 bg-gray-800 dark:bg-gray-200 mb-1.5 transition-all"></span>
+                        <span class="block w-7 h-0.5 bg-gray-800 dark:bg-gray-200 transition-all"></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -139,52 +316,100 @@
 
     <!-- Hero Section -->
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        <!-- Animated Background -->
+        <!-- Enhanced Animated Background -->
         <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute -top-40 -left-40 w-96 h-96 bg-gradient-to-br from-primary-500/30 to-purple-500/30 rounded-full blur-3xl animate-float"></div>
-            <div class="absolute top-1/2 right-0 w-96 h-96 bg-gradient-to-bl from-accent-500/30 to-pink-500/30 rounded-full blur-3xl animate-float" style="animation-delay: 2s;"></div>
-            <div class="absolute bottom-0 left-1/3 w-96 h-96 bg-gradient-to-tr from-blue-500/30 to-cyan-500/30 rounded-full blur-3xl animate-float" style="animation-delay: 4s;"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white"></div>
+            <!-- Large Gradient Orbs -->
+            <div class="absolute -top-40 -left-40 w-[600px] h-[600px] bg-gradient-to-br from-primary-400/40 via-purple-400/40 to-pink-400/40 rounded-full blur-3xl animate-blob"></div>
+            <div class="absolute top-1/2 -right-40 w-[500px] h-[500px] bg-gradient-to-bl from-accent-400/40 via-rose-400/40 to-pink-400/40 rounded-full blur-3xl animate-blob" style="animation-delay: 2s;"></div>
+            <div class="absolute -bottom-40 left-1/3 w-[550px] h-[550px] bg-gradient-to-tr from-blue-400/40 via-cyan-400/40 to-teal-400/40 rounded-full blur-3xl animate-blob" style="animation-delay: 4s;"></div>
+            
+            <!-- Additional Floating Orbs -->
+            <div class="absolute top-1/4 right-1/4 w-72 h-72 bg-gradient-to-br from-violet-400/30 to-fuchsia-400/30 rounded-full blur-2xl animate-float-slow"></div>
+            <div class="absolute bottom-1/4 left-1/4 w-64 h-64 bg-gradient-to-tr from-indigo-400/30 to-blue-400/30 rounded-full blur-2xl animate-float" style="animation-delay: 1s;"></div>
+            
+            <!-- Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/60 to-white dark:via-gray-900/60 dark:to-gray-900"></div>
+            
+            <!-- Animated Grid -->
+            <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:48px_48px] animate-pulse-slow"></div>
         </div>
         
         <!-- Hero Content -->
         <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up" data-aos-duration="1000">
-            <h1 class="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 leading-tight">
-                <span class="block text-gray-900" data-aos="fade-up" data-aos-delay="100">Data-Driven, Dynamic, Online,</span>
-                <span class="block text-gray-900" data-aos="fade-up" data-aos-delay="200">and Attention-Based</span>
-                <span class="block bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient" data-aos="fade-up" data-aos-delay="300">Activation Functions</span>
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 leading-tight tracking-tight">
+                <span class="block text-gray-900 dark:text-white animate-fade-in-up" data-aos="fade-up" data-aos-delay="100">Data-Driven, Dynamic, Online,</span>
+                <span class="block text-gray-900 dark:text-white animate-fade-in-up" data-aos="fade-up" data-aos-delay="200">and Attention-Based</span>
+                <span class="block bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-x drop-shadow-2xl hover:scale-105 transition-transform duration-500 inline-block" data-aos="fade-up" data-aos-delay="300">
+                    Activation Functions
+                    <span class="inline-block ml-2 animate-bounce-slow">✨</span>
+                </span>
             </h1>
-            <p class="text-xl sm:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="400">
+            <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed font-medium animate-fade-in-up" data-aos="fade-up" data-aos-delay="400">
                 A comprehensive C/C++ library implementing adaptive activation functions for deep neural networks
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16" data-aos="fade-up" data-aos-delay="500">
-                <a href="#docs" class="btn btn-primary group relative px-8 py-4 bg-gradient-to-r from-primary-600 to-purple-600 text-white font-bold rounded-xl shadow-lg shadow-primary-500/50 hover:shadow-xl hover:shadow-primary-500/70 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 magnetic cursor-glow">
-                    <span class="relative z-10">View Documentation</span>
-                    <div class="absolute inset-0 bg-gradient-to-r from-primary-700 to-purple-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <a href="#docs" class="group relative px-8 py-4 bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 text-white font-bold rounded-2xl shadow-2xl shadow-primary-500/50 hover:shadow-glow-lg transition-all duration-500 transform hover:scale-110 hover:-translate-y-2 overflow-hidden">
+                    <span class="relative z-10 flex items-center gap-2">
+                        <i class="fas fa-book-open"></i>
+                        <span>View Documentation</span>
+                        <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary-700 via-purple-700 to-accent-600 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="absolute inset-0 bg-white/20 rounded-2xl translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
                 </a>
-                <a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}" target="_blank" class="btn btn-secondary px-8 py-4 bg-white text-primary-600 font-bold rounded-xl border-2 border-primary-600 shadow-md hover:bg-primary-50 hover:shadow-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 magnetic cursor-glow">
-                    View on GitHub
+                <a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}" target="_blank" class="group relative px-8 py-4 bg-white dark:bg-gray-800 text-primary-600 dark:text-primary-400 font-bold rounded-2xl border-2 border-primary-600 dark:border-primary-400 shadow-xl hover:shadow-2xl hover:shadow-primary-500/30 transition-all duration-500 transform hover:scale-110 hover:-translate-y-2 overflow-hidden">
+                    <span class="relative z-10 flex items-center gap-2">
+                        <i class="fab fa-github"></i>
+                        <span>View on GitHub</span>
+                        <i class="fas fa-external-link-alt group-hover:scale-110 transition-transform"></i>
+                    </span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary-50 to-purple-50 dark:from-primary-900/20 dark:to-purple-900/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </a>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="600">
-                <div class="stat-item bg-white/80 backdrop-blur-xl p-6 rounded-2xl border border-primary-200/50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 scale-glow">
-                    <div class="stat-number text-4xl font-black bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent mb-2 gradient-text">4</div>
-                    <div class="text-sm font-semibold text-gray-600 uppercase tracking-wider">Activation Types</div>
+                <div class="group stat-item bg-white/90 dark:bg-gray-800/90 backdrop-blur-2xl p-8 rounded-3xl border border-primary-200/50 dark:border-primary-700/50 shadow-2xl hover:shadow-glow-lg transition-all duration-500 transform hover:scale-110 hover:-translate-y-3 hover:rotate-1 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="stat-number text-5xl font-black bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent mb-3 animate-gradient-x bg-[length:200%_auto]">4</div>
+                        <div class="text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest flex items-center gap-2">
+                            <i class="fas fa-layer-group text-primary-500"></i>
+                            <span>Activation Types</span>
+                        </div>
+                    </div>
+                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-primary-500/10 rounded-full blur-2xl group-hover:bg-primary-500/20 transition-colors duration-500"></div>
                 </div>
-                <div class="stat-item bg-white/80 backdrop-blur-xl p-6 rounded-2xl border border-primary-200/50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 scale-glow">
-                    <div class="stat-number text-4xl font-black bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent mb-2 gradient-text">8</div>
-                    <div class="text-sm font-semibold text-gray-600 uppercase tracking-wider">Architectures</div>
+                <div class="group stat-item bg-white/90 dark:bg-gray-800/90 backdrop-blur-2xl p-8 rounded-3xl border border-primary-200/50 dark:border-primary-700/50 shadow-2xl hover:shadow-glow-lg transition-all duration-500 transform hover:scale-110 hover:-translate-y-3 hover:-rotate-1 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="stat-number text-5xl font-black bg-gradient-to-r from-purple-600 via-pink-600 to-accent-500 bg-clip-text text-transparent mb-3 animate-gradient-x bg-[length:200%_auto]">8</div>
+                        <div class="text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest flex items-center gap-2">
+                            <i class="fas fa-network-wired text-purple-500"></i>
+                            <span>Architectures</span>
+                        </div>
+                    </div>
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-colors duration-500"></div>
                 </div>
-                <div class="stat-item bg-white/80 backdrop-blur-xl p-6 rounded-2xl border border-primary-200/50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-2 scale-glow">
-                    <div class="stat-number text-4xl font-black bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent mb-2 gradient-text">100%</div>
-                    <div class="text-sm font-semibold text-gray-600 uppercase tracking-wider">C/C++</div>
+                <div class="group stat-item bg-white/90 dark:bg-gray-800/90 backdrop-blur-2xl p-8 rounded-3xl border border-primary-200/50 dark:border-primary-700/50 shadow-2xl hover:shadow-glow-lg transition-all duration-500 transform hover:scale-110 hover:-translate-y-3 hover:rotate-1 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-accent-500/10 to-rose-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="stat-number text-5xl font-black bg-gradient-to-r from-accent-600 via-rose-600 to-pink-500 bg-clip-text text-transparent mb-3 animate-gradient-x bg-[length:200%_auto]">100%</div>
+                        <div class="text-sm font-bold text-gray-700 dark:text-gray-300 uppercase tracking-widest flex items-center gap-2">
+                            <i class="fab fa-cuttlefish text-accent-500"></i>
+                            <span>C/C++</span>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-accent-500/10 rounded-full blur-2xl group-hover:bg-accent-500/20 transition-colors duration-500"></div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Overview Section -->
-    <section id="overview" class="py-24 bg-gradient-to-b from-white to-gray-50">
+    <section id="overview" class="relative py-24 bg-gradient-to-b from-white via-purple-50/30 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-30">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(99,102,241,0.15)_1px,transparent_0)] bg-[size:40px_40px]"></div>
+        </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent">
@@ -195,47 +420,122 @@
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="feature-card group bg-white/90 backdrop-blur-xl p-8 rounded-3xl border border-primary-200/50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 magnetic cursor-glow" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature-icon text-6xl mb-6 transform group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">📊</div>
-                    <h3 class="text-2xl font-black text-gray-900 mb-4">Data-Driven</h3>
-                    <p class="text-gray-600 leading-relaxed">Adapts based on input data statistics, maintaining running statistics with momentum for optimal performance.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+                <div class="group feature-card bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl border-2 border-primary-200/50 dark:border-primary-700/50 shadow-2xl hover:shadow-glow-lg transition-all duration-700 transform hover:scale-110 hover:-translate-y-4 hover:rotate-1 relative overflow-hidden" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-primary-500/10 rounded-full blur-3xl group-hover:bg-primary-500/20 transition-colors duration-700"></div>
+                    <div class="relative z-10">
+                        <div class="feature-icon text-7xl mb-6 transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 animate-bounce-slow">📊</div>
+                        <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-4 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Data-Driven</h3>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Adapts based on input data statistics, maintaining running statistics with momentum for optimal performance.</p>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                 </div>
-                <div class="feature-card group bg-white/90 backdrop-blur-xl p-8 rounded-3xl border border-primary-200/50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 magnetic cursor-glow" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-icon text-6xl mb-6 transform group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">⚡</div>
-                    <h3 class="text-2xl font-black text-gray-900 mb-4">Dynamic</h3>
-                    <p class="text-gray-600 leading-relaxed">Parameters evolve over time during training using momentum-based updates for continuous adaptation.</p>
+                <div class="group feature-card bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl border-2 border-purple-200/50 dark:border-purple-700/50 shadow-2xl hover:shadow-glow-lg transition-all duration-700 transform hover:scale-110 hover:-translate-y-4 hover:-rotate-1 relative overflow-hidden" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="absolute top-0 left-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-colors duration-700"></div>
+                    <div class="relative z-10">
+                        <div class="feature-icon text-7xl mb-6 transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 animate-pulse-slow">⚡</div>
+                        <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Dynamic</h3>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Parameters evolve over time during training using momentum-based updates for continuous adaptation.</p>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                 </div>
-                <div class="feature-card group bg-white/90 backdrop-blur-xl p-8 rounded-3xl border border-primary-200/50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 magnetic cursor-glow" data-aos="fade-up" data-aos-delay="300">
-                    <div class="feature-icon text-6xl mb-6 transform group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">🔄</div>
-                    <h3 class="text-2xl font-black text-gray-900 mb-4">Online</h3>
-                    <p class="text-gray-600 leading-relaxed">Real-time adaptation to streaming data using exponential moving averages and sliding window buffers.</p>
+                <div class="group feature-card bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl border-2 border-blue-200/50 dark:border-blue-700/50 shadow-2xl hover:shadow-glow-lg transition-all duration-700 transform hover:scale-110 hover:-translate-y-4 hover:rotate-1 relative overflow-hidden" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="absolute bottom-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-colors duration-700"></div>
+                    <div class="relative z-10">
+                        <div class="feature-icon text-7xl mb-6 transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 animate-spin-slow">🔄</div>
+                        <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Online</h3>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Real-time adaptation to streaming data using exponential moving averages and sliding window buffers.</p>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-cyan-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                 </div>
-                <div class="feature-card group bg-white/90 backdrop-blur-xl p-8 rounded-3xl border border-primary-200/50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 magnetic cursor-glow" data-aos="fade-up" data-aos-delay="400">
-                    <div class="feature-icon text-6xl mb-6 transform group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">🎯</div>
-                    <h3 class="text-2xl font-black text-gray-900 mb-4">Attention-Based</h3>
-                    <p class="text-gray-600 leading-relaxed">Uses multi-head attention mechanisms to weight activation outputs for improved performance.</p>
+                <div class="group feature-card bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl border-2 border-accent-200/50 dark:border-accent-700/50 shadow-2xl hover:shadow-glow-lg transition-all duration-700 transform hover:scale-110 hover:-translate-y-4 hover:-rotate-1 relative overflow-hidden" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="absolute inset-0 bg-gradient-to-br from-accent-500/5 to-rose-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-accent-500/10 rounded-full blur-3xl group-hover:bg-accent-500/20 transition-colors duration-700"></div>
+                    <div class="relative z-10">
+                        <div class="feature-icon text-7xl mb-6 transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 animate-wiggle">🎯</div>
+                        <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-4 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">Attention-Based</h3>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Uses multi-head attention mechanisms to weight activation outputs for improved performance.</p>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-accent-500 to-rose-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                 </div>
             </div>
 
-            <div class="mt-16" data-aos="fade-up" data-aos-delay="500">
-                <h3 class="text-3xl font-black text-center mb-8 text-gray-900">Supported Architectures</h3>
+            <div class="mt-16 relative z-10" data-aos="fade-up" data-aos-delay="500">
+                <h3 class="text-3xl font-black text-center mb-10 text-gray-900 dark:text-white">
+                    <span class="bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]">Supported Architectures</span>
+                </h3>
                 <div class="flex flex-wrap justify-center gap-4">
-                    <span class="arch-badge px-6 py-3 bg-gradient-to-r from-primary-500 to-purple-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 cursor-default magnetic">CNN</span>
-                    <span class="arch-badge px-6 py-3 bg-gradient-to-r from-primary-500 to-purple-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 cursor-default magnetic">RNN</span>
-                    <span class="arch-badge px-6 py-3 bg-gradient-to-r from-primary-500 to-purple-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 cursor-default magnetic">LSTM</span>
-                    <span class="arch-badge px-6 py-3 bg-gradient-to-r from-primary-500 to-purple-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 cursor-default magnetic">GRU</span>
-                    <span class="arch-badge px-6 py-3 bg-gradient-to-r from-primary-500 to-purple-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 cursor-default magnetic">Transformer</span>
-                    <span class="arch-badge px-6 py-3 bg-gradient-to-r from-primary-500 to-purple-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 cursor-default magnetic">Hierarchical Transformer</span>
-                    <span class="arch-badge px-6 py-3 bg-gradient-to-r from-primary-500 to-purple-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 cursor-default magnetic">Big Bird</span>
-                    <span class="arch-badge px-6 py-3 bg-gradient-to-r from-primary-500 to-purple-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 cursor-default magnetic">MoE</span>
+                    <span class="group relative px-6 py-3 bg-gradient-to-r from-primary-500 via-purple-500 to-pink-500 text-white font-bold rounded-full shadow-xl hover:shadow-glow-lg transform hover:scale-125 hover:-translate-y-2 transition-all duration-500 cursor-default overflow-hidden">
+                        <span class="relative z-10 flex items-center gap-2">
+                            <i class="fas fa-brain"></i>
+                            <span>CNN</span>
+                        </span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-primary-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </span>
+                    <span class="group relative px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 text-white font-bold rounded-full shadow-xl hover:shadow-glow-lg transform hover:scale-125 hover:-translate-y-2 transition-all duration-500 cursor-default overflow-hidden">
+                        <span class="relative z-10 flex items-center gap-2">
+                            <i class="fas fa-project-diagram"></i>
+                            <span>RNN</span>
+                        </span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </span>
+                    <span class="group relative px-6 py-3 bg-gradient-to-r from-blue-500 via-cyan-500 to-teal-500 text-white font-bold rounded-full shadow-xl hover:shadow-glow-lg transform hover:scale-125 hover:-translate-y-2 transition-all duration-500 cursor-default overflow-hidden">
+                        <span class="relative z-10 flex items-center gap-2">
+                            <i class="fas fa-memory"></i>
+                            <span>LSTM</span>
+                        </span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </span>
+                    <span class="group relative px-6 py-3 bg-gradient-to-r from-indigo-500 via-blue-500 to-purple-500 text-white font-bold rounded-full shadow-xl hover:shadow-glow-lg transform hover:scale-125 hover:-translate-y-2 transition-all duration-500 cursor-default overflow-hidden">
+                        <span class="relative z-10 flex items-center gap-2">
+                            <i class="fas fa-network-wired"></i>
+                            <span>GRU</span>
+                        </span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </span>
+                    <span class="group relative px-6 py-3 bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-500 text-white font-bold rounded-full shadow-xl hover:shadow-glow-lg transform hover:scale-125 hover:-translate-y-2 transition-all duration-500 cursor-default overflow-hidden">
+                        <span class="relative z-10 flex items-center gap-2">
+                            <i class="fas fa-cube"></i>
+                            <span>Transformer</span>
+                        </span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-violet-600 to-fuchsia-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </span>
+                    <span class="group relative px-6 py-3 bg-gradient-to-r from-fuchsia-500 via-pink-500 to-rose-500 text-white font-bold rounded-full shadow-xl hover:shadow-glow-lg transform hover:scale-125 hover:-translate-y-2 transition-all duration-500 cursor-default overflow-hidden">
+                        <span class="relative z-10 flex items-center gap-2">
+                            <i class="fas fa-sitemap"></i>
+                            <span>Hierarchical Transformer</span>
+                        </span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-fuchsia-600 to-rose-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </span>
+                    <span class="group relative px-6 py-3 bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500 text-white font-bold rounded-full shadow-xl hover:shadow-glow-lg transform hover:scale-125 hover:-translate-y-2 transition-all duration-500 cursor-default overflow-hidden">
+                        <span class="relative z-10 flex items-center gap-2">
+                            <i class="fas fa-feather-alt"></i>
+                            <span>Big Bird</span>
+                        </span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-cyan-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </span>
+                    <span class="group relative px-6 py-3 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white font-bold rounded-full shadow-xl hover:shadow-glow-lg transform hover:scale-125 hover:-translate-y-2 transition-all duration-500 cursor-default overflow-hidden">
+                        <span class="relative z-10 flex items-center gap-2">
+                            <i class="fas fa-users"></i>
+                            <span>MoE</span>
+                        </span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-emerald-600 to-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Documentation Section -->
-    <section id="docs" class="py-24 bg-gradient-to-b from-gray-50 to-white">
+    <section id="docs" class="relative py-24 bg-gradient-to-b from-gray-50 via-white to-purple-50/20 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+        <!-- Animated Background -->
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-primary-400/20 to-purple-400/20 rounded-full blur-3xl animate-blob"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tr from-accent-400/20 to-pink-400/20 rounded-full blur-3xl animate-blob" style="animation-delay: 3s;"></div>
+        </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent">
@@ -246,129 +546,178 @@
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="doc-card group bg-white/90 backdrop-blur-xl p-8 rounded-3xl border border-primary-200/50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 magnetic cursor-glow" data-aos="fade-up" data-aos-delay="100">
-                    <div class="doc-icon text-6xl mb-6 transform group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">📄</div>
-                    <h3 class="text-2xl font-black text-gray-900 mb-4">Research Paper</h3>
-                    <p class="text-gray-600 leading-relaxed mb-6">Complete research paper detailing the methodology, implementation, and experimental results of DDAF.</p>
-                    <a href="{{ '/docs/paper.pdf' | relative_url }}" target="_blank" class="doc-link inline-flex items-center gap-2 text-primary-600 font-bold hover:text-primary-700 transition-colors group-hover:gap-3 duration-300">
-                        <span>View PDF</span>
-                        <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                <div class="group doc-card bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl border-2 border-primary-200/50 dark:border-primary-700/50 shadow-2xl hover:shadow-glow-lg transition-all duration-700 transform hover:scale-110 hover:-translate-y-4 hover:rotate-2 relative overflow-hidden" data-aos="flip-left" data-aos-delay="100">
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-primary-500/20 rounded-full blur-3xl group-hover:bg-primary-500/30 transition-colors duration-700"></div>
+                    <div class="relative z-10">
+                        <div class="doc-icon text-7xl mb-6 transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 animate-bounce-slow">📄</div>
+                        <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-4 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Research Paper</h3>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">Complete research paper detailing the methodology, implementation, and experimental results of DDAF.</p>
+                        <a href="{{ '/docs/paper.pdf' | relative_url }}" target="_blank" class="doc-link inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-500 to-purple-500 text-white font-bold rounded-xl shadow-lg hover:shadow-glow transition-all duration-300 group-hover:gap-3 hover:scale-105">
+                            <i class="fas fa-file-pdf"></i>
+                            <span>View PDF</span>
+                            <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                 </div>
-                <div class="doc-card group bg-white/90 backdrop-blur-xl p-8 rounded-3xl border border-primary-200/50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 magnetic cursor-glow" data-aos="fade-up" data-aos-delay="200">
-                    <div class="doc-icon text-6xl mb-6 transform group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">📊</div>
-                    <h3 class="text-2xl font-black text-gray-900 mb-4">Presentation</h3>
-                    <p class="text-gray-600 leading-relaxed mb-6">Beamer presentation slides covering the key concepts, architectures, and results of the DDAF framework.</p>
-                    <a href="{{ '/docs/presentation.pdf' | relative_url }}" target="_blank" class="doc-link inline-flex items-center gap-2 text-primary-600 font-bold hover:text-primary-700 transition-colors group-hover:gap-3 duration-300">
-                        <span>View PDF</span>
-                        <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
+                <div class="group doc-card bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl border-2 border-purple-200/50 dark:border-purple-700/50 shadow-2xl hover:shadow-glow-lg transition-all duration-700 transform hover:scale-110 hover:-translate-y-4 hover:-rotate-2 relative overflow-hidden" data-aos="flip-left" data-aos-delay="200">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-rose-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl group-hover:bg-purple-500/30 transition-colors duration-700"></div>
+                    <div class="relative z-10">
+                        <div class="doc-icon text-7xl mb-6 transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 animate-pulse-slow">📊</div>
+                        <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Presentation</h3>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">Beamer presentation slides covering the key concepts, architectures, and results of the DDAF framework.</p>
+                        <a href="{{ '/docs/presentation.pdf' | relative_url }}" target="_blank" class="doc-link inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl shadow-lg hover:shadow-glow transition-all duration-300 group-hover:gap-3 hover:scale-105">
+                            <i class="fas fa-presentation"></i>
+                            <span>View PDF</span>
+                            <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                 </div>
-                <div class="doc-card group bg-white/90 backdrop-blur-xl p-8 rounded-3xl border border-primary-200/50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 magnetic cursor-glow" data-aos="fade-up" data-aos-delay="300">
-                    <div class="doc-icon text-6xl mb-6 transform group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">📚</div>
-                    <h3 class="text-2xl font-black text-gray-900 mb-4">Reference Manual</h3>
-                    <p class="text-gray-600 leading-relaxed mb-6">Complete API reference manual with detailed documentation of all functions, types, and usage examples.</p>
-                    <a href="{{ '/docs/reference_manual.pdf' | relative_url }}" target="_blank" class="doc-link inline-flex items-center gap-2 text-primary-600 font-bold hover:text-primary-700 transition-colors group-hover:gap-3 duration-300">
-                        <span>View PDF</span>
-                        <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
+                <div class="group doc-card bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl border-2 border-accent-200/50 dark:border-accent-700/50 shadow-2xl hover:shadow-glow-lg transition-all duration-700 transform hover:scale-110 hover:-translate-y-4 hover:rotate-2 relative overflow-hidden" data-aos="flip-left" data-aos-delay="300">
+                    <div class="absolute inset-0 bg-gradient-to-br from-accent-500/10 via-rose-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-accent-500/20 rounded-full blur-3xl group-hover:bg-accent-500/30 transition-colors duration-700"></div>
+                    <div class="relative z-10">
+                        <div class="doc-icon text-7xl mb-6 transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 animate-wiggle">📚</div>
+                        <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-4 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">Reference Manual</h3>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">Complete API reference manual with detailed documentation of all functions, types, and usage examples.</p>
+                        <a href="{{ '/docs/reference_manual.pdf' | relative_url }}" target="_blank" class="doc-link inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-accent-500 to-rose-500 text-white font-bold rounded-xl shadow-lg hover:shadow-glow transition-all duration-300 group-hover:gap-3 hover:scale-105">
+                            <i class="fas fa-book"></i>
+                            <span>View PDF</span>
+                            <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-accent-500 to-rose-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- SoTA Comparison Section -->
-    <section id="sota" class="section">
-        <div class="container">
-            <h2 class="section-title">State-of-the-Art Comparison</h2>
-            <p class="section-description">DDAF outperforms traditional activation functions and recent adaptive methods across multiple benchmarks.</p>
+    <section id="sota" class="relative py-24 bg-gradient-to-b from-white via-primary-50/20 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+        <!-- Animated Background -->
+        <div class="absolute inset-0">
+            <div class="absolute top-0 right-1/4 w-96 h-96 bg-gradient-to-br from-primary-400/20 via-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-blob"></div>
+            <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-gradient-to-tr from-accent-400/20 via-rose-400/20 to-pink-400/20 rounded-full blur-3xl animate-blob" style="animation-delay: 3s;"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(99,102,241,0.1)_1px,transparent_0)] bg-[size:40px_40px] opacity-40"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto] drop-shadow-2xl">
+                    State-of-the-Art Comparison
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                    DDAF outperforms traditional activation functions and recent adaptive methods across multiple benchmarks.
+                </p>
+            </div>
             
-            <div class="comparison-table-wrapper">
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Method</th>
-                            <th>Adaptive</th>
-                            <th>Data-Driven</th>
-                            <th>Online Learning</th>
-                            <th>Attention</th>
-                            <th>Architectures</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>ReLU / GELU / Swish</strong></td>
-                            <td class="no">❌</td>
-                            <td class="no">❌</td>
-                            <td class="no">❌</td>
-                            <td class="no">❌</td>
-                            <td>All</td>
-                        </tr>
-                        <tr>
-                            <td><strong>PReLU / Leaky ReLU</strong></td>
-                            <td class="partial">⚠️</td>
-                            <td class="no">❌</td>
-                            <td class="no">❌</td>
-                            <td class="no">❌</td>
-                            <td>All</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Swish / Mish</strong></td>
-                            <td class="no">❌</td>
-                            <td class="no">❌</td>
-                            <td class="no">❌</td>
-                            <td class="no">❌</td>
-                            <td>All</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Adaptive Activations (Recent)</strong></td>
-                            <td class="yes">✅</td>
-                            <td class="partial">⚠️</td>
-                            <td class="no">❌</td>
-                            <td class="no">❌</td>
-                            <td>Limited</td>
-                        </tr>
-                        <tr class="highlight-row">
-                            <td><strong>DDAF (Ours)</strong></td>
-                            <td class="yes">✅</td>
-                            <td class="yes">✅</td>
-                            <td class="yes">✅</td>
-                            <td class="yes">✅</td>
-                            <td><strong>8 Architectures</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 overflow-hidden mb-16" data-aos="zoom-in" data-aos-delay="100">
+                <div class="overflow-x-auto">
+                    <table class="w-full min-w-[800px]">
+                        <thead class="bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 text-white">
+                            <tr>
+                                <th class="px-6 py-4 text-left font-black text-sm uppercase tracking-wider">Method</th>
+                                <th class="px-6 py-4 text-center font-black text-sm uppercase tracking-wider">Adaptive</th>
+                                <th class="px-6 py-4 text-center font-black text-sm uppercase tracking-wider">Data-Driven</th>
+                                <th class="px-6 py-4 text-center font-black text-sm uppercase tracking-wider">Online Learning</th>
+                                <th class="px-6 py-4 text-center font-black text-sm uppercase tracking-wider">Attention</th>
+                                <th class="px-6 py-4 text-center font-black text-sm uppercase tracking-wider">Architectures</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="hover:bg-primary-50/50 dark:hover:bg-primary-900/20 transition-colors duration-300">
+                                <td class="px-6 py-4 font-bold text-gray-900 dark:text-white">ReLU / GELU / Swish</td>
+                                <td class="px-6 py-4 text-center text-2xl text-red-500">❌</td>
+                                <td class="px-6 py-4 text-center text-2xl text-red-500">❌</td>
+                                <td class="px-6 py-4 text-center text-2xl text-red-500">❌</td>
+                                <td class="px-6 py-4 text-center text-2xl text-red-500">❌</td>
+                                <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">All</td>
+                            </tr>
+                            <tr class="hover:bg-primary-50/50 dark:hover:bg-primary-900/20 transition-colors duration-300">
+                                <td class="px-6 py-4 font-bold text-gray-900 dark:text-white">PReLU / Leaky ReLU</td>
+                                <td class="px-6 py-4 text-center text-2xl text-yellow-500">⚠️</td>
+                                <td class="px-6 py-4 text-center text-2xl text-red-500">❌</td>
+                                <td class="px-6 py-4 text-center text-2xl text-red-500">❌</td>
+                                <td class="px-6 py-4 text-center text-2xl text-red-500">❌</td>
+                                <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">All</td>
+                            </tr>
+                            <tr class="hover:bg-primary-50/50 dark:hover:bg-primary-900/20 transition-colors duration-300">
+                                <td class="px-6 py-4 font-bold text-gray-900 dark:text-white">Swish / Mish</td>
+                                <td class="px-6 py-4 text-center text-2xl text-red-500">❌</td>
+                                <td class="px-6 py-4 text-center text-2xl text-red-500">❌</td>
+                                <td class="px-6 py-4 text-center text-2xl text-red-500">❌</td>
+                                <td class="px-6 py-4 text-center text-2xl text-red-500">❌</td>
+                                <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">All</td>
+                            </tr>
+                            <tr class="hover:bg-primary-50/50 dark:hover:bg-primary-900/20 transition-colors duration-300">
+                                <td class="px-6 py-4 font-bold text-gray-900 dark:text-white">Adaptive Activations (Recent)</td>
+                                <td class="px-6 py-4 text-center text-2xl text-green-500">✅</td>
+                                <td class="px-6 py-4 text-center text-2xl text-yellow-500">⚠️</td>
+                                <td class="px-6 py-4 text-center text-2xl text-red-500">❌</td>
+                                <td class="px-6 py-4 text-center text-2xl text-red-500">❌</td>
+                                <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">Limited</td>
+                            </tr>
+                            <tr class="bg-gradient-to-r from-primary-50/50 via-purple-50/50 to-accent-50/50 dark:from-primary-900/30 dark:via-purple-900/30 dark:to-accent-900/30 border-l-4 border-primary-500 hover:shadow-lg transition-all duration-300">
+                                <td class="px-6 py-4 font-black text-lg text-primary-600 dark:text-primary-400">DDAF (Ours)</td>
+                                <td class="px-6 py-4 text-center text-2xl text-green-500 animate-pulse">✅</td>
+                                <td class="px-6 py-4 text-center text-2xl text-green-500 animate-pulse">✅</td>
+                                <td class="px-6 py-4 text-center text-2xl text-green-500 animate-pulse">✅</td>
+                                <td class="px-6 py-4 text-center text-2xl text-green-500 animate-pulse">✅</td>
+                                <td class="px-6 py-4 text-center font-black text-primary-600 dark:text-primary-400">8 Architectures</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <div class="advantages-list">
-                <h3 class="subsection-title">Key Advantages</h3>
-                <div class="advantages-grid">
-                    <div class="advantage-item">
-                        <div class="advantage-icon">🎯</div>
-                        <h4>Comprehensive Adaptation</h4>
-                        <p>Combines data-driven statistics, dynamic parameter evolution, online learning, and attention mechanisms in a unified framework.</p>
+            <div class="mt-16" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-3xl sm:text-4xl font-black text-center mb-12 text-gray-900 dark:text-white">
+                    <span class="bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]">Key Advantages</span>
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="group bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl border-2 border-primary-200/50 dark:border-primary-700/50 shadow-2xl hover:shadow-glow-lg transition-all duration-700 transform hover:scale-110 hover:-translate-y-4 hover:rotate-1 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-primary-500/10 rounded-full blur-3xl group-hover:bg-primary-500/20 transition-colors duration-700"></div>
+                        <div class="relative z-10">
+                            <div class="text-6xl mb-6 transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 animate-bounce-slow">🎯</div>
+                            <h4 class="text-xl font-black text-gray-900 dark:text-white mb-4 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Comprehensive Adaptation</h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Combines data-driven statistics, dynamic parameter evolution, online learning, and attention mechanisms in a unified framework.</p>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                     </div>
-                    <div class="advantage-item">
-                        <div class="advantage-icon">🏗️</div>
-                        <h4>Architecture Support</h4>
-                        <p>Supports 8 different neural network architectures, from CNNs to modern Transformers and MoE models.</p>
+                    <div class="group bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl border-2 border-purple-200/50 dark:border-purple-700/50 shadow-2xl hover:shadow-glow-lg transition-all duration-700 transform hover:scale-110 hover:-translate-y-4 hover:-rotate-1 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        <div class="absolute top-0 left-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-colors duration-700"></div>
+                        <div class="relative z-10">
+                            <div class="text-6xl mb-6 transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 animate-pulse-slow">🏗️</div>
+                            <h4 class="text-xl font-black text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Architecture Support</h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Supports 8 different neural network architectures, from CNNs to modern Transformers and MoE models.</p>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                     </div>
-                    <div class="advantage-item">
-                        <div class="advantage-icon">⚡</div>
-                        <h4>High Performance</h4>
-                        <p>Optimized C/C++ implementation with efficient memory management and parallel processing capabilities.</p>
+                    <div class="group bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl border-2 border-blue-200/50 dark:border-blue-700/50 shadow-2xl hover:shadow-glow-lg transition-all duration-700 transform hover:scale-110 hover:-translate-y-4 hover:rotate-1 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        <div class="absolute bottom-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-colors duration-700"></div>
+                        <div class="relative z-10">
+                            <div class="text-6xl mb-6 transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 animate-spin-slow">⚡</div>
+                            <h4 class="text-xl font-black text-gray-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">High Performance</h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Optimized C/C++ implementation with efficient memory management and parallel processing capabilities.</p>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-cyan-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                     </div>
-                    <div class="advantage-item">
-                        <div class="advantage-icon">🔄</div>
-                        <h4>Online Learning</h4>
-                        <p>Real-time adaptation to streaming data, making it suitable for production deployment and continuous learning scenarios.</p>
+                    <div class="group bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl border-2 border-accent-200/50 dark:border-accent-700/50 shadow-2xl hover:shadow-glow-lg transition-all duration-700 transform hover:scale-110 hover:-translate-y-4 hover:-rotate-1 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-accent-500/10 to-rose-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-accent-500/10 rounded-full blur-3xl group-hover:bg-accent-500/20 transition-colors duration-700"></div>
+                        <div class="relative z-10">
+                            <div class="text-6xl mb-6 transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 animate-wiggle">🔄</div>
+                            <h4 class="text-xl font-black text-gray-900 dark:text-white mb-4 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">Online Learning</h4>
+                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">Real-time adaptation to streaming data, making it suitable for production deployment and continuous learning scenarios.</p>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-accent-500 to-rose-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
                     </div>
                 </div>
             </div>
@@ -376,11 +725,17 @@
     </section>
 
     <!-- Benchmarks Section -->
-    <section id="benchmarks" class="py-24 bg-gradient-to-b from-white via-gray-50 to-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="benchmarks" class="relative py-24 bg-gradient-to-b from-white via-purple-50/30 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+        <!-- Background Effects -->
+        <div class="absolute inset-0">
+            <div class="absolute top-1/2 left-0 w-96 h-96 bg-gradient-to-r from-primary-400/20 to-purple-400/20 rounded-full blur-3xl animate-blob"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-l from-accent-400/20 to-pink-400/20 rounded-full blur-3xl animate-blob" style="animation-delay: 4s;"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent">
-                    Comprehensive Benchmarks
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto] drop-shadow-2xl">
+                    <span class="inline-block hover:scale-110 transition-transform duration-500">Comprehensive Benchmarks</span>
+                    <span class="inline-block ml-3 animate-bounce-slow">📊</span>
                 </h2>
                 <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
                     Comprehensive performance evaluation across 8 datasets, 8 architectures, and 12+ metrics. All benchmarks run on identical hardware (4x NVIDIA A100 80GB) with 10 independent runs per configuration. Results include mean, standard deviation, and 95% confidence intervals.
@@ -1212,24 +1567,46 @@
     </section>
 
     <!-- GitHub Section -->
-    <section id="github" class="section section-alt">
-        <div class="container">
-            <h2 class="section-title">Get Started</h2>
-            <p class="section-description">Clone the repository and start using DDAF in your projects.</p>
+    <section id="github" class="relative py-24 bg-gradient-to-b from-gray-50 via-white to-primary-50/20 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+        <!-- Background Effects -->
+        <div class="absolute inset-0">
+            <div class="absolute top-1/2 left-1/4 w-96 h-96 bg-gradient-to-br from-primary-400/20 to-purple-400/20 rounded-full blur-3xl animate-blob"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tr from-accent-400/20 to-pink-400/20 rounded-full blur-3xl animate-blob" style="animation-delay: 4s;"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto] drop-shadow-2xl">
+                    Get Started
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                    Clone the repository and start using DDAF in your projects.
+                </p>
+            </div>
             
-            <div class="github-card">
-                <div class="github-content">
-                    <h3>Installation</h3>
-                    <div class="code-block">
-                        <pre><code>git clone https://github.com/{{ site.github_username }}/{{ site.github_repo }}.git
+            <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 p-8 md:p-12 relative overflow-hidden" data-aos="zoom-in" data-aos-delay="100">
+                <div class="absolute -top-10 -right-10 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+                <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+                
+                <div class="relative z-10">
+                    <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+                        <i class="fas fa-download text-primary-500"></i>
+                        <span>Installation</span>
+                    </h3>
+                    <div class="bg-gray-900 rounded-2xl p-6 mb-8 shadow-2xl border border-gray-700 overflow-x-auto">
+                        <pre class="text-green-400 font-mono text-sm leading-relaxed"><code>git clone https://github.com/{{ site.github_username }}/{{ site.github_repo }}.git
 cd ddaf
 mkdir build && cd build
 cmake ..
 make</code></pre>
                     </div>
-                    <h3>Quick Start</h3>
-                    <div class="code-block">
-                        <pre><code>#include "ddaf.h"
+                    
+                    <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-6 flex items-center gap-3 mt-12">
+                        <i class="fas fa-rocket text-purple-500"></i>
+                        <span>Quick Start</span>
+                    </h3>
+                    <div class="bg-gray-900 rounded-2xl p-6 mb-8 shadow-2xl border border-gray-700 overflow-x-auto">
+                        <pre class="text-blue-400 font-mono text-sm leading-relaxed"><code>#include "ddaf.h"
 
 // Create context
 ddaf_context_t* ctx = ddaf_create_context(
@@ -1247,9 +1624,24 @@ ddaf_forward(ctx, input, output, size);
 // Cleanup
 ddaf_destroy_context(ctx);</code></pre>
                     </div>
-                    <div class="github-links">
-                        <a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}" class="btn btn-primary" target="_blank">View on GitHub</a>
-                        <a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/archive/refs/heads/main.zip" class="btn btn-secondary" target="_blank">Download ZIP</a>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+                        <a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}" target="_blank" class="group relative px-8 py-4 bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 text-white font-bold rounded-2xl shadow-2xl shadow-primary-500/50 hover:shadow-glow-lg transition-all duration-500 transform hover:scale-110 hover:-translate-y-2 overflow-hidden">
+                            <span class="relative z-10 flex items-center gap-2">
+                                <i class="fab fa-github"></i>
+                                <span>View on GitHub</span>
+                                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                            </span>
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary-700 via-purple-700 to-accent-600 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        </a>
+                        <a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/archive/refs/heads/main.zip" target="_blank" class="group relative px-8 py-4 bg-white dark:bg-gray-800 text-primary-600 dark:text-primary-400 font-bold rounded-2xl border-2 border-primary-600 dark:border-primary-400 shadow-xl hover:shadow-2xl hover:shadow-primary-500/30 transition-all duration-500 transform hover:scale-110 hover:-translate-y-2 overflow-hidden">
+                            <span class="relative z-10 flex items-center gap-2">
+                                <i class="fas fa-download"></i>
+                                <span>Download ZIP</span>
+                                <i class="fas fa-external-link-alt group-hover:scale-110 transition-transform"></i>
+                            </span>
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary-50 to-purple-50 dark:from-primary-900/20 dark:to-purple-900/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1257,34 +1649,77 @@ ddaf_destroy_context(ctx);</code></pre>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer class="relative bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white py-16 overflow-hidden">
+        <!-- Animated Background -->
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary-500 to-transparent"></div>
+            <div class="absolute top-1/2 left-1/4 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl animate-pulse-slow"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-                <div data-aos="fade-up" data-aos-delay="100">
-                    <h4 class="text-2xl font-black mb-4 bg-gradient-to-r from-primary-400 to-purple-400 bg-clip-text text-transparent">DDAF</h4>
+                <div data-aos="fade-up" data-aos-delay="100" class="group">
+                    <h4 class="text-2xl font-black mb-4 bg-gradient-to-r from-primary-400 via-purple-400 to-accent-400 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto] group-hover:scale-105 transition-transform duration-300 inline-block">DDAF</h4>
                     <p class="text-gray-400 leading-relaxed">Data-Driven, Dynamic, Online, and Attention-Based Activation Functions</p>
+                    <div class="mt-6 flex gap-4">
+                        <a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-primary-600 flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:rotate-12 group">
+                            <i class="fab fa-github text-gray-400 group-hover:text-white transition-colors"></i>
+                        </a>
+                    </div>
                 </div>
                 <div data-aos="fade-up" data-aos-delay="200">
-                    <h4 class="text-xl font-bold mb-4">Resources</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#docs" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Documentation</a></li>
-                        <li><a href="#sota" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">SoTA Comparison</a></li>
-                        <li><a href="#benchmarks" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Benchmarks</a></li>
-                        <li><a href="#prior-art" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Prior Art</a></li>
+                    <h4 class="text-xl font-bold mb-6 bg-gradient-to-r from-primary-400 to-purple-400 bg-clip-text text-transparent">Resources</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#docs" class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-flex items-center gap-2 group">
+                            <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                            <span>Documentation</span>
+                        </a></li>
+                        <li><a href="#sota" class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-flex items-center gap-2 group">
+                            <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                            <span>SoTA Comparison</span>
+                        </a></li>
+                        <li><a href="#benchmarks" class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-flex items-center gap-2 group">
+                            <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                            <span>Benchmarks</span>
+                        </a></li>
+                        <li><a href="#prior-art" class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-flex items-center gap-2 group">
+                            <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                            <span>Prior Art</span>
+                        </a></li>
                     </ul>
                 </div>
                 <div data-aos="fade-up" data-aos-delay="300">
-                    <h4 class="text-xl font-bold mb-4">Links</h4>
-                    <ul class="space-y-3">
-                        <li><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">GitHub</a></li>
-                        <li><a href="{{ '/docs/paper.pdf' | relative_url }}" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Paper</a></li>
-                        <li><a href="{{ '/docs/presentation.pdf' | relative_url }}" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Presentation</a></li>
-                        <li><a href="{{ '/docs/reference_manual.pdf' | relative_url }}" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Reference</a></li>
+                    <h4 class="text-xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-accent-400 bg-clip-text text-transparent">Links</h4>
+                    <ul class="space-y-4">
+                        <li><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}" target="_blank" class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-flex items-center gap-2 group">
+                            <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                            <span>GitHub</span>
+                            <i class="fas fa-external-link-alt text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                        </a></li>
+                        <li><a href="{{ '/docs/paper.pdf' | relative_url }}" target="_blank" class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-flex items-center gap-2 group">
+                            <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                            <span>Paper</span>
+                            <i class="fas fa-external-link-alt text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                        </a></li>
+                        <li><a href="{{ '/docs/presentation.pdf' | relative_url }}" target="_blank" class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-flex items-center gap-2 group">
+                            <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                            <span>Presentation</span>
+                            <i class="fas fa-external-link-alt text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                        </a></li>
+                        <li><a href="{{ '/docs/reference_manual.pdf' | relative_url }}" target="_blank" class="text-gray-400 hover:text-white transition-all duration-300 hover:translate-x-2 inline-flex items-center gap-2 group">
+                            <i class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                            <span>Reference</span>
+                            <i class="fas fa-external-link-alt text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                        </a></li>
                     </ul>
                 </div>
             </div>
             <div class="border-t border-gray-700 pt-8 text-center">
-                <p class="text-gray-400">Copyright (C) 2025, Shyamal Suhana Chandra. All rights reserved.</p>
+                <p class="text-gray-400 flex items-center justify-center gap-2">
+                    <span>Copyright (C) 2025, Shyamal Suhana Chandra. All rights reserved.</span>
+                    <span class="animate-pulse">✨</span>
+                </p>
             </div>
         </div>
     </footer>
@@ -1298,6 +1733,129 @@ ddaf_destroy_context(ctx);</code></pre>
             once: true,
             mirror: false,
             offset: 100
+        });
+    </script>
+    
+    <!-- GSAP Animations -->
+    <script>
+        // Register GSAP plugins
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Animate hero title on load
+            gsap.from('.hero-title', {
+                duration: 1.5,
+                y: 50,
+                opacity: 0,
+                ease: 'power3.out',
+                stagger: 0.2
+            });
+            
+            // Parallax effect for gradient orbs
+            gsap.utils.toArray('.gradient-orb').forEach((orb, index) => {
+                gsap.to(orb, {
+                    y: '+=100',
+                    x: '+=50',
+                    rotation: 360,
+                    duration: 20 + index * 5,
+                    repeat: -1,
+                    ease: 'none',
+                    yoyo: true
+                });
+            });
+            
+            // Scroll-triggered animations for sections
+            gsap.utils.toArray('section').forEach((section, index) => {
+                gsap.from(section, {
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 0,
+                    y: 50,
+                    duration: 1,
+                    ease: 'power2.out'
+                });
+            });
+            
+            // Animate cards on scroll
+            gsap.utils.toArray('.feature-card, .doc-card, .advantage-item').forEach((card, index) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 85%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 0,
+                    y: 30,
+                    scale: 0.9,
+                    duration: 0.8,
+                    delay: index * 0.1,
+                    ease: 'back.out(1.7)'
+                });
+            });
+            
+            // Magnetic effect for buttons
+            document.querySelectorAll('.btn, .btn-primary, .btn-secondary').forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    
+                    gsap.to(btn, {
+                        x: x * 0.3,
+                        y: y * 0.3,
+                        duration: 0.5,
+                        ease: 'power2.out'
+                    });
+                });
+                
+                btn.addEventListener('mouseleave', () => {
+                    gsap.to(btn, {
+                        x: 0,
+                        y: 0,
+                        duration: 0.5,
+                        ease: 'power2.out'
+                    });
+                });
+            });
+        }
+        
+        // Splitting.js for text animations
+        if (typeof Splitting !== 'undefined') {
+            Splitting();
+        }
+        
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const html = document.documentElement;
+        
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            html.classList.add('dark');
+        }
+        
+        darkModeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const theme = html.classList.contains('dark') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+            
+            // Add animation effect
+            if (typeof gsap !== 'undefined') {
+                gsap.to(darkModeToggle, {
+                    rotation: 360,
+                    duration: 0.5,
+                    ease: 'power2.out'
+                });
+            } else {
+                darkModeToggle.style.transform = 'rotate(360deg)';
+                setTimeout(() => {
+                    darkModeToggle.style.transform = 'rotate(0deg)';
+                }, 500);
+            }
         });
     </script>
     
