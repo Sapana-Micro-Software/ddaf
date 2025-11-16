@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     initSVGDiagrams();
     initActivationFunctionPlots();
+    initBenchmarkCharts();
 });
 
 // Initialize D3.js based charts
@@ -1212,4 +1213,275 @@ function createActivationFunctionPlot(containerId, name, func) {
     svg.appendChild(yLabel);
 
     container.appendChild(svg);
+}
+
+// Initialize Benchmark Charts
+function initBenchmarkCharts() {
+    // Wait for tab switching to ensure containers exist
+    setTimeout(() => {
+        createBenchmarkSVGCharts();
+    }, 500);
+    
+    // Recreate charts when tabs are switched
+    const tabButtons = document.querySelectorAll('.tab-button');
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            setTimeout(() => {
+                createBenchmarkSVGCharts();
+            }, 100);
+        });
+    });
+}
+
+// Create SVG Bar Charts for all benchmarks
+function createBenchmarkSVGCharts() {
+    // Accuracy Tab Charts
+    createBenchmarkBarChart('imagenet-chart', {
+        labels: ['ReLU', 'GELU', 'Swish', 'Mish', 'PReLU', 'Adaptive', 'DDAF'],
+        values: [76.13, 77.84, 78.92, 79.42, 77.18, 80.67, 83.42],
+        colors: ['#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#6366f1'],
+        yLabel: 'Top-1 Accuracy (%)',
+        maxValue: 100
+    });
+    
+    createBenchmarkBarChart('cifar10-chart', {
+        labels: ['ReLU', 'GELU', 'Swish', 'Adaptive', 'DDAF'],
+        values: [92.34, 93.12, 93.68, 94.18, 96.08],
+        colors: ['#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#6366f1'],
+        yLabel: 'Test Accuracy (%)',
+        maxValue: 100
+    });
+    
+    createBenchmarkBarChart('glue-chart', {
+        labels: ['GELU', 'Swish', 'Adaptive', 'DDAF'],
+        values: [78.52, 79.14, 80.28, 82.67],
+        colors: ['#94a3b8', '#94a3b8', '#94a3b8', '#6366f1'],
+        yLabel: 'Average GLUE Score',
+        maxValue: 100
+    });
+    
+    createBenchmarkBarChart('cifar100-chart', {
+        labels: ['ReLU', 'GELU', 'Swish', 'Mish', 'Adaptive', 'DDAF'],
+        values: [68.42, 69.87, 70.56, 71.23, 71.94, 74.23],
+        colors: ['#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#6366f1'],
+        yLabel: 'Test Accuracy (%)',
+        maxValue: 100
+    });
+    
+    createBenchmarkBarChart('squad-chart', {
+        labels: ['GELU', 'Swish', 'Adaptive', 'DDAF'],
+        values: [76.83, 77.42, 78.91, 80.34],
+        colors: ['#94a3b8', '#94a3b8', '#94a3b8', '#6366f1'],
+        yLabel: 'F1 Score',
+        maxValue: 100
+    });
+    
+    // Speed Tab Charts
+    createBenchmarkBarChart('inference-speed-chart', {
+        labels: ['ReLU', 'GELU', 'Swish', 'Mish', 'Adaptive', 'DDAF'],
+        values: [1247, 1172, 1110, 1084, 1023, 1135],
+        colors: ['#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#6366f1'],
+        yLabel: 'Images/sec',
+        maxValue: 1300,
+        formatValue: (v) => `${v.toLocaleString()} img/s`
+    });
+    
+    createBenchmarkBarChart('training-throughput-chart', {
+        labels: ['ReLU', 'GELU', 'Swish', 'Adaptive', 'DDAF'],
+        values: [892, 830, 785, 723, 794],
+        colors: ['#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#6366f1'],
+        yLabel: 'Samples/sec',
+        maxValue: 1000,
+        formatValue: (v) => `${v} samples/s`
+    });
+    
+    // Memory Tab Charts
+    createBenchmarkBarChart('memory-usage-chart', {
+        labels: ['ReLU', 'GELU', 'Swish', 'Mish', 'Adaptive', 'DDAF'],
+        values: [4.2, 4.2, 4.24, 4.28, 4.96, 4.62],
+        colors: ['#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#6366f1'],
+        yLabel: 'Peak Memory (GB)',
+        maxValue: 5.5,
+        formatValue: (v) => `${v} GB`
+    });
+    
+    createBenchmarkBarChart('memory-efficiency-chart', {
+        labels: ['ReLU', 'PReLU', 'Adaptive', 'DDAF'],
+        values: [0, 0.02, 0.08, 0.05],
+        colors: ['#94a3b8', '#94a3b8', '#94a3b8', '#6366f1'],
+        yLabel: 'Parameter Overhead (%)',
+        maxValue: 0.1,
+        formatValue: (v) => `${v}%`
+    });
+    
+    // Training Time Tab Charts
+    createBenchmarkBarChart('time-to-target-chart', {
+        labels: ['ReLU', 'GELU', 'Swish', 'Adaptive', 'DDAF'],
+        values: [18.4, 17.5, 16.9, 16.2, 15.6],
+        colors: ['#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#6366f1'],
+        yLabel: 'Time (hours)',
+        maxValue: 20,
+        formatValue: (v) => `${v} hrs`,
+        lowerIsBetter: true
+    });
+    
+    createBenchmarkBarChart('total-training-time-chart', {
+        labels: ['ReLU', 'GELU', 'Swish', 'Adaptive', 'DDAF'],
+        values: [24.8, 25.8, 26.5, 27.8, 26.8],
+        colors: ['#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#6366f1'],
+        yLabel: 'Time (hours)',
+        maxValue: 30,
+        formatValue: (v) => `${v} hrs`
+    });
+    
+    // Convergence Tab Charts
+    createBenchmarkBarChart('epochs-convergence-chart', {
+        labels: ['ReLU', 'GELU', 'Swish', 'Adaptive', 'DDAF'],
+        values: [142, 134, 128, 121, 111],
+        colors: ['#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#6366f1'],
+        yLabel: 'Epochs',
+        maxValue: 150,
+        formatValue: (v) => `${v} epochs`,
+        lowerIsBetter: true
+    });
+    
+    createBenchmarkBarChart('final-loss-chart', {
+        labels: ['ReLU', 'GELU', 'Swish', 'Adaptive', 'DDAF'],
+        values: [1.247, 1.198, 1.162, 1.109, 1.062],
+        colors: ['#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#6366f1'],
+        yLabel: 'Cross-entropy Loss',
+        maxValue: 1.3,
+        formatValue: (v) => v.toFixed(3),
+        lowerIsBetter: true
+    });
+}
+
+// Create a benchmark bar chart (works with or without D3.js)
+function createBenchmarkBarChart(containerId, config) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    // Clear existing content
+    container.innerHTML = '';
+    
+    // Use D3.js if available, otherwise use fallback
+    if (typeof d3 !== 'undefined') {
+        createD3BenchmarkChart(container, config);
+    } else {
+        createSVGBarChart(containerId, config);
+    }
+}
+
+// Create D3.js based benchmark chart
+function createD3BenchmarkChart(container, config) {
+    const width = container.clientWidth || 800;
+    const height = 350;
+    const margin = { top: 20, right: 20, bottom: 60, left: 70 };
+    const chartWidth = width - margin.left - margin.right;
+    const chartHeight = height - margin.top - margin.bottom;
+
+    const svg = d3.select(container)
+        .append('svg')
+        .attr('width', width)
+        .attr('height', height)
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .classed('chart-svg', true);
+
+    const g = svg.append('g')
+        .attr('transform', `translate(${margin.left},${margin.top})`);
+
+    const xScale = d3.scaleBand()
+        .domain(config.labels)
+        .range([0, chartWidth])
+        .padding(0.2);
+
+    const yScale = d3.scaleLinear()
+        .domain([0, config.maxValue || d3.max(config.values) * 1.1])
+        .range([chartHeight, 0]);
+
+    // Grid lines
+    g.append('g')
+        .attr('class', 'grid')
+        .call(d3.axisLeft(yScale)
+            .ticks(8)
+            .tickSize(-chartWidth)
+            .tickFormat(''))
+        .selectAll('line')
+        .attr('stroke', '#e2e8f0')
+        .attr('stroke-dasharray', '4,4')
+        .attr('opacity', 0.7);
+
+    // Bars
+    const bars = g.selectAll('.bar')
+        .data(config.values)
+        .enter()
+        .append('rect')
+        .attr('class', 'bar')
+        .attr('x', (d, i) => xScale(config.labels[i]))
+        .attr('width', xScale.bandwidth())
+        .attr('y', chartHeight)
+        .attr('height', 0)
+        .attr('fill', (d, i) => config.colors[i] || '#6366f1')
+        .attr('rx', 4)
+        .attr('stroke', '#fff')
+        .attr('stroke-width', 2)
+        .on('mouseenter', function(event, d) {
+            d3.select(this)
+                .attr('opacity', 0.8)
+                .attr('transform', 'scale(1.05)')
+                .attr('transform-origin', `${xScale(config.labels[config.values.indexOf(d)]) + xScale.bandwidth()/2} ${chartHeight}`);
+        })
+        .on('mouseleave', function() {
+            d3.select(this)
+                .attr('opacity', 1)
+                .attr('transform', 'scale(1)');
+        });
+
+    bars.transition()
+        .duration(1000)
+        .delay((d, i) => i * 100)
+        .attr('y', d => yScale(d))
+        .attr('height', d => chartHeight - yScale(d));
+
+    // Value labels on bars
+    g.selectAll('.value-label')
+        .data(config.values)
+        .enter()
+        .append('text')
+        .attr('class', 'value-label')
+        .attr('x', (d, i) => xScale(config.labels[i]) + xScale.bandwidth() / 2)
+        .attr('y', d => yScale(d) - 5)
+        .attr('text-anchor', 'middle')
+        .attr('fill', '#1e293b')
+        .attr('font-size', '11')
+        .attr('font-weight', '600')
+        .style('opacity', 0)
+        .text(d => config.formatValue ? config.formatValue(d) : d.toFixed(2))
+        .transition()
+        .delay(1000)
+        .duration(500)
+        .style('opacity', 1);
+
+    // X-axis
+    g.append('g')
+        .attr('transform', `translate(0,${chartHeight})`)
+        .call(d3.axisBottom(xScale))
+        .selectAll('text')
+        .attr('transform', 'rotate(-45)')
+        .attr('text-anchor', 'end')
+        .attr('dx', '-0.5em')
+        .attr('dy', '0.5em')
+        .attr('font-size', '11');
+
+    // Y-axis
+    g.append('g')
+        .call(d3.axisLeft(yScale).ticks(8))
+        .append('text')
+        .attr('transform', 'rotate(-90)')
+        .attr('y', -50)
+        .attr('x', -chartHeight / 2)
+        .attr('fill', '#64748b')
+        .attr('font-size', '12')
+        .attr('text-anchor', 'middle')
+        .text(config.yLabel || 'Value');
 }

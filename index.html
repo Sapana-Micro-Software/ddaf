@@ -769,64 +769,7 @@
                 <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 mb-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
                     <div class="absolute -top-10 -right-10 w-40 h-40 bg-primary-500/10 rounded-full blur-3xl group-hover:bg-primary-500/20 transition-colors duration-700"></div>
                     <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">ImageNet Classification (ResNet-50)</h3>
-                    <div class="chart-bars">
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">ReLU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 76.1%">
-                                    <span class="chart-value">76.13%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">GELU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 77.8%">
-                                    <span class="chart-value">77.84%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Swish</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 78.9%">
-                                    <span class="chart-value">78.92%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Mish</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 79.4%">
-                                    <span class="chart-value">79.42%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">PReLU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 77.2%">
-                                    <span class="chart-value">77.18%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Adaptive (Recent)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 80.7%">
-                                    <span class="chart-value">80.67%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper highlight-bar">
-                            <div class="chart-label">DDAF (Ours)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar highlight" style="width: 83.4%">
-                                    <span class="chart-value">83.42%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="imagenet-chart" class="w-full" style="min-height: 350px;"></div>
                     <div class="text-center text-gray-600 dark:text-gray-300 text-sm font-semibold mt-6 bg-gradient-to-r from-primary-50/50 to-purple-50/50 dark:from-primary-900/20 dark:to-purple-900/20 rounded-xl p-4">
                         Top-1 Accuracy (10 runs, mean ± std: <span class="font-black text-primary-600 dark:text-primary-400">83.42% ± 0.19%</span>, 95% CI: [83.30%, 83.54%]) | Improvement over ReLU: <span class="font-black text-green-600 dark:text-green-400">+7.29%</span> | Improvement over best baseline: <span class="font-black text-green-600 dark:text-green-400">+2.75%</span>
                     </div>
@@ -836,48 +779,7 @@
                 <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 mb-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="150">
                     <div class="absolute -top-10 -left-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-colors duration-700"></div>
                     <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">CIFAR-10 Classification (ResNet-32)</h3>
-                    <div class="chart-bars">
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">ReLU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 92.3%">
-                                    <span class="chart-value">92.34%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">GELU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 93.1%">
-                                    <span class="chart-value">93.12%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Swish</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 93.7%">
-                                    <span class="chart-value">93.68%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Adaptive (Recent)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 94.2%">
-                                    <span class="chart-value">94.18%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper highlight-bar">
-                            <div class="chart-label">DDAF (Ours)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar highlight" style="width: 96.1%">
-                                    <span class="chart-value">96.08%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="cifar10-chart" class="w-full" style="min-height: 350px;"></div>
                     <div class="text-center text-gray-600 dark:text-gray-300 text-sm font-semibold mt-6 bg-gradient-to-r from-purple-50/50 to-pink-50/50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-4">
                         Test Accuracy (10 runs, mean ± std: <span class="font-black text-purple-600 dark:text-purple-400">96.08% ± 0.12%</span>, 95% CI: [96.00%, 96.16%]) | Improvement over ReLU: <span class="font-black text-green-600 dark:text-green-400">+3.74%</span> | Improvement over best baseline: <span class="font-black text-green-600 dark:text-green-400">+1.90%</span>
                     </div>
@@ -887,40 +789,7 @@
                 <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 mb-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
                     <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-colors duration-700"></div>
                     <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">GLUE Benchmark (BERT-base)</h3>
-                    <div class="chart-bars">
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">GELU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 78.5%">
-                                    <span class="chart-value">78.52</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Swish</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 79.1%">
-                                    <span class="chart-value">79.14</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Adaptive (Recent)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 80.3%">
-                                    <span class="chart-value">80.28</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper highlight-bar">
-                            <div class="chart-label">DDAF (Ours)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar highlight" style="width: 82.7%">
-                                    <span class="chart-value">82.67</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="glue-chart" class="w-full" style="min-height: 350px;"></div>
                     <div class="text-center text-gray-600 dark:text-gray-300 text-sm font-semibold mt-6 bg-gradient-to-r from-blue-50/50 to-cyan-50/50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-xl p-4">
                         Average GLUE Score (10 runs, mean ± std: <span class="font-black text-blue-600 dark:text-blue-400">82.67 ± 0.28</span>, 95% CI: [82.50, 82.84]) | Improvement over GELU: <span class="font-black text-green-600 dark:text-green-400">+4.15 points</span> | Improvement over best baseline: <span class="font-black text-green-600 dark:text-green-400">+2.39 points</span>
                     </div>
@@ -930,56 +799,7 @@
                 <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 mb-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="250">
                     <div class="absolute -top-10 -right-10 w-40 h-40 bg-accent-500/10 rounded-full blur-3xl group-hover:bg-accent-500/20 transition-colors duration-700"></div>
                     <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">CIFAR-100 Classification (ResNet-32)</h3>
-                    <div class="chart-bars">
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">ReLU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 68.4%">
-                                    <span class="chart-value">68.42%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">GELU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 69.9%">
-                                    <span class="chart-value">69.87%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Swish</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 70.6%">
-                                    <span class="chart-value">70.56%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Mish</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 71.2%">
-                                    <span class="chart-value">71.23%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Adaptive (Recent)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 71.9%">
-                                    <span class="chart-value">71.94%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper highlight-bar">
-                            <div class="chart-label">DDAF (Ours)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar highlight" style="width: 74.2%">
-                                    <span class="chart-value">74.23%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="cifar100-chart" class="w-full" style="min-height: 350px;"></div>
                     <div class="text-center text-gray-600 dark:text-gray-300 text-sm font-semibold mt-6 bg-gradient-to-r from-accent-50/50 to-rose-50/50 dark:from-accent-900/20 dark:to-rose-900/20 rounded-xl p-4">
                         Test Accuracy (10 runs, mean ± std: <span class="font-black text-accent-600 dark:text-accent-400">74.23% ± 0.24%</span>, 95% CI: [74.08%, 74.38%]) | Improvement over ReLU: <span class="font-black text-green-600 dark:text-green-400">+5.81%</span> | Improvement over best baseline: <span class="font-black text-green-600 dark:text-green-400">+2.29%</span>
                     </div>
@@ -989,40 +809,7 @@
                 <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 mb-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="300">
                     <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl group-hover:bg-indigo-500/20 transition-colors duration-700"></div>
                     <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">SQuAD v2.0 Question Answering (BERT-base)</h3>
-                    <div class="chart-bars">
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">GELU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 76.8%">
-                                    <span class="chart-value">76.83</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Swish</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 77.4%">
-                                    <span class="chart-value">77.42</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Adaptive (Recent)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 78.9%">
-                                    <span class="chart-value">78.91</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper highlight-bar">
-                            <div class="chart-label">DDAF (Ours)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar highlight" style="width: 80.3%">
-                                    <span class="chart-value">80.34</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="squad-chart" class="w-full" style="min-height: 350px;"></div>
                     <div class="text-center text-gray-600 dark:text-gray-300 text-sm font-semibold mt-6 bg-gradient-to-r from-indigo-50/50 to-purple-50/50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-xl p-4">
                         F1 Score (10 runs, mean ± std: <span class="font-black text-indigo-600 dark:text-indigo-400">80.34 ± 0.38</span>, 95% CI: [80.10, 80.58]) | Improvement over GELU: <span class="font-black text-green-600 dark:text-green-400">+3.51 points</span> | Improvement over best baseline: <span class="font-black text-green-600 dark:text-green-400">+1.43 points</span>
                     </div>
@@ -1033,103 +820,13 @@
             <div class="tab-content" id="speed-tab">
                 <div class="benchmark-chart">
                     <h3 class="subsection-title" style="margin-top: 0; text-align: center;">Inference Speed (Images/sec, Batch Size 32)</h3>
-                    <div class="chart-bars">
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">ReLU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 100%">
-                                    <span class="chart-value">1,247 img/s</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">GELU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 94%">
-                                    <span class="chart-value">1,172 img/s</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Swish</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 89%">
-                                    <span class="chart-value">1,110 img/s</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Mish</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 87%">
-                                    <span class="chart-value">1,084 img/s</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Adaptive (Recent)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 82%">
-                                    <span class="chart-value">1,023 img/s</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper highlight-bar">
-                            <div class="chart-label">DDAF (Ours)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar highlight" style="width: 91%">
-                                    <span class="chart-value">1,135 img/s</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="inference-speed-chart" class="w-full" style="min-height: 350px;"></div>
                     <div class="chart-note">ResNet-50 on NVIDIA A100 GPU, FP32 precision (10 runs averaged, std: ±23 img/s) | DDAF achieves 91% of ReLU speed while providing 7.29% accuracy improvement</div>
                 </div>
 
                 <div class="benchmark-chart" style="margin-top: 3rem;">
                     <h3 class="subsection-title" style="margin-top: 0; text-align: center;">Training Throughput (Samples/sec, Batch Size 64)</h3>
-                    <div class="chart-bars">
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">ReLU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 100%">
-                                    <span class="chart-value">892 samples/s</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">GELU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 93%">
-                                    <span class="chart-value">830 samples/s</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Swish</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 88%">
-                                    <span class="chart-value">785 samples/s</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Adaptive (Recent)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 81%">
-                                    <span class="chart-value">723 samples/s</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper highlight-bar">
-                            <div class="chart-label">DDAF (Ours)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar highlight" style="width: 89%">
-                                    <span class="chart-value">794 samples/s</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="training-throughput-chart" class="w-full" style="min-height: 350px;"></div>
                     <div class="chart-note">ResNet-50 on NVIDIA A100 GPU, mixed precision training (10 runs averaged, std: ±18 samples/s) | DDAF achieves 89% of ReLU throughput with superior accuracy</div>
                 </div>
             </div>
@@ -1138,95 +835,13 @@
             <div class="tab-content" id="memory-tab">
                 <div class="benchmark-chart">
                     <h3 class="subsection-title" style="margin-top: 0; text-align: center;">Peak Memory Usage (ResNet-50, Batch Size 32)</h3>
-                    <div class="chart-bars">
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">ReLU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 100%">
-                                    <span class="chart-value">4.2 GB</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">GELU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 100%">
-                                    <span class="chart-value">4.2 GB</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Swish</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 101%">
-                                    <span class="chart-value">4.24 GB</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Mish</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 102%">
-                                    <span class="chart-value">4.28 GB</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Adaptive (Recent)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 118%">
-                                    <span class="chart-value">4.96 GB</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper highlight-bar">
-                            <div class="chart-label">DDAF (Ours)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar highlight" style="width: 110%">
-                                    <span class="chart-value">4.62 GB</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="memory-usage-chart" class="w-full" style="min-height: 350px;"></div>
                     <div class="chart-note">Peak GPU memory during forward+backward pass (10 runs averaged, std: ±0.08 GB) | DDAF uses 10% more memory than ReLU but 7% less than Adaptive methods</div>
                 </div>
 
                 <div class="benchmark-chart" style="margin-top: 3rem;">
                     <h3 class="subsection-title" style="margin-top: 0; text-align: center;">Memory Efficiency (Parameters Overhead)</h3>
-                    <div class="chart-bars">
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">ReLU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 100%">
-                                    <span class="chart-value">0 params</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">PReLU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 102%">
-                                    <span class="chart-value">+0.02%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Adaptive (Recent)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 108%">
-                                    <span class="chart-value">+0.08%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper highlight-bar">
-                            <div class="chart-label">DDAF (Ours)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar highlight" style="width: 105%">
-                                    <span class="chart-value">+0.05%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="memory-efficiency-chart" class="w-full" style="min-height: 350px;"></div>
                     <div class="chart-note">Additional parameters relative to base model (ResNet-50: 25.6M params) | DDAF adds only 12,800 parameters (0.05% overhead) vs 20,480 for Adaptive methods</div>
                 </div>
             </div>
@@ -1235,95 +850,13 @@
             <div class="tab-content" id="training-tab">
                 <div class="benchmark-chart">
                     <h3 class="subsection-title" style="margin-top: 0; text-align: center;">Time to Target Accuracy (ImageNet, 75% Top-1)</h3>
-                    <div class="chart-bars">
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">ReLU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 100%">
-                                    <span class="chart-value">18.4 hrs</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">GELU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 95%">
-                                    <span class="chart-value">17.5 hrs</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Swish</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 92%">
-                                    <span class="chart-value">16.9 hrs</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Adaptive (Recent)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 88%">
-                                    <span class="chart-value">16.2 hrs</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper highlight-bar">
-                            <div class="chart-label">DDAF (Ours)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar highlight" style="width: 85%">
-                                    <span class="chart-value">15.6 hrs</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="time-to-target-chart" class="w-full" style="min-height: 350px;"></div>
                     <div class="chart-note">Training time on 4x NVIDIA A100 GPUs (10 runs averaged, std: ±0.3 hrs, lower is better) | DDAF reaches target 15% faster than ReLU and 4% faster than best baseline</div>
                 </div>
 
                 <div class="benchmark-chart" style="margin-top: 3rem;">
                     <h3 class="subsection-title" style="margin-top: 0; text-align: center;">Total Training Time (90 Epochs, ImageNet)</h3>
-                    <div class="chart-bars">
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">ReLU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 100%">
-                                    <span class="chart-value">24.8 hrs</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">GELU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 104%">
-                                    <span class="chart-value">25.8 hrs</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Swish</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 107%">
-                                    <span class="chart-value">26.5 hrs</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Adaptive (Recent)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 112%">
-                                    <span class="chart-value">27.8 hrs</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper highlight-bar">
-                            <div class="chart-label">DDAF (Ours)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar highlight" style="width: 108%">
-                                    <span class="chart-value">26.8 hrs</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="total-training-time-chart" class="w-full" style="min-height: 350px;"></div>
                     <div class="chart-note">Complete training time on 4x NVIDIA A100 GPUs (10 runs averaged, std: ±0.4 hrs) | DDAF adds only 8% overhead vs ReLU while achieving 7.29% accuracy gain</div>
                 </div>
             </div>
@@ -1332,95 +865,13 @@
             <div class="tab-content" id="convergence-tab">
                 <div class="benchmark-chart">
                     <h3 class="subsection-title" style="margin-top: 0; text-align: center;">Epochs to Convergence (CIFAR-10, Target: 95%)</h3>
-                    <div class="chart-bars">
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">ReLU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 100%">
-                                    <span class="chart-value">142 epochs</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">GELU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 94%">
-                                    <span class="chart-value">134 epochs</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Swish</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 90%">
-                                    <span class="chart-value">128 epochs</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Adaptive (Recent)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 85%">
-                                    <span class="chart-value">121 epochs</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper highlight-bar">
-                            <div class="chart-label">DDAF (Ours)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar highlight" style="width: 78%">
-                                    <span class="chart-value">111 epochs</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="epochs-convergence-chart" class="w-full" style="min-height: 350px;"></div>
                     <div class="chart-note">Number of epochs to reach 95% test accuracy (10 runs averaged, std: ±3 epochs, lower is better) | DDAF converges 22% faster than ReLU and 8% faster than best baseline</div>
                 </div>
 
                 <div class="benchmark-chart" style="margin-top: 3rem;">
                     <h3 class="subsection-title" style="margin-top: 0; text-align: center;">Final Training Loss (ImageNet, 90 Epochs)</h3>
-                    <div class="chart-bars">
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">ReLU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 100%">
-                                    <span class="chart-value">1.247</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">GELU</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 96%">
-                                    <span class="chart-value">1.198</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Swish</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 93%">
-                                    <span class="chart-value">1.162</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper">
-                            <div class="chart-label">Adaptive (Recent)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar" style="width: 89%">
-                                    <span class="chart-value">1.109</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chart-bar-wrapper highlight-bar">
-                            <div class="chart-label">DDAF (Ours)</div>
-                            <div class="chart-bar-container">
-                                <div class="chart-bar highlight" style="width: 85%">
-                                    <span class="chart-value">1.062</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="final-loss-chart" class="w-full" style="min-height: 350px;"></div>
                     <div class="chart-note">Cross-entropy loss after 90 epochs (10 runs averaged, std: ±0.012, lower is better) | DDAF achieves 14.9% lower loss than ReLU and 4.2% lower than best baseline</div>
                 </div>
             </div>
