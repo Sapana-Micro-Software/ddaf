@@ -3,7 +3,7 @@ title: DDAF - Data-Driven, Dynamic, Online, and Attention-Based Activation Funct
 description: A comprehensive C/C++ library implementing adaptive activation functions for deep neural networks
 author: Shyamal Suhana Chandra
 copyright: Copyright (C) 2025, Shyamal Suhana Chandra
-github_username: yourusername  # Update this with your GitHub username
+github_username: Sapana-Micro-Software
 github_repo: ddaf
 
 # GitHub Pages settings
@@ -13,8 +13,8 @@ plugins:
   - jekyll-seo-tag
 
 # Site settings
-baseurl: ""
-url: ""
+baseurl: "/ddaf"  # Repository name for GitHub Pages
+url: "https://Sapana-Micro-Software.github.io"
 
 # Exclude files
 exclude:
