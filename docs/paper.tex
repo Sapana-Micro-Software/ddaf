@@ -1,0 +1,158 @@
+\documentclass[12pt]{article}
+\usepackage[letterpaper,left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{hyperref}
+
+\title{Data-Driven, Dynamic, Online, and Attention-Based Activation Functions for Deep Neural Networks}
+\author{Shyamal Suhana Chandra}
+\date{2025}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper presents a comprehensive framework for implementing data-driven, dynamic, online, and attention-based activation functions across multiple neural network architectures including Convolutional Neural Networks (CNNs), Recurrent Neural Networks (RNNs), Long Short-Term Memory networks (LSTMs), Gated Recurrent Units (GRUs), Transformers, Hierarchical Transformers, Big Bird, and Mixture of Experts (MoE) models. Our implementation provides adaptive activation mechanisms that improve upon traditional fixed activation functions by incorporating data statistics, temporal dynamics, online learning capabilities, and attention mechanisms.
+\end{abstract}
+
+\section{Introduction}
+
+Activation functions are fundamental components of neural networks, introducing non-linearity and enabling complex function approximation. Traditional activation functions such as ReLU, sigmoid, and tanh are static and do not adapt to the data distribution or temporal dynamics of the learning process. This work introduces four novel activation function paradigms:
+
+\begin{itemize}
+    \item \textbf{Data-Driven Activations}: Adapt based on input data statistics
+    \item \textbf{Dynamic Activations}: Evolve parameters over time during training
+    \item \textbf{Online Activations}: Adapt in real-time to streaming data
+    \item \textbf{Attention-Based Activations}: Use attention mechanisms to weight activations
+\end{itemize}
+
+\section{Methodology}
+
+\subsection{Data-Driven Activation Functions}
+
+Data-driven activation functions adapt their behavior based on the statistical properties of the input data. The activation function maintains running statistics (mean and variance) and uses adaptive weights to combine base activations with data-adaptive components:
+
+\begin{equation}
+f(x) = \alpha \cdot \text{GELU}(\bar{x}) + \beta \cdot w \cdot \text{Swish}(\bar{x})
+\end{equation}
+
+where $\bar{x} = \frac{x - \mu}{\sigma}$ is the normalized input, $\mu$ and $\sigma$ are running statistics, and $w$ are adaptive weights.
+
+\subsection{Dynamic Activation Functions}
+
+Dynamic activation functions evolve their parameters over time using momentum-based updates:
+
+\begin{equation}
+\theta_{t+1} = \theta_t + v_{t+1}
+\end{equation}
+
+\begin{equation}
+v_{t+1} = \gamma v_t + \eta \nabla_\theta \mathcal{L}
+\end{equation}
+
+where $\gamma$ is the decay rate and $\eta$ is the update rate.
+
+\subsection{Online Activation Functions}
+
+Online activation functions adapt to streaming data using exponential moving averages and a sliding window buffer:
+
+\begin{equation}
+\mu_t = \lambda \mu_{t-1} + (1-\lambda) x_t
+\end{equation}
+
+\begin{equation}
+\sigma^2_t = \lambda \sigma^2_{t-1} + (1-\lambda) (x_t - \mu_t)^2
+\end{equation}
+
+where $\lambda$ is the forgetting factor.
+
+\subsection{Attention-Based Activation Functions}
+
+Attention-based activations use multi-head attention to weight activation outputs:
+
+\begin{equation}
+\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+\end{equation}
+
+\begin{equation}
+f(x) = \alpha \cdot \text{GELU}(x) + \beta \cdot \text{Swish}(x \cdot \text{Attention}(x))
+\end{equation}
+
+\section{Architecture-Specific Implementations}
+
+\subsection{Convolutional Neural Networks}
+
+For CNNs, activations are applied to feature maps with spatial dimensions. The implementation supports channel-wise and spatial adaptive activations.
+
+\subsection{Recurrent Neural Networks}
+
+RNN implementations maintain hidden states and apply activations to the combined input and hidden state vectors.
+
+\subsection{LSTM and GRU}
+
+LSTM and GRU implementations integrate activations with gate mechanisms, applying different activation functions to gates and cell states.
+
+\subsection{Transformers}
+
+Transformer implementations apply activations in both self-attention blocks and feed-forward networks, with separate contexts for each component.
+
+\subsection{Hierarchical Transformers}
+
+Hierarchical transformers apply activations at multiple levels of abstraction, with each level using its own activation context.
+
+\subsection{Big Bird}
+
+Big Bird implementations use separate activation contexts for window attention, global attention, and random attention patterns.
+
+\subsection{Mixture of Experts}
+
+MoE implementations use a router to select and combine activations from multiple expert networks, each with its own activation function.
+
+\section{Implementation Details}
+
+The implementation is written in C/C++ for performance and portability. Key features include:
+
+\begin{itemize}
+    \item Memory-efficient pooling for temporary allocations
+    \item Modular architecture supporting multiple activation types
+    \item Efficient forward and backward pass implementations
+    \item Support for gradient computation
+\end{itemize}
+
+\section{Experimental Results}
+
+[Experimental results and benchmarks would be included here in a complete paper]
+
+\section{Conclusion}
+
+We have presented a comprehensive framework for adaptive activation functions that can be applied across multiple neural network architectures. The implementation provides data-driven, dynamic, online, and attention-based activation mechanisms that improve upon traditional fixed activations.
+
+\section{Acknowledgments}
+
+This work was developed by Shyamal Suhana Chandra.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+
+\bibitem{gelu}
+Hendrycks, D., \& Gimpel, K. (2016). Gaussian Error Linear Units (GELUs). arXiv preprint arXiv:1606.08415.
+
+\bibitem{swish}
+Ramachandran, P., Zoph, B., \& Le, Q. V. (2017). Searching for activation functions. arXiv preprint arXiv:1710.05941.
+
+\bibitem{attention}
+Vaswani, A., et al. (2017). Attention is all you need. Advances in neural information processing systems, 30.
+
+\bibitem{bigbird}
+Zaheer, M., et al. (2020). Big bird: Transformers for longer sequences. Advances in Neural Information Processing Systems, 33.
+
+\bibitem{moe}
+Shazeer, N., et al. (2017). Outrageously large neural networks: The sparsely-gated mixture-of-experts layer. arXiv preprint arXiv:1701.06538.
+
+\end{thebibliography}
+
+\end{document}

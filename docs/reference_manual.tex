@@ -1,0 +1,435 @@
+\documentclass[12pt]{article}
+\usepackage[letterpaper,left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    frame=single,
+    breaklines=true,
+    showspaces=false,
+    showstringspaces=false
+}
+
+\title{DDAF Reference Manual}
+\subtitle{Data-Driven, Dynamic, Online, and Attention-Based Activation Functions}
+\author{Shyamal Suhana Chandra}
+\date{2025}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+This reference manual provides comprehensive documentation for the DDAF (Data-Driven, Dynamic, Online, and Attention-Based Activation Functions) library. The library implements adaptive activation functions for various neural network architectures.
+
+\section{API Overview}
+
+\subsection{Header File}
+
+All functions and types are declared in \texttt{include/ddaf.h}. Include this header in your code:
+
+\begin{lstlisting}
+#include "ddaf.h"
+\end{lstlisting}
+
+\subsection{Core Types}
+
+\subsubsection{Activation Types}
+
+\begin{lstlisting}
+typedef enum {
+    DDAF_TYPE_DATA_DRIVEN = 0,
+    DDAF_TYPE_DYNAMIC,
+    DDAF_TYPE_ONLINE,
+    DDAF_TYPE_ATTENTION
+} ddaf_type_t;
+\end{lstlisting}
+
+\subsubsection{Architecture Types}
+
+\begin{lstlisting}
+typedef enum {
+    DDAF_ARCH_CNN = 0,
+    DDAF_ARCH_RNN,
+    DDAF_ARCH_LSTM,
+    DDAF_ARCH_GRU,
+    DDAF_ARCH_TRANSFORMER,
+    DDAF_ARCH_HIERARCHICAL_TRANSFORMER,
+    DDAF_ARCH_BIGBIRD,
+    DDAF_ARCH_MOE
+} ddaf_arch_t;
+\end{lstlisting}
+
+\section{Core API Functions}
+
+\subsection{Context Management}
+
+\subsubsection{ddaf\_create\_context}
+
+Creates a new activation function context.
+
+\begin{lstlisting}
+ddaf_context_t* ddaf_create_context(
+    ddaf_type_t type,
+    ddaf_arch_t arch,
+    size_t param_size
+);
+\end{lstlisting}
+
+\textbf{Parameters:}
+\begin{itemize}
+    \item \texttt{type}: Activation function type
+    \item \texttt{arch}: Target architecture
+    \item \texttt{param_size}: Size of additional parameters (usually 0)
+\end{itemize}
+
+\textbf{Returns:} Pointer to context on success, NULL on failure.
+
+\subsubsection{ddaf\_destroy\_context}
+
+Destroys an activation function context and frees associated memory.
+
+\begin{lstlisting}
+void ddaf_destroy_context(ddaf_context_t* ctx);
+\end{lstlisting}
+
+\textbf{Parameters:}
+\begin{itemize}
+    \item \texttt{ctx}: Context to destroy
+\end{itemize}
+
+\subsection{Forward and Backward Pass}
+
+\subsubsection{ddaf\_forward}
+
+Performs forward pass through activation function.
+
+\begin{lstlisting}
+int ddaf_forward(
+    ddaf_context_t* ctx,
+    const float* input,
+    float* output,
+    size_t size
+);
+\end{lstlisting}
+
+\textbf{Parameters:}
+\begin{itemize}
+    \item \texttt{ctx}: Activation context
+    \item \texttt{input}: Input array
+    \item \texttt{output}: Output array (must be pre-allocated)
+    \item \texttt{size}: Number of elements
+\end{itemize}
+
+\textbf{Returns:} 0 on success, -1 on failure.
+
+\subsubsection{ddaf\_backward}
+
+Performs backward pass (gradient computation).
+
+\begin{lstlisting}
+int ddaf_backward(
+    ddaf_context_t* ctx,
+    const float* grad_output,
+    float* grad_input,
+    size_t size
+);
+\end{lstlisting}
+
+\textbf{Parameters:}
+\begin{itemize}
+    \item \texttt{ctx}: Activation context
+    \item \texttt{grad\_output}: Gradient from next layer
+    \item \texttt{grad\_input}: Gradient to previous layer (must be pre-allocated)
+    \item \texttt{size}: Number of elements
+\end{itemize}
+
+\textbf{Returns:} 0 on success, -1 on failure.
+
+\section{Architecture-Specific Initialization}
+
+\subsection{CNN}
+
+\begin{lstlisting}
+int ddaf_cnn_init(
+    ddaf_context_t* ctx,
+    size_t channels,
+    size_t height,
+    size_t width
+);
+\end{lstlisting}
+
+Initializes context for CNN architecture.
+
+\textbf{Parameters:}
+\begin{itemize}
+    \item \texttt{ctx}: Context (must be created with DDAF\_ARCH\_CNN)
+    \item \texttt{channels}: Number of channels
+    \item \texttt{height}: Feature map height
+    \item \texttt{width}: Feature map width
+\end{itemize}
+
+\subsection{RNN}
+
+\begin{lstlisting}
+int ddaf_rnn_init(
+    ddaf_context_t* ctx,
+    size_t hidden_size,
+    size_t seq_len
+);
+\end{lstlisting}
+
+Initializes context for RNN architecture.
+
+\subsection{LSTM}
+
+\begin{lstlisting}
+int ddaf_lstm_init(
+    ddaf_context_t* ctx,
+    size_t hidden_size,
+    size_t seq_len
+);
+\end{lstlisting}
+
+Initializes context for LSTM architecture.
+
+\subsection{GRU}
+
+\begin{lstlisting}
+int ddaf_gru_init(
+    ddaf_context_t* ctx,
+    size_t hidden_size,
+    size_t seq_len
+);
+\end{lstlisting}
+
+Initializes context for GRU architecture.
+
+\subsection{Transformer}
+
+\begin{lstlisting}
+int ddaf_transformer_init(
+    ddaf_context_t* ctx,
+    size_t d_model,
+    size_t n_heads,
+    size_t seq_len
+);
+\end{lstlisting}
+
+Initializes context for Transformer architecture.
+
+\textbf{Parameters:}
+\begin{itemize}
+    \item \texttt{d\_model}: Model dimension
+    \item \texttt{n\_heads}: Number of attention heads
+    \item \texttt{seq\_len}: Sequence length
+\end{itemize}
+
+\subsection{Hierarchical Transformer}
+
+\begin{lstlisting}
+int ddaf_hierarchical_transformer_init(
+    ddaf_context_t* ctx,
+    size_t d_model,
+    size_t n_heads,
+    size_t n_levels
+);
+\end{lstlisting}
+
+Initializes context for Hierarchical Transformer.
+
+\subsection{Big Bird}
+
+\begin{lstlisting}
+int ddaf_bigbird_init(
+    ddaf_context_t* ctx,
+    size_t d_model,
+    size_t n_heads,
+    size_t seq_len,
+    size_t block_size
+);
+\end{lstlisting}
+
+Initializes context for Big Bird architecture.
+
+\subsection{Mixture of Experts}
+
+\begin{lstlisting}
+int ddaf_moe_init(
+    ddaf_context_t* ctx,
+    size_t d_model,
+    size_t n_experts,
+    size_t k_experts
+);
+\end{lstlisting}
+
+Initializes context for MoE architecture.
+
+\textbf{Parameters:}
+\begin{itemize}
+    \item \texttt{n\_experts}: Total number of experts
+    \item \texttt{k\_experts}: Number of experts to use per sample
+\end{itemize}
+
+\section{Core Activation Type Initialization}
+
+\subsection{Data-Driven}
+
+\begin{lstlisting}
+int ddaf_init_data_driven(
+    ddaf_context_t* ctx,
+    size_t stat_size
+);
+\end{lstlisting}
+
+Initializes data-driven activation parameters.
+
+\subsection{Dynamic}
+
+\begin{lstlisting}
+int ddaf_init_dynamic(
+    ddaf_context_t* ctx,
+    size_t param_count
+);
+\end{lstlisting}
+
+Initializes dynamic activation parameters.
+
+\subsection{Online}
+
+\begin{lstlisting}
+int ddaf_init_online(
+    ddaf_context_t* ctx,
+    size_t buffer_size
+);
+\end{lstlisting}
+
+Initializes online activation with buffer.
+
+\subsection{Attention-Based}
+
+\begin{lstlisting}
+int ddaf_init_attention(
+    ddaf_context_t* ctx,
+    size_t d_model,
+    size_t n_heads,
+    size_t seq_len
+);
+\end{lstlisting}
+
+Initializes attention-based activation.
+
+\section{Memory Management}
+
+\subsection{Memory Pool}
+
+The library uses memory pools for efficient temporary allocations during forward and backward passes. Pools are automatically created with contexts and destroyed when contexts are destroyed.
+
+\section{Usage Examples}
+
+\subsection{Basic CNN Usage}
+
+\begin{lstlisting}
+// Create context
+ddaf_context_t* ctx = 
+    ddaf_create_context(DDAF_TYPE_DATA_DRIVEN, 
+                       DDAF_ARCH_CNN, 0);
+
+// Initialize
+ddaf_cnn_init(ctx, 64, 32, 32);
+
+// Forward pass
+float input[64*32*32];
+float output[64*32*32];
+ddaf_forward(ctx, input, output, 64*32*32);
+
+// Backward pass
+float grad_output[64*32*32];
+float grad_input[64*32*32];
+ddaf_backward(ctx, grad_output, grad_input, 64*32*32);
+
+// Cleanup
+ddaf_destroy_context(ctx);
+\end{lstlisting}
+
+\subsection{Transformer Usage}
+
+\begin{lstlisting}
+// Create context
+ddaf_context_t* ctx = 
+    ddaf_create_context(DDAF_TYPE_ATTENTION, 
+                       DDAF_ARCH_TRANSFORMER, 0);
+
+// Initialize
+ddaf_transformer_init(ctx, 512, 8, 128);
+
+// Use context...
+// (forward/backward passes)
+
+// Cleanup
+ddaf_destroy_context(ctx);
+\end{lstlisting}
+
+\section{Error Handling}
+
+All functions return error codes:
+\begin{itemize}
+    \item \texttt{0}: Success
+    \item \texttt{-1}: Failure (check for NULL pointers, invalid parameters, etc.)
+\end{itemize}
+
+Always check return values and handle errors appropriately.
+
+\section{Building the Library}
+
+\subsection{CMake}
+
+\begin{lstlisting}
+mkdir build
+cd build
+cmake ..
+make
+\end{lstlisting}
+
+This creates both static (\texttt{libddaf\_static.a}) and shared (\texttt{libddaf\_shared.so}) libraries.
+
+\section{Performance Considerations}
+
+\begin{itemize}
+    \item Memory pools reduce allocation overhead
+    \item Forward and backward passes are optimized for cache efficiency
+    \item Consider batch processing for better performance
+    \item Use appropriate activation types for your use case
+\end{itemize}
+
+\section{Limitations}
+
+\begin{itemize}
+    \item Currently supports single-precision floating point (float)
+    \item Memory pools have fixed size (1MB default)
+    \item Some architectures may have specific size constraints
+\end{itemize}
+
+\section{Copyright}
+
+Copyright (C) 2025, Shyamal Suhana Chandra
+
+All rights reserved.
+
+\end{document}

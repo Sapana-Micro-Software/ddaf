@@ -1,0 +1,182 @@
+\documentclass[12pt]{beamer}
+\usepackage[letterpaper,left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\title{Data-Driven, Dynamic, Online, and Attention-Based Activation Functions}
+\subtitle{Implementation for CNNs, RNNs, LSTMs, GRUs, Transformers, and Beyond}
+\author{Shyamal Suhana Chandra}
+\date{2025}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Overview}
+\begin{itemize}
+    \item Novel activation function paradigms for deep learning
+    \item Four activation types: Data-Driven, Dynamic, Online, Attention-Based
+    \item Support for multiple architectures: CNN, RNN, LSTM, GRU, Transformer, Hierarchical Transformer, Big Bird, MoE
+    \item High-performance C/C++ implementation
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Motivation}
+\begin{itemize}
+    \item Traditional activations (ReLU, sigmoid, tanh) are static
+    \item Fixed activations don't adapt to data distribution
+    \item Need for adaptive mechanisms that learn from data
+    \item Attention mechanisms can improve activation quality
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Data-Driven Activations}
+\begin{block}{Key Features}
+\begin{itemize}
+    \item Adapt based on input statistics (mean, variance)
+    \item Maintain running statistics with momentum
+    \item Use adaptive weights to combine base and data-adaptive components
+    \item Formula: $f(x) = \alpha \cdot \text{GELU}(\bar{x}) + \beta \cdot w \cdot \text{Swish}(\bar{x})$
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Dynamic Activations}
+\begin{block}{Key Features}
+\begin{itemize}
+    \item Parameters evolve over time during training
+    \item Momentum-based updates: $v_{t+1} = \gamma v_t + \eta \nabla_\theta \mathcal{L}$
+    \item Bounded parameter space for stability
+    \item Combines multiple activation functions dynamically
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Online Activations}
+\begin{block}{Key Features}
+\begin{itemize}
+    \item Real-time adaptation to streaming data
+    \item Exponential moving averages: $\mu_t = \lambda \mu_{t-1} + (1-\lambda) x_t$
+    \item Sliding window buffer for recent samples
+    \item Forgetting factor controls adaptation rate
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Attention-Based Activations}
+\begin{block}{Key Features}
+\begin{itemize}
+    \item Multi-head attention mechanism
+    \item Query-Key-Value attention: $\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$
+    \item Attention-weighted activation combination
+    \item Temperature scaling for attention sharpness
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Architecture Support}
+\begin{columns}
+\column{0.5\textwidth}
+\begin{itemize}
+    \item \textbf{CNNs}: Channel and spatial adaptivity
+    \item \textbf{RNNs}: Hidden state integration
+    \item \textbf{LSTMs}: Gate-aware activations
+    \item \textbf{GRUs}: Reset and update gates
+\end{itemize}
+\column{0.5\textwidth}
+\begin{itemize}
+    \item \textbf{Transformers}: Self-attention blocks
+    \item \textbf{Hierarchical}: Multi-level activations
+    \item \textbf{Big Bird}: Sparse attention patterns
+    \item \textbf{MoE}: Expert-specific activations
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Implementation Highlights}
+\begin{itemize}
+    \item \textbf{Language}: C/C++ for performance
+    \item \textbf{Build System}: CMake for cross-platform support
+    \item \textbf{Memory}: Efficient pooling for temporary allocations
+    \item \textbf{Modularity}: Clean separation of concerns
+    \item \textbf{Gradients}: Full backward pass support
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Code Structure}
+\begin{block}{Core Components}
+\begin{itemize}
+    \item \texttt{core/}: Base activation implementations
+    \item \texttt{architectures/}: Architecture-specific wrappers
+    \item \texttt{include/}: Public API headers
+    \item \texttt{examples/}: Usage demonstrations
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Usage Example}
+\begin{block}{CNN with Data-Driven Activation}
+\begin{verbatim}
+ddaf_context_t* ctx = 
+    ddaf_create_context(DDAF_TYPE_DATA_DRIVEN, 
+                       DDAF_ARCH_CNN, 0);
+ddaf_cnn_init(ctx, 64, 32, 32);
+ddaf_forward(ctx, input, output, size);
+ddaf_backward(ctx, grad_output, grad_input, size);
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Benefits}
+\begin{itemize}
+    \item \textbf{Adaptability}: Functions adapt to data characteristics
+    \item \textbf{Performance}: Efficient C/C++ implementation
+    \item \textbf{Flexibility}: Multiple activation types and architectures
+    \item \textbf{Extensibility}: Easy to add new activation types
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Future Work}
+\begin{itemize}
+    \item Benchmarking on standard datasets
+    \item Optimization for specific hardware (GPU, TPU)
+    \item Additional activation function variants
+    \item Integration with popular deep learning frameworks
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conclusion}
+\begin{itemize}
+    \item Comprehensive framework for adaptive activations
+    \item Support for major neural network architectures
+    \item High-performance implementation
+    \item Open for extension and improvement
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Questions?}
+\centering
+Thank you for your attention!
+\end{frame}
+
+\end{document}
