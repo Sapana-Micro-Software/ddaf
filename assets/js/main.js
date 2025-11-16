@@ -21,6 +21,14 @@ document.addEventListener('DOMContentLoaded', function() {
     initEnhancedHoverEffects();
     initSparkleEffects();
     initProgressBars();
+    
+    // Ensure charts are initialized after a delay to allow D3.js to load
+    setTimeout(function() {
+        // Trigger chart initialization if charts.js hasn't loaded yet
+        if (typeof initBenchmarkCharts === 'function') {
+            initBenchmarkCharts();
+        }
+    }, 500);
 });
 
 // Sparkle Effects for Special Elements

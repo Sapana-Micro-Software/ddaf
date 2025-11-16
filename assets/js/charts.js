@@ -2,18 +2,67 @@
 // Copyright (C) 2025, Shyamal Suhana Chandra
 
 // Wait for DOM and D3.js to load
-document.addEventListener('DOMContentLoaded', function() {
+function initializeAllCharts() {
     // Check if D3.js is loaded
     if (typeof d3 === 'undefined') {
         console.warn('D3.js not loaded, using fallback SVG generation');
         initFallbackCharts();
     } else {
+        console.log('D3.js loaded successfully, initializing charts...');
         initD3Charts();
     }
     initSVGDiagrams();
     initActivationFunctionPlots();
     initBenchmarkCharts();
+    
+    // Re-initialize charts when tabs are switched (for hidden containers)
+    setupTabChartReinitialization();
+}
+
+// Try multiple times to ensure D3.js is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // First attempt after DOM is ready
+    setTimeout(function() {
+        if (typeof d3 !== 'undefined') {
+            initializeAllCharts();
+        } else {
+            // Wait a bit more for D3.js script to load
+            setTimeout(function() {
+                initializeAllCharts();
+            }, 500);
+        }
+    }, 100);
 });
+
+// Also try on window load (in case D3.js loads late)
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        // Only initialize if charts haven't been created yet
+        const existingCharts = document.querySelectorAll('svg.chart-svg, svg.diagram-svg, svg.plot-svg');
+        if (existingCharts.length === 0) {
+            console.log('Reinitializing charts on window load...');
+            initializeAllCharts();
+        }
+    }, 200);
+});
+
+// Setup chart reinitialization when tabs are switched
+function setupTabChartReinitialization() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    tabButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            const targetTab = this.getAttribute('data-tab');
+            // Wait for tab to become visible, then reinitialize charts
+            setTimeout(function() {
+                initBenchmarkCharts();
+                // Also reinitialize D3 charts if needed
+                if (typeof d3 !== 'undefined') {
+                    initD3Charts();
+                }
+            }, 300);
+        });
+    });
+}
 
 // Initialize D3.js based charts
 function initD3Charts() {
@@ -203,7 +252,20 @@ function createSVGBarChart(containerId, config) {
 // Create Performance Line Chart with D3.js
 function createPerformanceLineChart() {
     const container = document.getElementById('performance-line-chart');
-    if (!container || typeof d3 === 'undefined') return;
+    if (!container) {
+        console.warn('Performance line chart container not found');
+        return;
+    }
+    if (typeof d3 === 'undefined') {
+        console.warn('D3.js not available for performance line chart');
+        return;
+    }
+    
+    // Ensure container has dimensions
+    if (container.clientWidth === 0) {
+        container.style.width = '100%';
+        container.style.minHeight = '400px';
+    }
 
     const data = [
         { epoch: 0, relu: 10, gelu: 10, swish: 10, ddaf: 10 },
@@ -379,7 +441,20 @@ function createPerformanceLineChart() {
 // Create Comparison Bar Chart
 function createComparisonBarChart() {
     const container = document.getElementById('comparison-bar-chart');
-    if (!container || typeof d3 === 'undefined') return;
+    if (!container) {
+        console.warn('Comparison bar chart container not found');
+        return;
+    }
+    if (typeof d3 === 'undefined') {
+        console.warn('D3.js not available for comparison bar chart');
+        return;
+    }
+    
+    // Ensure container has dimensions
+    if (container.clientWidth === 0) {
+        container.style.width = '100%';
+        container.style.minHeight = '400px';
+    }
 
     const data = [
         { label: 'ReLU', value: 76.13, color: '#94a3b8' },
@@ -512,7 +587,20 @@ function createComparisonBarChart() {
 // Create Accuracy Scatter Plot
 function createAccuracyScatterPlot() {
     const container = document.getElementById('accuracy-scatter-plot');
-    if (!container || typeof d3 === 'undefined') return;
+    if (!container) {
+        console.warn('Accuracy scatter plot container not found');
+        return;
+    }
+    if (typeof d3 === 'undefined') {
+        console.warn('D3.js not available for scatter plot');
+        return;
+    }
+    
+    // Ensure container has dimensions
+    if (container.clientWidth === 0) {
+        container.style.width = '100%';
+        container.style.minHeight = '400px';
+    }
 
     const data = [
         { x: 1200, y: 76.1, label: 'ReLU', color: '#94a3b8' },
@@ -659,7 +747,20 @@ function createAccuracyScatterPlot() {
 // Create Training Curve Chart
 function createTrainingCurveChart() {
     const container = document.getElementById('training-curve-chart');
-    if (!container || typeof d3 === 'undefined') return;
+    if (!container) {
+        console.warn('Training curve chart container not found');
+        return;
+    }
+    if (typeof d3 === 'undefined') {
+        console.warn('D3.js not available for training curve chart');
+        return;
+    }
+    
+    // Ensure container has dimensions
+    if (container.clientWidth === 0) {
+        container.style.width = '100%';
+        container.style.minHeight = '400px';
+    }
 
     const data = Array.from({ length: 100 }, function(_, i) {
         return {
@@ -1180,10 +1281,12 @@ function createActivationFunctionPlot(containerId, name, func) {
     }
 
     // Scales
-    const xScale = (x) => margin.left + ((x + range) / (2 * range)) * chartWidth;
-    const yScale = (y) => {
-        const minY = Math.min(...points.map(p => p.y));
-        const maxY = Math.max(...points.map(p => p.y));
+    const xScale = function(x) {
+        return margin.left + ((x + range) / (2 * range)) * chartWidth;
+    };
+    const yScale = function(y) {
+        const minY = Math.min.apply(null, points.map(function(p) { return p.y; }));
+        const maxY = Math.max.apply(null, points.map(function(p) { return p.y; }));
         const rangeY = maxY - minY || 1;
         return margin.top + chartHeight - ((y - minY) / rangeY) * chartHeight;
     };
@@ -1209,9 +1312,9 @@ function createActivationFunctionPlot(containerId, name, func) {
 
     // Draw function curve
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    let pathData = `M ${xScale(points[0].x)} ${yScale(points[0].y)}`;
+    let pathData = 'M ' + xScale(points[0].x) + ' ' + yScale(points[0].y);
     for (let i = 1; i < points.length; i++) {
-        pathData += ` L ${xScale(points[i].x)} ${yScale(points[i].y)}`;
+        pathData += ' L ' + xScale(points[i].x) + ' ' + yScale(points[i].y);
     }
     path.setAttribute('d', pathData);
     path.setAttribute('fill', 'none');
@@ -1246,27 +1349,49 @@ function createActivationFunctionPlot(containerId, name, func) {
     yLabel.setAttribute('text-anchor', 'middle');
     yLabel.setAttribute('fill', '#64748b');
     yLabel.setAttribute('font-size', '12');
-    yLabel.setAttribute('transform', `rotate(-90, 15, ${height / 2})`);
+    yLabel.setAttribute('transform', 'rotate(-90, 15, ' + (height / 2) + ')');
     yLabel.textContent = 'f(x)';
     svg.appendChild(yLabel);
 
     container.appendChild(svg);
 }
 
-// Initialize Benchmark Charts
+// Initialize Benchmark Charts with IntersectionObserver for better reliability
 function initBenchmarkCharts() {
-    // Wait for tab switching to ensure containers exist
-    setTimeout(() => {
-        createBenchmarkSVGCharts();
-    }, 500);
+    // Create all charts immediately
+    createBenchmarkSVGCharts();
     
-    // Recreate charts when tabs are switched
+    // Use IntersectionObserver to reinitialize charts when they become visible
+    const chartContainers = document.querySelectorAll('[id$="-chart"], [id$="-plot"]');
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting && entry.target.innerHTML.trim() === '') {
+                // Container is visible but empty, reinitialize
+                const containerId = entry.target.id;
+                console.log('Reinitializing chart: ' + containerId);
+                
+                // Find matching chart config and recreate
+                setTimeout(function() {
+                    createBenchmarkSVGCharts();
+                }, 100);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '50px'
+    });
+    
+    chartContainers.forEach(function(container) {
+        observer.observe(container);
+    });
+    
+    // Also recreate charts when tabs are switched
     const tabButtons = document.querySelectorAll('.tab-button');
-    tabButtons.forEach(button => {
+    tabButtons.forEach(function(button) {
         button.addEventListener('click', function() {
-            setTimeout(() => {
+            setTimeout(function() {
                 createBenchmarkSVGCharts();
-            }, 100);
+            }, 300);
         });
     });
 }
@@ -1389,7 +1514,7 @@ function createBenchmarkSVGCharts() {
         colors: ['#94a3b8', '#94a3b8', '#94a3b8', '#94a3b8', '#6366f1'],
         yLabel: 'Cross-entropy Loss',
         maxValue: 1.3,
-        formatValue: (v) => v.toFixed(3),
+        formatValue: function(v) { return v.toFixed(3); },
         lowerIsBetter: true
     });
 }
@@ -1397,26 +1522,59 @@ function createBenchmarkSVGCharts() {
 // Create a benchmark bar chart (works with or without D3.js)
 function createBenchmarkBarChart(containerId, config) {
     const container = document.getElementById(containerId);
-    if (!container) return;
+    if (!container) {
+        console.warn('Chart container not found: ' + containerId);
+        return;
+    }
     
     // Clear existing content
     container.innerHTML = '';
     
+    // Ensure container has dimensions even if hidden
+    const containerWidth = container.clientWidth || container.offsetWidth || 800;
+    const containerHeight = container.clientHeight || container.offsetHeight || 350;
+    
+    // If container is hidden, set explicit dimensions temporarily
+    const wasHidden = container.offsetParent === null;
+    if (wasHidden) {
+        container.style.width = containerWidth + 'px';
+        container.style.height = containerHeight + 'px';
+        container.style.visibility = 'hidden';
+        container.style.position = 'absolute';
+    }
+    
     // Use D3.js if available, otherwise use fallback
     if (typeof d3 !== 'undefined') {
-        createD3BenchmarkChart(container, config);
+        try {
+            createD3BenchmarkChart(container, config);
+        } catch (error) {
+            console.error('Error creating D3 chart for ' + containerId + ':', error);
+            createSVGBarChart(containerId, config);
+        }
     } else {
         createSVGBarChart(containerId, config);
+    }
+    
+    // Restore original state if container was hidden
+    if (wasHidden) {
+        container.style.visibility = '';
+        container.style.position = '';
     }
 }
 
 // Create D3.js based benchmark chart
 function createD3BenchmarkChart(container, config) {
     const containerId = container.id || 'default';
-    const width = container.clientWidth || 800;
+    // Get dimensions more reliably, including for hidden containers
+    let width = container.clientWidth || container.offsetWidth;
+    if (!width || width === 0) {
+        // Try to get from parent or use default
+        const parent = container.parentElement;
+        width = (parent && parent.clientWidth) ? parent.clientWidth - 40 : 800;
+    }
     const height = 350;
     const margin = { top: 20, right: 20, bottom: 60, left: 70 };
-    const chartWidth = width - margin.left - margin.right;
+    const chartWidth = Math.max(200, width - margin.left - margin.right);
     const chartHeight = height - margin.top - margin.bottom;
 
     const svg = d3.select(container)
