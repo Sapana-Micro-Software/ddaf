@@ -292,10 +292,6 @@
                         <span class="relative z-10">Benchmarks</span>
                         <span class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                     </a></li>
-                    <li><a href="#visualizations" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-semibold transition-all duration-300 relative group px-3 py-2 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20">
-                        <span class="relative z-10">Charts</span>
-                        <span class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                    </a></li>
                     <li><a href="#prior-art" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-semibold transition-all duration-300 relative group px-3 py-2 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20">
                         <span class="relative z-10">Prior Art</span>
                         <span class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
@@ -731,7 +727,7 @@
         </div>
     </section>
 
-    <!-- Benchmarks Section -->
+    <!-- Comprehensive Dataset Results Section -->
     <section id="benchmarks" class="relative py-24 bg-gradient-to-b from-white via-purple-50/30 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <!-- Background Effects -->
         <div class="absolute inset-0">
@@ -739,144 +735,6 @@
             <div class="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-l from-accent-400/20 to-pink-400/20 rounded-full blur-3xl animate-blob" style="animation-delay: 4s;"></div>
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto] drop-shadow-2xl">
-                    <span class="inline-block hover:scale-110 transition-transform duration-500">📊 Comprehensive Benchmarks</span>
-                    <span class="inline-block ml-3 animate-bounce-slow">🚀</span>
-                    <span class="inline-block ml-2 animate-pulse-slow">✨</span>
-                </h2>
-                <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                    Comprehensive performance evaluation across 8 datasets, 8 architectures, and 12+ metrics. All benchmarks run on identical hardware (4x NVIDIA A100 80GB) with 10 independent runs per configuration. Results include mean, standard deviation, and 95% confidence intervals.
-                </p>
-                <div class="mt-6 flex flex-wrap justify-center gap-3 text-sm text-gray-500">
-                    <span class="px-3 py-1 bg-primary-50 rounded-full">Hardware: 4x NVIDIA A100 80GB</span>
-                    <span class="px-3 py-1 bg-primary-50 rounded-full">Runs: 10 per configuration</span>
-                    <span class="px-3 py-1 bg-primary-50 rounded-full">Framework: PyTorch 2.1.0</span>
-                    <span class="px-3 py-1 bg-primary-50 rounded-full">CUDA: 11.8</span>
-                </div>
-            </div>
-            
-            <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up" data-aos-delay="100">
-                <button class="tab-button px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 active bg-gradient-to-r from-primary-600 to-purple-600 text-white shadow-lg shadow-primary-500/50" data-tab="accuracy">🎯 Accuracy</button>
-                <button class="tab-button px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 bg-white border-2 border-primary-200 text-gray-700 hover:border-primary-400 hover:bg-primary-50" data-tab="speed">⚡ Speed</button>
-                <button class="tab-button px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 bg-white border-2 border-primary-200 text-gray-700 hover:border-primary-400 hover:bg-primary-50" data-tab="memory">💾 Memory</button>
-                <button class="tab-button px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 bg-white border-2 border-primary-200 text-gray-700 hover:border-primary-400 hover:bg-primary-50" data-tab="training">⏱️ Training Time</button>
-                <button class="tab-button px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 bg-white border-2 border-primary-200 text-gray-700 hover:border-primary-400 hover:bg-primary-50" data-tab="convergence">📈 Convergence</button>
-            </div>
-
-            <!-- Accuracy Tab -->
-            <div class="tab-content active" id="accuracy-tab">
-                <!-- ImageNet -->
-                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 mb-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-primary-500/10 rounded-full blur-3xl group-hover:bg-primary-500/20 transition-colors duration-700"></div>
-                    <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">🏆 ImageNet Classification (ResNet-50)</h3>
-                    <div id="imagenet-chart" class="w-full" style="min-height: 350px;"></div>
-                    <div class="text-center text-gray-600 dark:text-gray-300 text-sm font-semibold mt-6 bg-gradient-to-r from-primary-50/50 to-purple-50/50 dark:from-primary-900/20 dark:to-purple-900/20 rounded-xl p-4">
-                        Top-1 Accuracy (10 runs, mean ± std: <span class="font-black text-primary-600 dark:text-primary-400">83.42% ± 0.19%</span>, 95% CI: [83.30%, 83.54%]) | Improvement over ReLU: <span class="font-black text-green-600 dark:text-green-400">+7.29%</span> | Improvement over best baseline: <span class="font-black text-green-600 dark:text-green-400">+2.75%</span>
-                    </div>
-                </div>
-
-                <!-- CIFAR-10 -->
-                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 mb-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="150">
-                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-colors duration-700"></div>
-                    <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">🎨 CIFAR-10 Classification (ResNet-32)</h3>
-                    <div id="cifar10-chart" class="w-full" style="min-height: 350px;"></div>
-                    <div class="text-center text-gray-600 dark:text-gray-300 text-sm font-semibold mt-6 bg-gradient-to-r from-purple-50/50 to-pink-50/50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-4">
-                        Test Accuracy (10 runs, mean ± std: <span class="font-black text-purple-600 dark:text-purple-400">96.08% ± 0.12%</span>, 95% CI: [96.00%, 96.16%]) | Improvement over ReLU: <span class="font-black text-green-600 dark:text-green-400">+3.74%</span> | Improvement over best baseline: <span class="font-black text-green-600 dark:text-green-400">+1.90%</span>
-                    </div>
-                </div>
-
-                <!-- GLUE Benchmark -->
-                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 mb-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-colors duration-700"></div>
-                    <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">🧠 GLUE Benchmark (BERT-base)</h3>
-                    <div id="glue-chart" class="w-full" style="min-height: 350px;"></div>
-                    <div class="text-center text-gray-600 dark:text-gray-300 text-sm font-semibold mt-6 bg-gradient-to-r from-blue-50/50 to-cyan-50/50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-xl p-4">
-                        Average GLUE Score (10 runs, mean ± std: <span class="font-black text-blue-600 dark:text-blue-400">82.67 ± 0.28</span>, 95% CI: [82.50, 82.84]) | Improvement over GELU: <span class="font-black text-green-600 dark:text-green-400">+4.15 points</span> | Improvement over best baseline: <span class="font-black text-green-600 dark:text-green-400">+2.39 points</span>
-                    </div>
-                </div>
-
-                <!-- CIFAR-100 -->
-                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 mb-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="250">
-                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-accent-500/10 rounded-full blur-3xl group-hover:bg-accent-500/20 transition-colors duration-700"></div>
-                    <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">🎯 CIFAR-100 Classification (ResNet-32)</h3>
-                    <div id="cifar100-chart" class="w-full" style="min-height: 350px;"></div>
-                    <div class="text-center text-gray-600 dark:text-gray-300 text-sm font-semibold mt-6 bg-gradient-to-r from-accent-50/50 to-rose-50/50 dark:from-accent-900/20 dark:to-rose-900/20 rounded-xl p-4">
-                        Test Accuracy (10 runs, mean ± std: <span class="font-black text-accent-600 dark:text-accent-400">74.23% ± 0.24%</span>, 95% CI: [74.08%, 74.38%]) | Improvement over ReLU: <span class="font-black text-green-600 dark:text-green-400">+5.81%</span> | Improvement over best baseline: <span class="font-black text-green-600 dark:text-green-400">+2.29%</span>
-                    </div>
-                </div>
-
-                <!-- SQuAD v2.0 -->
-                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 mb-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="300">
-                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl group-hover:bg-indigo-500/20 transition-colors duration-700"></div>
-                    <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">❓ SQuAD v2.0 Question Answering (BERT-base)</h3>
-                    <div id="squad-chart" class="w-full" style="min-height: 350px;"></div>
-                    <div class="text-center text-gray-600 dark:text-gray-300 text-sm font-semibold mt-6 bg-gradient-to-r from-indigo-50/50 to-purple-50/50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-xl p-4">
-                        F1 Score (10 runs, mean ± std: <span class="font-black text-indigo-600 dark:text-indigo-400">80.34 ± 0.38</span>, 95% CI: [80.10, 80.58]) | Improvement over GELU: <span class="font-black text-green-600 dark:text-green-400">+3.51 points</span> | Improvement over best baseline: <span class="font-black text-green-600 dark:text-green-400">+1.43 points</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Speed Tab -->
-            <div class="tab-content" id="speed-tab">
-                <div class="benchmark-chart">
-                    <h3 class="subsection-title" style="margin-top: 0; text-align: center;">Inference Speed (Images/sec, Batch Size 32)</h3>
-                    <div id="inference-speed-chart" class="w-full" style="min-height: 350px;"></div>
-                    <div class="chart-note">ResNet-50 on NVIDIA A100 GPU, FP32 precision (10 runs averaged, std: ±23 img/s) | DDAF achieves 91% of ReLU speed while providing 7.29% accuracy improvement</div>
-                </div>
-
-                <div class="benchmark-chart" style="margin-top: 3rem;">
-                    <h3 class="subsection-title" style="margin-top: 0; text-align: center;">Training Throughput (Samples/sec, Batch Size 64)</h3>
-                    <div id="training-throughput-chart" class="w-full" style="min-height: 350px;"></div>
-                    <div class="chart-note">ResNet-50 on NVIDIA A100 GPU, mixed precision training (10 runs averaged, std: ±18 samples/s) | DDAF achieves 89% of ReLU throughput with superior accuracy</div>
-                </div>
-            </div>
-
-            <!-- Memory Tab -->
-            <div class="tab-content" id="memory-tab">
-                <div class="benchmark-chart">
-                    <h3 class="subsection-title" style="margin-top: 0; text-align: center;">Peak Memory Usage (ResNet-50, Batch Size 32)</h3>
-                    <div id="memory-usage-chart" class="w-full" style="min-height: 350px;"></div>
-                    <div class="chart-note">Peak GPU memory during forward+backward pass (10 runs averaged, std: ±0.08 GB) | DDAF uses 10% more memory than ReLU but 7% less than Adaptive methods</div>
-                </div>
-
-                <div class="benchmark-chart" style="margin-top: 3rem;">
-                    <h3 class="subsection-title" style="margin-top: 0; text-align: center;">Memory Efficiency (Parameters Overhead)</h3>
-                    <div id="memory-efficiency-chart" class="w-full" style="min-height: 350px;"></div>
-                    <div class="chart-note">Additional parameters relative to base model (ResNet-50: 25.6M params) | DDAF adds only 12,800 parameters (0.05% overhead) vs 20,480 for Adaptive methods</div>
-                </div>
-            </div>
-
-            <!-- Training Time Tab -->
-            <div class="tab-content" id="training-tab">
-                <div class="benchmark-chart">
-                    <h3 class="subsection-title" style="margin-top: 0; text-align: center;">Time to Target Accuracy (ImageNet, 75% Top-1)</h3>
-                    <div id="time-to-target-chart" class="w-full" style="min-height: 350px;"></div>
-                    <div class="chart-note">Training time on 4x NVIDIA A100 GPUs (10 runs averaged, std: ±0.3 hrs, lower is better) | DDAF reaches target 15% faster than ReLU and 4% faster than best baseline</div>
-                </div>
-
-                <div class="benchmark-chart" style="margin-top: 3rem;">
-                    <h3 class="subsection-title" style="margin-top: 0; text-align: center;">Total Training Time (90 Epochs, ImageNet)</h3>
-                    <div id="total-training-time-chart" class="w-full" style="min-height: 350px;"></div>
-                    <div class="chart-note">Complete training time on 4x NVIDIA A100 GPUs (10 runs averaged, std: ±0.4 hrs) | DDAF adds only 8% overhead vs ReLU while achieving 7.29% accuracy gain</div>
-                </div>
-            </div>
-
-            <!-- Convergence Tab -->
-            <div class="tab-content" id="convergence-tab">
-                <div class="benchmark-chart">
-                    <h3 class="subsection-title" style="margin-top: 0; text-align: center;">Epochs to Convergence (CIFAR-10, Target: 95%)</h3>
-                    <div id="epochs-convergence-chart" class="w-full" style="min-height: 350px;"></div>
-                    <div class="chart-note">Number of epochs to reach 95% test accuracy (10 runs averaged, std: ±3 epochs, lower is better) | DDAF converges 22% faster than ReLU and 8% faster than best baseline</div>
-                </div>
-
-                <div class="benchmark-chart" style="margin-top: 3rem;">
-                    <h3 class="subsection-title" style="margin-top: 0; text-align: center;">Final Training Loss (ImageNet, 90 Epochs)</h3>
-                    <div id="final-loss-chart" class="w-full" style="min-height: 350px;"></div>
-                    <div class="chart-note">Cross-entropy loss after 90 epochs (10 runs averaged, std: ±0.012, lower is better) | DDAF achieves 14.9% lower loss than ReLU and 4.2% lower than best baseline</div>
-                </div>
-            </div>
-
             <!-- Comprehensive Dataset Breakdown -->
             <div class="mt-16" data-aos="fade-up" data-aos-delay="300">
                 <h3 class="text-3xl sm:text-4xl font-black text-center mb-12 text-gray-900 dark:text-white">
@@ -1067,103 +925,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SVG Charts, Graphs, and Diagrams Section -->
-    <section id="visualizations" class="relative py-24 bg-gradient-to-b from-white via-purple-50/30 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto] drop-shadow-2xl">
-                    <span class="inline-block hover:scale-110 transition-transform duration-500">🎨 Interactive Visualizations</span>
-                    <span class="inline-block ml-3 animate-bounce-slow">📈</span>
-                    <span class="inline-block ml-2 animate-pulse-slow">✨</span>
-                </h2>
-                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                    Explore DDAF's performance through interactive SVG charts, graphs, and architectural diagrams.
-                </p>
-            </div>
-
-            <!-- Performance Charts -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-                <!-- Performance Line Chart -->
-                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50" data-aos="fade-up">
-                    <h3 class="text-2xl font-black mb-6 text-gray-900 dark:text-white">Training Performance</h3>
-                    <div id="performance-line-chart" class="w-full" style="min-height: 400px;"></div>
-                </div>
-
-                <!-- Comparison Bar Chart -->
-                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-purple-200/50 dark:border-purple-700/50" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="text-2xl font-black mb-6 text-gray-900 dark:text-white">Accuracy Comparison</h3>
-                    <div id="comparison-bar-chart" class="w-full" style="min-height: 400px;"></div>
-                </div>
-            </div>
-
-            <!-- Scatter Plot and Training Curve -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-                <!-- Accuracy vs Throughput Scatter Plot -->
-                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-accent-200/50 dark:border-accent-700/50" data-aos="fade-up">
-                    <h3 class="text-2xl font-black mb-6 text-gray-900 dark:text-white">Performance Trade-off</h3>
-                    <div id="accuracy-scatter-plot" class="w-full" style="min-height: 400px;"></div>
-                </div>
-
-                <!-- Training Curve -->
-                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="text-2xl font-black mb-6 text-gray-900 dark:text-white">Training Curves</h3>
-                    <div id="training-curve-chart" class="w-full" style="min-height: 400px;"></div>
-                </div>
-            </div>
-
-            <!-- Architecture Diagrams -->
-            <div class="mb-16">
-                <h3 class="text-3xl font-black mb-8 text-center text-gray-900 dark:text-white">Architecture Diagrams</h3>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <!-- Architecture Diagram -->
-                    <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50" data-aos="fade-up">
-                        <h4 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">DDAF Architecture</h4>
-                        <div id="architecture-diagram" class="w-full" style="min-height: 500px;"></div>
-                    </div>
-
-                    <!-- Data Flow Diagram -->
-                    <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-purple-200/50 dark:border-purple-700/50" data-aos="fade-up" data-aos-delay="100">
-                        <h4 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Data Flow</h4>
-                        <div id="data-flow-diagram" class="w-full" style="min-height: 400px;"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Network Diagram -->
-            <div class="mb-16">
-                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-accent-200/50 dark:border-accent-700/50" data-aos="fade-up">
-                    <h4 class="text-xl font-bold mb-4 text-center text-gray-900 dark:text-white">Network Topology</h4>
-                    <div id="network-diagram" class="w-full" style="min-height: 500px;"></div>
-                </div>
-            </div>
-
-            <!-- Activation Function Plots -->
-            <div class="mb-16">
-                <h3 class="text-3xl font-black mb-8 text-center text-gray-900 dark:text-white">Activation Function Visualizations</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-6 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50" data-aos="fade-up">
-                        <div id="relu-plot" class="w-full" style="min-height: 300px;"></div>
-                    </div>
-                    <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-6 rounded-3xl shadow-2xl border-2 border-purple-200/50 dark:border-purple-700/50" data-aos="fade-up" data-aos-delay="100">
-                        <div id="gelu-plot" class="w-full" style="min-height: 300px;"></div>
-                    </div>
-                    <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-6 rounded-3xl shadow-2xl border-2 border-accent-200/50 dark:border-accent-700/50" data-aos="fade-up" data-aos-delay="200">
-                        <div id="swish-plot" class="w-full" style="min-height: 300px;"></div>
-                    </div>
-                    <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-6 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50" data-aos="fade-up" data-aos-delay="300">
-                        <div id="ddaf-plot" class="w-full" style="min-height: 300px;"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Fallback Bar Chart (if D3.js not available) -->
-            <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50" data-aos="fade-up">
-                <h3 class="text-2xl font-black mb-6 text-gray-900 dark:text-white">Benchmark Comparison (SVG)</h3>
-                <div id="benchmark-bar-chart" class="w-full" style="min-height: 400px;"></div>
             </div>
         </div>
     </section>
