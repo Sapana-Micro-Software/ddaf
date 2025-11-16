@@ -2107,3 +2107,142 @@ body.loaded {
     right: -10px;
     animation-delay: 1s;
 }
+
+/* SVG Charts, Graphs, and Diagrams Styles */
+.chart-svg,
+.diagram-svg,
+.plot-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.chart-svg text,
+.diagram-svg text,
+.plot-svg text {
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+.chart-bar-svg {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.chart-bar-svg:hover {
+    opacity: 0.8;
+    filter: brightness(1.1);
+}
+
+.chart-svg .grid line {
+    stroke: #e2e8f0;
+    stroke-width: 1;
+    stroke-dasharray: 4, 4;
+    opacity: 0.7;
+}
+
+.chart-svg .axis path,
+.chart-svg .axis line {
+    stroke: #64748b;
+    stroke-width: 2;
+}
+
+.chart-svg .axis text {
+    fill: #64748b;
+    font-size: 12px;
+}
+
+.chart-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    pointer-events: none;
+    z-index: 10000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.diagram-svg .network-node {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.diagram-svg .network-node:hover {
+    r: 30;
+    filter: brightness(1.2);
+}
+
+.function-curve {
+    transition: all 0.3s ease;
+}
+
+.function-curve:hover {
+    stroke-width: 4;
+    filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.5));
+}
+
+/* Dark mode support for charts */
+.dark .chart-svg .grid line {
+    stroke: #374151;
+}
+
+.dark .chart-svg .axis path,
+.dark .chart-svg .axis line {
+    stroke: #9ca3af;
+}
+
+.dark .chart-svg .axis text {
+    fill: #9ca3af;
+}
+
+.dark .chart-svg text {
+    fill: #e5e7eb;
+}
+
+.dark .diagram-svg text {
+    fill: #e5e7eb;
+}
+
+.dark .plot-svg text {
+    fill: #e5e7eb;
+}
+
+/* Responsive chart containers */
+#performance-line-chart,
+#comparison-bar-chart,
+#accuracy-scatter-plot,
+#training-curve-chart,
+#architecture-diagram,
+#data-flow-diagram,
+#network-diagram,
+#benchmark-bar-chart {
+    width: 100%;
+    overflow: visible;
+}
+
+#relu-plot,
+#gelu-plot,
+#swish-plot,
+#ddaf-plot {
+    width: 100%;
+    overflow: visible;
+}
+
+/* Animation for chart appearance */
+.chart-svg,
+.diagram-svg,
+.plot-svg {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

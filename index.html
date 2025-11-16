@@ -226,6 +226,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/splitting@1.0.6/dist/splitting.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/splitting@1.0.6/dist/splitting-cells.css">
     
+    <!-- D3.js for SVG charts and graphs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    
     <!-- Google Fonts - Enhanced -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -287,6 +290,10 @@
                     </a></li>
                     <li><a href="#benchmarks" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-semibold transition-all duration-300 relative group px-3 py-2 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20">
                         <span class="relative z-10">Benchmarks</span>
+                        <span class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    </a></li>
+                    <li><a href="#visualizations" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-semibold transition-all duration-300 relative group px-3 py-2 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20">
+                        <span class="relative z-10">Charts</span>
                         <span class="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-purple-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                     </a></li>
                     <li><a href="#prior-art" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-semibold transition-all duration-300 relative group px-3 py-2 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20">
@@ -1522,6 +1529,102 @@
         </div>
     </section>
 
+    <!-- SVG Charts, Graphs, and Diagrams Section -->
+    <section id="visualizations" class="relative py-24 bg-gradient-to-b from-white via-purple-50/30 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto] drop-shadow-2xl">
+                    <span class="inline-block hover:scale-110 transition-transform duration-500">Interactive Visualizations</span>
+                    <span class="inline-block ml-3 animate-bounce-slow">📈</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                    Explore DDAF's performance through interactive SVG charts, graphs, and architectural diagrams.
+                </p>
+            </div>
+
+            <!-- Performance Charts -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+                <!-- Performance Line Chart -->
+                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50" data-aos="fade-up">
+                    <h3 class="text-2xl font-black mb-6 text-gray-900 dark:text-white">Training Performance</h3>
+                    <div id="performance-line-chart" class="w-full" style="min-height: 400px;"></div>
+                </div>
+
+                <!-- Comparison Bar Chart -->
+                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-purple-200/50 dark:border-purple-700/50" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-2xl font-black mb-6 text-gray-900 dark:text-white">Accuracy Comparison</h3>
+                    <div id="comparison-bar-chart" class="w-full" style="min-height: 400px;"></div>
+                </div>
+            </div>
+
+            <!-- Scatter Plot and Training Curve -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+                <!-- Accuracy vs Throughput Scatter Plot -->
+                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-accent-200/50 dark:border-accent-700/50" data-aos="fade-up">
+                    <h3 class="text-2xl font-black mb-6 text-gray-900 dark:text-white">Performance Trade-off</h3>
+                    <div id="accuracy-scatter-plot" class="w-full" style="min-height: 400px;"></div>
+                </div>
+
+                <!-- Training Curve -->
+                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-2xl font-black mb-6 text-gray-900 dark:text-white">Training Curves</h3>
+                    <div id="training-curve-chart" class="w-full" style="min-height: 400px;"></div>
+                </div>
+            </div>
+
+            <!-- Architecture Diagrams -->
+            <div class="mb-16">
+                <h3 class="text-3xl font-black mb-8 text-center text-gray-900 dark:text-white">Architecture Diagrams</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Architecture Diagram -->
+                    <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50" data-aos="fade-up">
+                        <h4 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">DDAF Architecture</h4>
+                        <div id="architecture-diagram" class="w-full" style="min-height: 500px;"></div>
+                    </div>
+
+                    <!-- Data Flow Diagram -->
+                    <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-purple-200/50 dark:border-purple-700/50" data-aos="fade-up" data-aos-delay="100">
+                        <h4 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Data Flow</h4>
+                        <div id="data-flow-diagram" class="w-full" style="min-height: 400px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Network Diagram -->
+            <div class="mb-16">
+                <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-accent-200/50 dark:border-accent-700/50" data-aos="fade-up">
+                    <h4 class="text-xl font-bold mb-4 text-center text-gray-900 dark:text-white">Network Topology</h4>
+                    <div id="network-diagram" class="w-full" style="min-height: 500px;"></div>
+                </div>
+            </div>
+
+            <!-- Activation Function Plots -->
+            <div class="mb-16">
+                <h3 class="text-3xl font-black mb-8 text-center text-gray-900 dark:text-white">Activation Function Visualizations</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-6 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50" data-aos="fade-up">
+                        <div id="relu-plot" class="w-full" style="min-height: 300px;"></div>
+                    </div>
+                    <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-6 rounded-3xl shadow-2xl border-2 border-purple-200/50 dark:border-purple-700/50" data-aos="fade-up" data-aos-delay="100">
+                        <div id="gelu-plot" class="w-full" style="min-height: 300px;"></div>
+                    </div>
+                    <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-6 rounded-3xl shadow-2xl border-2 border-accent-200/50 dark:border-accent-700/50" data-aos="fade-up" data-aos-delay="200">
+                        <div id="swish-plot" class="w-full" style="min-height: 300px;"></div>
+                    </div>
+                    <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-6 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50" data-aos="fade-up" data-aos-delay="300">
+                        <div id="ddaf-plot" class="w-full" style="min-height: 300px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fallback Bar Chart (if D3.js not available) -->
+            <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50" data-aos="fade-up">
+                <h3 class="text-2xl font-black mb-6 text-gray-900 dark:text-white">Benchmark Comparison (SVG)</h3>
+                <div id="benchmark-bar-chart" class="w-full" style="min-height: 400px;"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- Prior Art Section -->
     <section id="prior-art" class="relative py-24 bg-gradient-to-b from-white via-primary-50/20 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <!-- Background Effects -->
@@ -1947,5 +2050,6 @@ ddaf_destroy_context(ctx);</code></pre>
     
     <!-- Custom JavaScript -->
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/charts.js' | relative_url }}"></script>
 </body>
 </html>
