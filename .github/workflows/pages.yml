@@ -31,6 +31,26 @@ jobs:
         with:
           fetch-depth: 0  # Fetch all history for better Jekyll processing
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install npm dependencies
+        run: |
+          echo "📦 Installing Node.js dependencies..."
+          npm ci
+          echo "✅ Node.js dependencies installed successfully"
+
+      - name: Build TypeScript
+        run: |
+          echo "🔨 Building TypeScript..."
+          npm run build
+          echo "✅ TypeScript build completed"
+          echo "📁 Compiled JavaScript files:"
+          ls -lh assets/js/*.js || echo "   (no JS files found)"
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
