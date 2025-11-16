@@ -12,7 +12,7 @@
     "type-check": "tsc --noEmit",
     "lint": "eslint src/**/*.ts",
     "prebuild": "npm run clean",
-    "clean": "rm -rf assets/js/charts-enhanced.js assets/js/dynamic-charts.js assets/js/*.js.map"
+    "clean": "rm -rf assets/js/charts-enhanced.js assets/js/dynamic-charts.js assets/js/*.js.map && echo '⚠️  Note: charts.js is preserved (required for benchmarks)'"
   },
   "keywords": [
     "ddaf",
