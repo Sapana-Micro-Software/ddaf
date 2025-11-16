@@ -19,6 +19,9 @@ const filesToBundle = [
     'charts.js',
     'chart-initializer.js',
     'chart-tester.js',
+    'comprehensive-benchmarks.js',
+    'all-diagrams.js',
+    'complete-benchmark-renderer.js',
     'index.js'
 ];
 

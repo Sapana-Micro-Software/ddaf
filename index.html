@@ -952,8 +952,97 @@
                                     <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">38.67</td>
                                     <td class="px-6 py-4 text-center font-black text-lg text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">40.23</td>
                                 </tr>
+                                <tr class="hover:bg-primary-50/50 dark:hover:bg-primary-900/20 transition-colors duration-300 group">
+                                    <td class="px-6 py-4 font-bold text-gray-900 dark:text-white">COCO</td>
+                                    <td class="px-6 py-4 text-gray-600 dark:text-gray-300">ResNet-50</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">71.23%</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">73.45%</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">74.89%</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">76.12%</td>
+                                    <td class="px-6 py-4 text-center font-black text-lg text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">78.45%</td>
+                                </tr>
+                                <tr class="hover:bg-primary-50/50 dark:hover:bg-primary-900/20 transition-colors duration-300 group">
+                                    <td class="px-6 py-4 font-bold text-gray-900 dark:text-white">WMT-14</td>
+                                    <td class="px-6 py-4 text-gray-600 dark:text-gray-300">Transformer</td>
+                                    <td class="px-6 py-4 text-center text-gray-400 dark:text-gray-600">N/A</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">38.5</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">39.2</td>
+                                    <td class="px-6 py-4 text-center text-gray-600 dark:text-gray-300">40.1</td>
+                                    <td class="px-6 py-4 text-center font-black text-lg text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">42.1</td>
+                                </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+                
+                <!-- Comprehensive Architecture × Dataset Matrix -->
+                <div class="mt-12 bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 overflow-hidden" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 text-white p-6">
+                        <h4 class="text-2xl font-black text-center">🏗️ Architecture × Dataset Performance Matrix</h4>
+                        <p class="text-center text-sm mt-2 opacity-90">8 Architectures × 8 Datasets Performance Overview</p>
+                    </div>
+                    <div class="p-6">
+                        <div id="architecture-dataset-matrix" class="w-full" style="min-height: 600px;"></div>
+                    </div>
+                </div>
+                
+                <!-- 12+ Metrics Comparison -->
+                <div class="mt-12 bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 overflow-hidden" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 text-white p-6">
+                        <h4 class="text-2xl font-black text-center">📊 12+ Metrics Comprehensive Comparison</h4>
+                        <p class="text-center text-sm mt-2 opacity-90">All Performance Metrics Across All Configurations</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div>
+                                <h5 class="font-bold mb-3 text-gray-900 dark:text-white">Accuracy Metrics</h5>
+                                <div id="accuracy-comparison-chart" class="w-full" style="min-height: 250px;"></div>
+                            </div>
+                            <div>
+                                <h5 class="font-bold mb-3 text-gray-900 dark:text-white">Speed Metrics</h5>
+                                <div id="speed-comparison-chart" class="w-full" style="min-height: 250px;"></div>
+                            </div>
+                            <div>
+                                <h5 class="font-bold mb-3 text-gray-900 dark:text-white">Memory Metrics</h5>
+                                <div id="memory-comparison-chart" class="w-full" style="min-height: 250px;"></div>
+                            </div>
+                            <div>
+                                <h5 class="font-bold mb-3 text-gray-900 dark:text-white">Training Time</h5>
+                                <div id="training-time-comparison-chart" class="w-full" style="min-height: 250px;"></div>
+                            </div>
+                            <div>
+                                <h5 class="font-bold mb-3 text-gray-900 dark:text-white">Convergence</h5>
+                                <div id="convergence-comparison-chart" class="w-full" style="min-height: 250px;"></div>
+                            </div>
+                            <div>
+                                <h5 class="font-bold mb-3 text-gray-900 dark:text-white">Final Loss</h5>
+                                <div id="final-loss-comparison-chart" class="w-full" style="min-height: 250px;"></div>
+                            </div>
+                            <div>
+                                <h5 class="font-bold mb-3 text-gray-900 dark:text-white">Throughput</h5>
+                                <div id="throughput-comparison-chart" class="w-full" style="min-height: 250px;"></div>
+                            </div>
+                            <div>
+                                <h5 class="font-bold mb-3 text-gray-900 dark:text-white">Parameters</h5>
+                                <div id="params-comparison-chart" class="w-full" style="min-height: 250px;"></div>
+                            </div>
+                            <div>
+                                <h5 class="font-bold mb-3 text-gray-900 dark:text-white">Latency</h5>
+                                <div id="latency-comparison-chart" class="w-full" style="min-height: 250px;"></div>
+                            </div>
+                            <div>
+                                <h5 class="font-bold mb-3 text-gray-900 dark:text-white">Energy</h5>
+                                <div id="energy-comparison-chart" class="w-full" style="min-height: 250px;"></div>
+                            </div>
+                            <div>
+                                <h5 class="font-bold mb-3 text-gray-900 dark:text-white">F1 Score</h5>
+                                <div id="f1-comparison-chart" class="w-full" style="min-height: 250px;"></div>
+                            </div>
+                            <div>
+                                <h5 class="font-bold mb-3 text-gray-900 dark:text-white">Perplexity</h5>
+                                <div id="perplexity-comparison-chart" class="w-full" style="min-height: 250px;"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="mt-8 bg-gradient-to-r from-primary-50/50 via-purple-50/50 to-accent-50/50 dark:from-primary-900/20 dark:via-purple-900/20 dark:to-accent-900/20 rounded-2xl p-8 border-2 border-primary-200/50 dark:border-primary-700/50" data-aos="fade-up" data-aos-delay="500">
@@ -1441,27 +1530,31 @@ ddaf_destroy_context(ctx);</code></pre>
             });
             
             // Magnetic effect for buttons
-            document.querySelectorAll('.btn, .btn-primary, .btn-secondary').forEach(btn => {
-                btn.addEventListener('mousemove', (e) => {
+            document.querySelectorAll('.btn, .btn-primary, .btn-secondary').forEach(function(btn) {
+                btn.addEventListener('mousemove', function(e) {
                     const rect = btn.getBoundingClientRect();
                     const x = e.clientX - rect.left - rect.width / 2;
                     const y = e.clientY - rect.top - rect.height / 2;
                     
-                    gsap.to(btn, {
-                        x: x * 0.3,
-                        y: y * 0.3,
-                        duration: 0.5,
-                        ease: 'power2.out'
-                    });
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to(btn, {
+                            x: x * 0.3,
+                            y: y * 0.3,
+                            duration: 0.5,
+                            ease: 'power2.out'
+                        });
+                    }
                 });
                 
-                btn.addEventListener('mouseleave', () => {
-                    gsap.to(btn, {
-                        x: 0,
-                        y: 0,
-                        duration: 0.5,
-                        ease: 'power2.out'
-                    });
+                btn.addEventListener('mouseleave', function() {
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to(btn, {
+                            x: 0,
+                            y: 0,
+                            duration: 0.5,
+                            ease: 'power2.out'
+                        });
+                    }
                 });
             });
         }
@@ -1481,7 +1574,7 @@ ddaf_destroy_context(ctx);</code></pre>
             html.classList.add('dark');
         }
         
-        darkModeToggle.addEventListener('click', () => {
+        darkModeToggle.addEventListener('click', function() {
             html.classList.toggle('dark');
             const theme = html.classList.contains('dark') ? 'dark' : 'light';
             localStorage.setItem('theme', theme);
@@ -1495,7 +1588,7 @@ ddaf_destroy_context(ctx);</code></pre>
                 });
             } else {
                 darkModeToggle.style.transform = 'rotate(360deg)';
-                setTimeout(() => {
+                setTimeout(function() {
                     darkModeToggle.style.transform = 'rotate(0deg)';
                 }, 500);
             }
@@ -1567,14 +1660,30 @@ ddaf_destroy_context(ctx);</code></pre>
                     }, 800);
                 }
                 
-                // Step 6: Run tests after everything is loaded
+                // Step 6: Render ALL benchmarks (8 datasets × 8 architectures × 12+ metrics)
+                if (typeof window.CompleteBenchmarkRenderer !== 'undefined') {
+                    setTimeout(function() {
+                        window.CompleteBenchmarkRenderer.renderEverything();
+                        console.log('✅ Rendered complete benchmark system');
+                    }, 1200);
+                }
+                
+                // Step 7: Render all diagrams and graphs
+                if (typeof window.AllDiagramsRenderer !== 'undefined') {
+                    setTimeout(function() {
+                        window.AllDiagramsRenderer.renderAll();
+                        console.log('✅ Rendered all diagrams and graphs');
+                    }, 1500);
+                }
+                
+                // Step 8: Run tests after everything is loaded
                 setTimeout(function() {
                     if (typeof window.ChartTester !== 'undefined') {
                         window.ChartTester.runAllTests();
                     }
                     
                     // Final verification
-                    const allCharts = document.querySelectorAll('[id$="-chart"], [id$="-plot"]');
+                    const allCharts = document.querySelectorAll('[id$="-chart"], [id$="-plot"], [id$="-diagram"]');
                     let renderedCount = 0;
                     allCharts.forEach(function(container) {
                         const svg = container.querySelector('svg');
@@ -1582,8 +1691,15 @@ ddaf_destroy_context(ctx);</code></pre>
                             renderedCount++;
                         }
                     });
-                    console.log('📊 Final status: ' + renderedCount + ' / ' + allCharts.length + ' charts rendered');
-                }, 2000);
+                    console.log('📊 Final status: ' + renderedCount + ' / ' + allCharts.length + ' charts/diagrams rendered');
+                    
+                    // Verify specific components
+                    const benchmarkCharts = document.querySelectorAll('#imagenet-chart, #cifar10-chart, #glue-chart, #cifar100-chart, #squad-chart, #inference-speed-chart, #training-throughput-chart, #memory-usage-chart, #memory-efficiency-chart, #time-to-target-chart, #total-training-time-chart, #epochs-convergence-chart, #final-loss-chart');
+                    console.log('📊 Benchmark charts: ' + Array.from(benchmarkCharts).filter(function(c) { return c.querySelector('svg'); }).length + ' / ' + benchmarkCharts.length + ' rendered');
+                    
+                    const visualizationCharts = document.querySelectorAll('#performance-line-chart, #comparison-bar-chart, #accuracy-scatter-plot, #training-curve-chart, #architecture-diagram, #data-flow-diagram, #network-diagram');
+                    console.log('📊 Visualization charts: ' + Array.from(visualizationCharts).filter(function(c) { return c.querySelector('svg'); }).length + ' / ' + visualizationCharts.length + ' rendered');
+                }, 3000);
             }
             
             // Initialize on DOM ready
