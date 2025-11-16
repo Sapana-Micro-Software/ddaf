@@ -1,0 +1,28 @@
+# Jekyll Configuration for DDAF GitHub Pages
+title: DDAF - Data-Driven, Dynamic, Online, and Attention-Based Activation Functions
+description: A comprehensive C/C++ library implementing adaptive activation functions for deep neural networks
+author: Shyamal Suhana Chandra
+copyright: Copyright (C) 2025, Shyamal Suhana Chandra
+github_username: yourusername  # Update this with your GitHub username
+github_repo: ddaf
+
+# GitHub Pages settings
+# Using custom HTML/CSS, no theme required
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Site settings
+baseurl: ""
+url: ""
+
+# Exclude files
+exclude:
+  - README.md
+  - CMakeLists.txt
+  - examples/
+  - include/
+  - src/
+  - build/
+  - "*.c"
+  - "*.h"

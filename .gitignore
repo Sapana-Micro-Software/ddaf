@@ -28,11 +28,19 @@ Makefile
 *.log
 *.out
 *.toc
-*.pdf
 *.synctex.gz
 *.fdb_latexmk
 *.fls
+# Allow PDFs in docs/ for GitHub Pages
+!docs/*.pdf
 
 # OS
 .DS_Store
 Thumbs.db
+
+# Jekyll
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+Gemfile.lock

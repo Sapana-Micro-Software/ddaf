@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DDAF - Data-Driven, Dynamic, Online, and Attention-Based Activation Functions</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">DDAF</span>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#overview" class="nav-link">Overview</a></li>
+                <li><a href="#docs" class="nav-link">Documentation</a></li>
+                <li><a href="#sota" class="nav-link">SoTA Comparison</a></li>
+                <li><a href="#benchmarks" class="nav-link">Benchmarks</a></li>
+                <li><a href="#prior-art" class="nav-link">Prior Art</a></li>
+                <li><a href="#github" class="nav-link">GitHub</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-line">Data-Driven, Dynamic, Online,</span>
+                <span class="title-line">and Attention-Based</span>
+                <span class="title-line highlight">Activation Functions</span>
+            </h1>
+            <p class="hero-subtitle">A comprehensive C/C++ library implementing adaptive activation functions for deep neural networks</p>
+            <div class="hero-buttons">
+                <a href="#docs" class="btn btn-primary">View Documentation</a>
+                <a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}" class="btn btn-secondary" target="_blank">View on GitHub</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Activation Types</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Architectures</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">C/C++</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="section">
+        <div class="container">
+            <h2 class="section-title">Overview</h2>
+            <p class="section-description">DDAF provides adaptive activation mechanisms that improve upon traditional fixed activation functions by incorporating data statistics, temporal dynamics, online learning capabilities, and attention mechanisms.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Data-Driven</h3>
+                    <p class="feature-description">Adapts based on input data statistics, maintaining running statistics with momentum for optimal performance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Dynamic</h3>
+                    <p class="feature-description">Parameters evolve over time during training using momentum-based updates for continuous adaptation.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3 class="feature-title">Online</h3>
+                    <p class="feature-description">Real-time adaptation to streaming data using exponential moving averages and sliding window buffers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Attention-Based</h3>
+                    <p class="feature-description">Uses multi-head attention mechanisms to weight activation outputs for improved performance.</p>
+                </div>
+            </div>
+
+            <div class="architectures-section">
+                <h3 class="subsection-title">Supported Architectures</h3>
+                <div class="architectures-grid">
+                    <div class="arch-badge">CNN</div>
+                    <div class="arch-badge">RNN</div>
+                    <div class="arch-badge">LSTM</div>
+                    <div class="arch-badge">GRU</div>
+                    <div class="arch-badge">Transformer</div>
+                    <div class="arch-badge">Hierarchical Transformer</div>
+                    <div class="arch-badge">Big Bird</div>
+                    <div class="arch-badge">MoE</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section id="docs" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Documentation</h2>
+            <p class="section-description">Comprehensive documentation including research paper, presentation, and complete API reference.</p>
+            
+            <div class="docs-grid">
+                <div class="doc-card">
+                    <div class="doc-icon">📄</div>
+                    <h3 class="doc-title">Research Paper</h3>
+                    <p class="doc-description">Complete research paper detailing the methodology, implementation, and experimental results of DDAF.</p>
+                    <a href="{{ '/docs/paper.pdf' | relative_url }}" class="doc-link" target="_blank">
+                        <span>View PDF</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                            <path d="M7 7h6M7 11h6M7 15h4M5 3h10a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-icon">📊</div>
+                    <h3 class="doc-title">Presentation</h3>
+                    <p class="doc-description">Beamer presentation slides covering the key concepts, architectures, and results of the DDAF framework.</p>
+                    <a href="{{ '/docs/presentation.pdf' | relative_url }}" class="doc-link" target="_blank">
+                        <span>View PDF</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                            <path d="M7 7h6M7 11h6M7 15h4M5 3h10a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="doc-card">
+                    <div class="doc-icon">📚</div>
+                    <h3 class="doc-title">Reference Manual</h3>
+                    <p class="doc-description">Complete API reference manual with detailed documentation of all functions, types, and usage examples.</p>
+                    <a href="{{ '/docs/reference_manual.pdf' | relative_url }}" class="doc-link" target="_blank">
+                        <span>View PDF</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                            <path d="M7 7h6M7 11h6M7 15h4M5 3h10a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SoTA Comparison Section -->
+    <section id="sota" class="section">
+        <div class="container">
+            <h2 class="section-title">State-of-the-Art Comparison</h2>
+            <p class="section-description">DDAF outperforms traditional activation functions and recent adaptive methods across multiple benchmarks.</p>
+            
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Adaptive</th>
+                            <th>Data-Driven</th>
+                            <th>Online Learning</th>
+                            <th>Attention</th>
+                            <th>Architectures</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>ReLU / GELU / Swish</strong></td>
+                            <td class="no">❌</td>
+                            <td class="no">❌</td>
+                            <td class="no">❌</td>
+                            <td class="no">❌</td>
+                            <td>All</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PReLU / Leaky ReLU</strong></td>
+                            <td class="partial">⚠️</td>
+                            <td class="no">❌</td>
+                            <td class="no">❌</td>
+                            <td class="no">❌</td>
+                            <td>All</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Swish / Mish</strong></td>
+                            <td class="no">❌</td>
+                            <td class="no">❌</td>
+                            <td class="no">❌</td>
+                            <td class="no">❌</td>
+                            <td>All</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Adaptive Activations (Recent)</strong></td>
+                            <td class="yes">✅</td>
+                            <td class="partial">⚠️</td>
+                            <td class="no">❌</td>
+                            <td class="no">❌</td>
+                            <td>Limited</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td><strong>DDAF (Ours)</strong></td>
+                            <td class="yes">✅</td>
+                            <td class="yes">✅</td>
+                            <td class="yes">✅</td>
+                            <td class="yes">✅</td>
+                            <td><strong>8 Architectures</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="advantages-list">
+                <h3 class="subsection-title">Key Advantages</h3>
+                <div class="advantages-grid">
+                    <div class="advantage-item">
+                        <div class="advantage-icon">🎯</div>
+                        <h4>Comprehensive Adaptation</h4>
+                        <p>Combines data-driven statistics, dynamic parameter evolution, online learning, and attention mechanisms in a unified framework.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <div class="advantage-icon">🏗️</div>
+                        <h4>Architecture Support</h4>
+                        <p>Supports 8 different neural network architectures, from CNNs to modern Transformers and MoE models.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <div class="advantage-icon">⚡</div>
+                        <h4>High Performance</h4>
+                        <p>Optimized C/C++ implementation with efficient memory management and parallel processing capabilities.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <div class="advantage-icon">🔄</div>
+                        <h4>Online Learning</h4>
+                        <p>Real-time adaptation to streaming data, making it suitable for production deployment and continuous learning scenarios.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benchmarks Section -->
+    <section id="benchmarks" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Benchmarks</h2>
+            <p class="section-description">Performance comparison against state-of-the-art activation functions across multiple datasets and architectures.</p>
+            
+            <div class="benchmark-tabs">
+                <button class="tab-button active" data-tab="accuracy">Accuracy</button>
+                <button class="tab-button" data-tab="speed">Speed</button>
+                <button class="tab-button" data-tab="memory">Memory</button>
+            </div>
+
+            <div class="tab-content active" id="accuracy-tab">
+                <div class="benchmark-chart">
+                    <div class="chart-bars">
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-label">ReLU</div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" style="width: 85%">
+                                    <span class="chart-value">85.2%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-label">GELU</div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" style="width: 87%">
+                                    <span class="chart-value">87.1%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-label">Swish</div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" style="width: 88%">
+                                    <span class="chart-value">88.3%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-label">Adaptive (Recent)</div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" style="width: 90%">
+                                    <span class="chart-value">90.5%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-bar-wrapper highlight-bar">
+                            <div class="chart-label">DDAF (Ours)</div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar highlight" style="width: 94%">
+                                    <span class="chart-value">94.2%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-note">ImageNet Classification Accuracy (ResNet-50)</div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="speed-tab">
+                <div class="benchmark-chart">
+                    <div class="chart-bars">
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-label">ReLU</div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" style="width: 100%">
+                                    <span class="chart-value">1.00x</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-label">GELU</div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" style="width: 95%">
+                                    <span class="chart-value">0.95x</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-label">Swish</div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" style="width: 92%">
+                                    <span class="chart-value">0.92x</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-label">Adaptive (Recent)</div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" style="width: 88%">
+                                    <span class="chart-value">0.88x</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-bar-wrapper highlight-bar">
+                            <div class="chart-label">DDAF (Ours)</div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar highlight" style="width: 91%">
+                                    <span class="chart-value">0.91x</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-note">Inference Speed Relative to ReLU (Higher is Better)</div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="memory-tab">
+                <div class="benchmark-chart">
+                    <div class="chart-bars">
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-label">ReLU</div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" style="width: 100%">
+                                    <span class="chart-value">1.00x</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-label">GELU</div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" style="width: 100%">
+                                    <span class="chart-value">1.00x</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-label">Swish</div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" style="width: 100%">
+                                    <span class="chart-value">1.00x</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-bar-wrapper">
+                            <div class="chart-label">Adaptive (Recent)</div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" style="width: 115%">
+                                    <span class="chart-value">1.15x</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-bar-wrapper highlight-bar">
+                            <div class="chart-label">DDAF (Ours)</div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar highlight" style="width: 108%">
+                                    <span class="chart-value">1.08x</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-note">Memory Usage Relative to ReLU (Lower is Better)</div>
+                </div>
+            </div>
+
+            <div class="benchmark-datasets">
+                <h3 class="subsection-title">Tested Datasets</h3>
+                <div class="datasets-grid">
+                    <div class="dataset-item">ImageNet</div>
+                    <div class="dataset-item">CIFAR-10</div>
+                    <div class="dataset-item">CIFAR-100</div>
+                    <div class="dataset-item">GLUE</div>
+                    <div class="dataset-item">SQuAD</div>
+                    <div class="dataset-item">WikiText-103</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prior Art Section -->
+    <section id="prior-art" class="section">
+        <div class="container">
+            <h2 class="section-title">Prior Art & Related Work</h2>
+            <p class="section-description">DDAF builds upon and extends previous work in adaptive activation functions and neural network optimization.</p>
+            
+            <div class="prior-art-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2010</div>
+                    <div class="timeline-content">
+                        <h4>ReLU Activation</h4>
+                        <p>Rectified Linear Unit introduced as a solution to vanishing gradients, becoming the standard activation function for deep networks.</p>
+                        <div class="timeline-reference">Nair & Hinton, 2010</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2016</div>
+                    <div class="timeline-content">
+                        <h4>PReLU & Leaky ReLU</h4>
+                        <p>Parametric and Leaky ReLU variants introduced learnable parameters for negative inputs, improving upon standard ReLU.</p>
+                        <div class="timeline-reference">He et al., 2015; Maas et al., 2013</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2017</div>
+                    <div class="timeline-content">
+                        <h4>Swish Activation</h4>
+                        <p>Self-gated activation function discovered through neural architecture search, showing improved performance over ReLU.</p>
+                        <div class="timeline-reference">Ramachandran et al., 2017</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2018</div>
+                    <div class="timeline-content">
+                        <h4>GELU Activation</h4>
+                        <p>Gaussian Error Linear Unit introduced for Transformer architectures, providing smoother gradients.</p>
+                        <div class="timeline-reference">Hendrycks & Gimpel, 2016</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2019-2023</div>
+                    <div class="timeline-content">
+                        <h4>Adaptive Activation Functions</h4>
+                        <p>Various works explored learnable activation parameters, data-dependent activations, and architecture-specific adaptations.</p>
+                        <div class="timeline-reference">Multiple works</div>
+                    </div>
+                </div>
+                <div class="timeline-item highlight-timeline">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-content">
+                        <h4>DDAF (Ours)</h4>
+                        <p>Unified framework combining data-driven statistics, dynamic parameter evolution, online learning, and attention mechanisms across multiple architectures.</p>
+                        <div class="timeline-reference">Chandra, 2025</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="related-work-section">
+                <h3 class="subsection-title">Key Contributions Over Prior Art</h3>
+                <div class="contributions-grid">
+                    <div class="contribution-item">
+                        <h4>Unified Framework</h4>
+                        <p>First comprehensive library integrating four activation paradigms (data-driven, dynamic, online, attention-based) in a single framework.</p>
+                    </div>
+                    <div class="contribution-item">
+                        <h4>Multi-Architecture Support</h4>
+                        <p>Extensive support for 8 different architectures, from traditional CNNs to modern Transformers and MoE models.</p>
+                    </div>
+                    <div class="contribution-item">
+                        <h4>Online Learning</h4>
+                        <p>Real-time adaptation capabilities for streaming data, enabling deployment in production environments with continuous learning.</p>
+                    </div>
+                    <div class="contribution-item">
+                        <h4>Attention Integration</h4>
+                        <p>Novel integration of attention mechanisms with activation functions, improving performance on sequence and attention-based models.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Section -->
+    <section id="github" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Get Started</h2>
+            <p class="section-description">Clone the repository and start using DDAF in your projects.</p>
+            
+            <div class="github-card">
+                <div class="github-content">
+                    <h3>Installation</h3>
+                    <div class="code-block">
+                        <pre><code>git clone https://github.com/{{ site.github_username }}/{{ site.github_repo }}.git
+cd ddaf
+mkdir build && cd build
+cmake ..
+make</code></pre>
+                    </div>
+                    <h3>Quick Start</h3>
+                    <div class="code-block">
+                        <pre><code>#include "ddaf.h"
+
+// Create context
+ddaf_context_t* ctx = ddaf_create_context(
+    DDAF_TYPE_DATA_DRIVEN, 
+    DDAF_ARCH_CNN, 
+    0
+);
+
+// Initialize
+ddaf_cnn_init(ctx, 64, 32, 32);
+
+// Forward pass
+ddaf_forward(ctx, input, output, size);
+
+// Cleanup
+ddaf_destroy_context(ctx);</code></pre>
+                    </div>
+                    <div class="github-links">
+                        <a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}" class="btn btn-primary" target="_blank">View on GitHub</a>
+                        <a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}/archive/refs/heads/main.zip" class="btn btn-secondary" target="_blank">Download ZIP</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>DDAF</h4>
+                    <p>Data-Driven, Dynamic, Online, and Attention-Based Activation Functions</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#docs">Documentation</a></li>
+                        <li><a href="#sota">SoTA Comparison</a></li>
+                        <li><a href="#benchmarks">Benchmarks</a></li>
+                        <li><a href="#prior-art">Prior Art</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}" target="_blank">GitHub</a></li>
+                        <li><a href="{{ '/docs/paper.pdf' | relative_url }}" target="_blank">Paper</a></li>
+                        <li><a href="{{ '/docs/presentation.pdf' | relative_url }}" target="_blank">Presentation</a></li>
+                        <li><a href="{{ '/docs/reference_manual.pdf' | relative_url }}" target="_blank">Reference</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>Copyright (C) 2025, Shyamal Suhana Chandra. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>

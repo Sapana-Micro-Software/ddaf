@@ -1,0 +1,11 @@
+\frametitle{Usage Example}
+\begin{block}{CNN with Data-Driven Activation}
+\begin{verbatim}
+ddaf_context_t* ctx =
+    ddaf_create_context(DDAF_TYPE_DATA_DRIVEN,
+                       DDAF_ARCH_CNN, 0);
+ddaf_cnn_init(ctx, 64, 32, 32);
+ddaf_forward(ctx, input, output, size);
+ddaf_backward(ctx, grad_output, grad_input, size);
+\end{verbatim}
+\end{block}
