@@ -56,6 +56,23 @@ jobs:
         env:
           JEKYLL_ENV: production
 
+      - name: Ensure PDFs are copied
+        run: |
+          echo "📄 Ensuring PDF files are copied to _site/docs..."
+          # Create docs directory if it doesn't exist
+          mkdir -p _site/docs
+          # Copy PDF files explicitly
+          if [ -d "docs" ]; then
+            echo "📋 Copying PDF files from docs/ to _site/docs/..."
+            cp -v docs/*.pdf _site/docs/ 2>/dev/null || echo "⚠️  No PDF files found in docs/"
+            echo "✅ PDF files copied"
+            echo "📁 PDF files in _site/docs:"
+            ls -lh _site/docs/*.pdf 2>/dev/null || echo "   (no PDF files found)"
+          else
+            echo "❌ Error: docs directory not found!"
+            exit 1
+          fi
+
       - name: Verify build output
         run: |
           echo "🔍 Verifying build output..."
