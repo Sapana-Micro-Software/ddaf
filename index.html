@@ -376,17 +376,23 @@
     </section>
 
     <!-- Benchmarks Section -->
-    <section id="benchmarks" class="section section-alt">
-        <div class="container">
-            <h2 class="section-title">Comprehensive Benchmarks</h2>
-            <p class="section-description">Rigorous performance evaluation across 6 datasets, 8 architectures, and multiple metrics. All benchmarks run on identical hardware with 5 independent runs per configuration.</p>
+    <section id="benchmarks" class="py-24 bg-gradient-to-b from-white via-gray-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent">
+                    Comprehensive Benchmarks
+                </h2>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                    Rigorous performance evaluation across 6 datasets, 8 architectures, and multiple metrics. All benchmarks run on identical hardware with 5 independent runs per configuration.
+                </p>
+            </div>
             
-            <div class="benchmark-tabs">
-                <button class="tab-button active" data-tab="accuracy">Accuracy</button>
-                <button class="tab-button" data-tab="speed">Speed</button>
-                <button class="tab-button" data-tab="memory">Memory</button>
-                <button class="tab-button" data-tab="training">Training Time</button>
-                <button class="tab-button" data-tab="convergence">Convergence</button>
+            <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up" data-aos-delay="100">
+                <button class="tab-button px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 active bg-gradient-to-r from-primary-600 to-purple-600 text-white shadow-lg shadow-primary-500/50" data-tab="accuracy">Accuracy</button>
+                <button class="tab-button px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 bg-white border-2 border-primary-200 text-gray-700 hover:border-primary-400 hover:bg-primary-50" data-tab="speed">Speed</button>
+                <button class="tab-button px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 bg-white border-2 border-primary-200 text-gray-700 hover:border-primary-400 hover:bg-primary-50" data-tab="memory">Memory</button>
+                <button class="tab-button px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 bg-white border-2 border-primary-200 text-gray-700 hover:border-primary-400 hover:bg-primary-50" data-tab="training">Training Time</button>
+                <button class="tab-button px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 bg-white border-2 border-primary-200 text-gray-700 hover:border-primary-400 hover:bg-primary-50" data-tab="convergence">Convergence</button>
             </div>
 
             <!-- Accuracy Tab -->
@@ -1148,34 +1154,34 @@ ddaf_destroy_context(ctx);</code></pre>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>DDAF</h4>
-                    <p>Data-Driven, Dynamic, Online, and Attention-Based Activation Functions</p>
+    <footer class="bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <h4 class="text-2xl font-black mb-4 bg-gradient-to-r from-primary-400 to-purple-400 bg-clip-text text-transparent">DDAF</h4>
+                    <p class="text-gray-400 leading-relaxed">Data-Driven, Dynamic, Online, and Attention-Based Activation Functions</p>
                 </div>
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#docs">Documentation</a></li>
-                        <li><a href="#sota">SoTA Comparison</a></li>
-                        <li><a href="#benchmarks">Benchmarks</a></li>
-                        <li><a href="#prior-art">Prior Art</a></li>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="text-xl font-bold mb-4">Resources</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#docs" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Documentation</a></li>
+                        <li><a href="#sota" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">SoTA Comparison</a></li>
+                        <li><a href="#benchmarks" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Benchmarks</a></li>
+                        <li><a href="#prior-art" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Prior Art</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h4>Links</h4>
-                    <ul>
-                        <li><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}" target="_blank">GitHub</a></li>
-                        <li><a href="{{ '/docs/paper.pdf' | relative_url }}" target="_blank">Paper</a></li>
-                        <li><a href="{{ '/docs/presentation.pdf' | relative_url }}" target="_blank">Presentation</a></li>
-                        <li><a href="{{ '/docs/reference_manual.pdf' | relative_url }}" target="_blank">Reference</a></li>
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <h4 class="text-xl font-bold mb-4">Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="https://github.com/{{ site.github_username }}/{{ site.github_repo }}" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">GitHub</a></li>
+                        <li><a href="{{ '/docs/paper.pdf' | relative_url }}" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Paper</a></li>
+                        <li><a href="{{ '/docs/presentation.pdf' | relative_url }}" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Presentation</a></li>
+                        <li><a href="{{ '/docs/reference_manual.pdf' | relative_url }}" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block">Reference</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-copyright">
-                <p>Copyright (C) 2025, Shyamal Suhana Chandra. All rights reserved.</p>
+            <div class="border-t border-gray-700 pt-8 text-center">
+                <p class="text-gray-400">Copyright (C) 2025, Shyamal Suhana Chandra. All rights reserved.</p>
             </div>
         </div>
     </footer>
