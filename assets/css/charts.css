@@ -1,0 +1,245 @@
+/* Enhanced Chart Styles with Animations */
+/* Copyright (C) 2025, Shyamal Suhana Chandra */
+
+/* Chart Loading States */
+.chart-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 350px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.chart-loading .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e2e8f0;
+    border-top-color: #6366f1;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 16px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.chart-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 350px;
+    color: #ef4444;
+    font-size: 14px;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Chart Container Enhancements */
+[id$="-chart"],
+[id$="-plot"] {
+    position: relative;
+    transition: opacity 0.5s ease-in;
+}
+
+[id$="-chart"] svg,
+[id$="-plot"] svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Chart Bar Animations */
+.chart-bar {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.chart-bar:hover {
+    opacity: 0.9;
+    filter: brightness(1.1);
+}
+
+/* DDAF Bar Special Effects */
+.chart-bar[data-label="DDAF"] {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        filter: drop-shadow(0 0 5px rgba(99, 102, 241, 0.5));
+    }
+    50% {
+        filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.8));
+    }
+}
+
+/* Value Label Enhancements */
+.value-label-ddaf {
+    font-weight: 900;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    animation: fade-in-up 0.5s ease-out;
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Chart Grid Enhancements */
+.chart-svg .grid-line {
+    stroke-dasharray: 2, 2;
+    animation: dash-move 20s linear infinite;
+}
+
+@keyframes dash-move {
+    to {
+        stroke-dashoffset: -100;
+    }
+}
+
+/* Responsive Chart Adjustments */
+@media (max-width: 768px) {
+    [id$="-chart"],
+    [id$="-plot"] {
+        min-height: 250px !important;
+    }
+    
+    .chart-loading {
+        min-height: 250px;
+    }
+}
+
+/* Dark Mode Chart Adjustments */
+.dark [id$="-chart"] svg text,
+.dark [id$="-plot"] svg text {
+    fill: #e2e8f0;
+}
+
+.dark .chart-loading {
+    color: #94a3b8;
+}
+
+.dark .chart-loading .spinner {
+    border-color: #475569;
+    border-top-color: #818cf8;
+}
+
+/* Tab Content Animations */
+.tab-content {
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+}
+
+.tab-content.active {
+    opacity: 1;
+}
+
+.tab-content.active [id$="-chart"] {
+    animation: slide-in-up 0.5s ease-out;
+}
+
+@keyframes slide-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Chart Tooltip Styles */
+.chart-tooltip {
+    position: absolute;
+    background: rgba(15, 23, 42, 0.95);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    pointer-events: none;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.chart-tooltip.visible {
+    opacity: 1;
+}
+
+/* Benchmark Chart Specific Styles */
+.benchmark-chart {
+    margin-bottom: 3rem;
+    animation: fade-in 0.6s ease-out;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.subsection-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: #1e293b;
+}
+
+.dark .subsection-title {
+    color: #f1f5f9;
+}
+
+.chart-note {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(99, 102, 241, 0.05);
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    color: #64748b;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.dark .chart-note {
+    background: rgba(99, 102, 241, 0.1);
+    color: #94a3b8;
+}
+
+/* Loading Skeleton */
+.chart-skeleton {
+    background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s ease-in-out infinite;
+    border-radius: 0.5rem;
+    min-height: 350px;
+}
+
+.dark .chart-skeleton {
+    background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+    background-size: 200% 100%;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}

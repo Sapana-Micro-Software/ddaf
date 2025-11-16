@@ -3,15 +3,16 @@
   "version": "1.0.0",
   "description": "DDAF GitHub Pages website with TypeScript support",
   "scripts": {
-    "build": "tsc && npm run bundle",
+    "build": "tsc && npm run bundle && npm run bundle-dynamic",
     "bundle": "node scripts/bundle.js",
+    "bundle-dynamic": "node scripts/bundle-dynamic.js",
     "watch": "tsc --watch",
     "copy-assets": "node scripts/copy-assets.js",
     "dev": "npm run watch",
     "type-check": "tsc --noEmit",
     "lint": "eslint src/**/*.ts",
     "prebuild": "npm run clean",
-    "clean": "rm -rf assets/js/charts-enhanced.js assets/js/*.js.map"
+    "clean": "rm -rf assets/js/charts-enhanced.js assets/js/dynamic-charts.js assets/js/*.js.map"
   },
   "keywords": [
     "ddaf",

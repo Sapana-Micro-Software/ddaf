@@ -46,21 +46,7 @@ export interface ScatterPlotPoint {
     color: string;
 }
 
-export interface BenchmarkData {
-    imagenet: ChartConfig;
-    cifar10: ChartConfig;
-    glue: ChartConfig;
-    cifar100: ChartConfig;
-    squad: ChartConfig;
-    inferenceSpeed: ChartConfig;
-    trainingThroughput: ChartConfig;
-    memoryUsage: ChartConfig;
-    memoryEfficiency: ChartConfig;
-    timeToTarget: ChartConfig;
-    totalTrainingTime: ChartConfig;
-    epochsConvergence: ChartConfig;
-    finalLoss: ChartConfig;
-}
+// BenchmarkData moved to chart-data.ts to avoid conflicts
 
 declare global {
     interface Window {
