@@ -1593,9 +1593,9 @@ export class ComprehensiveBenchmarkRenderer {
         if (data.length === 0)
             return;
         const config = {
-            labels: data.map(d => d.label),
-            values: data.map(d => d.value),
-            colors: data.map(() => '#94a3b8'),
+            labels: data.map(function (d) { return d.label; }),
+            values: data.map(function (d) { return d.value; }),
+            colors: data.map(function () { return '#94a3b8'; }),
             yLabel: this.getMetricLabel(metric),
             maxValue: this.getMetricMax(metric),
             formatValue: this.getMetricFormatter(metric)

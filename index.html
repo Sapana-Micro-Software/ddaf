@@ -1663,7 +1663,9 @@ ddaf_destroy_context(ctx);</code></pre>
                 // Step 6: Render ALL benchmarks (8 datasets × 8 architectures × 12+ metrics)
                 if (typeof window.CompleteBenchmarkRenderer !== 'undefined') {
                     setTimeout(function() {
-                        window.CompleteBenchmarkRenderer.renderEverything();
+                        window.CompleteBenchmarkRenderer.renderEverything().catch(function(error) {
+                            console.error('Error rendering complete benchmarks:', error);
+                        });
                         console.log('✅ Rendered complete benchmark system');
                     }, 1200);
                 }
@@ -1675,6 +1677,25 @@ ddaf_destroy_context(ctx);</code></pre>
                         console.log('✅ Rendered all diagrams and graphs');
                     }, 1500);
                 }
+                
+                // Step 7b: Ensure all D3.js charts render
+                setTimeout(function() {
+                    if (typeof window.d3 !== 'undefined') {
+                        if (typeof createPerformanceLineChart === 'function') {
+                            createPerformanceLineChart();
+                        }
+                        if (typeof createComparisonBarChart === 'function') {
+                            createComparisonBarChart();
+                        }
+                        if (typeof createAccuracyScatterPlot === 'function') {
+                            createAccuracyScatterPlot();
+                        }
+                        if (typeof createTrainingCurveChart === 'function') {
+                            createTrainingCurveChart();
+                        }
+                        console.log('✅ Rendered all D3.js charts');
+                    }
+                }, 1800);
                 
                 // Step 8: Run tests after everything is loaded
                 setTimeout(function() {
