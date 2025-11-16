@@ -135,7 +135,11 @@ function initBenchmarkTabs() {
             const targetTab = this.getAttribute('data-tab');
 
             // Remove active class from all buttons and contents
-            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.remove('bg-gradient-to-r', 'from-primary-600', 'to-purple-600', 'text-white', 'shadow-lg', 'shadow-primary-500/50');
+                btn.classList.add('bg-white', 'border-2', 'border-primary-200', 'text-gray-700');
+            });
             tabContents.forEach(content => {
                 content.classList.remove('active');
                 content.style.opacity = '0';
@@ -143,6 +147,9 @@ function initBenchmarkTabs() {
 
             // Add active class to clicked button and corresponding content
             this.classList.add('active');
+            this.classList.remove('bg-white', 'border-2', 'border-primary-200', 'text-gray-700');
+            this.classList.add('bg-gradient-to-r', 'from-primary-600', 'to-purple-600', 'text-white', 'shadow-lg', 'shadow-primary-500/50');
+            
             const targetContent = document.getElementById(targetTab + '-tab');
             
             if (targetContent) {
