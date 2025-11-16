@@ -51,10 +51,11 @@ jobs:
       - name: Build with Jekyll
         run: |
           echo "🏗️ Building site with Jekyll..."
-          bundle exec jekyll build --destination ./_site
+          bundle exec jekyll build --destination ./_site --verbose
           echo "✅ Build completed successfully"
         env:
           JEKYLL_ENV: production
+          D3_VERSION: "7.8.5"
 
       - name: Ensure PDFs are copied
         run: |
@@ -117,6 +118,23 @@ jobs:
           echo "   CSS files: $(find _site -name '*.css' | wc -l)"
           echo "   JS files: $(find _site -name '*.js' | wc -l)"
           echo "   PDF files: $(find _site -name '*.pdf' | wc -l)"
+          echo "   SVG files: $(find _site -name '*.svg' | wc -l)"
+          
+          echo ""
+          echo "🔍 Verifying JavaScript files:"
+          if [ -f "_site/assets/js/charts.js" ]; then
+            echo "   ✅ charts.js found"
+            echo "   📏 Size: $(du -h _site/assets/js/charts.js | cut -f1)"
+          else
+            echo "   ⚠️  Warning: charts.js not found"
+          fi
+          
+          if [ -f "_site/assets/js/main.js" ]; then
+            echo "   ✅ main.js found"
+            echo "   📏 Size: $(du -h _site/assets/js/main.js | cut -f1)"
+          else
+            echo "   ⚠️  Warning: main.js not found"
+          fi
           
           echo ""
           echo "📄 Verifying PDF files in docs folder:"
