@@ -741,8 +741,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto] drop-shadow-2xl">
-                    <span class="inline-block hover:scale-110 transition-transform duration-500">Comprehensive Benchmarks</span>
-                    <span class="inline-block ml-3 animate-bounce-slow">📊</span>
+                    <span class="inline-block hover:scale-110 transition-transform duration-500">📊 Comprehensive Benchmarks</span>
+                    <span class="inline-block ml-3 animate-bounce-slow">🚀</span>
+                    <span class="inline-block ml-2 animate-pulse-slow">✨</span>
                 </h2>
                 <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
                     Comprehensive performance evaluation across 8 datasets, 8 architectures, and 12+ metrics. All benchmarks run on identical hardware (4x NVIDIA A100 80GB) with 10 independent runs per configuration. Results include mean, standard deviation, and 95% confidence intervals.
@@ -756,11 +757,11 @@
             </div>
             
             <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up" data-aos-delay="100">
-                <button class="tab-button px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 active bg-gradient-to-r from-primary-600 to-purple-600 text-white shadow-lg shadow-primary-500/50" data-tab="accuracy">Accuracy</button>
-                <button class="tab-button px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 bg-white border-2 border-primary-200 text-gray-700 hover:border-primary-400 hover:bg-primary-50" data-tab="speed">Speed</button>
-                <button class="tab-button px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 bg-white border-2 border-primary-200 text-gray-700 hover:border-primary-400 hover:bg-primary-50" data-tab="memory">Memory</button>
-                <button class="tab-button px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 bg-white border-2 border-primary-200 text-gray-700 hover:border-primary-400 hover:bg-primary-50" data-tab="training">Training Time</button>
-                <button class="tab-button px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 bg-white border-2 border-primary-200 text-gray-700 hover:border-primary-400 hover:bg-primary-50" data-tab="convergence">Convergence</button>
+                <button class="tab-button px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 active bg-gradient-to-r from-primary-600 to-purple-600 text-white shadow-lg shadow-primary-500/50" data-tab="accuracy">🎯 Accuracy</button>
+                <button class="tab-button px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 bg-white border-2 border-primary-200 text-gray-700 hover:border-primary-400 hover:bg-primary-50" data-tab="speed">⚡ Speed</button>
+                <button class="tab-button px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 bg-white border-2 border-primary-200 text-gray-700 hover:border-primary-400 hover:bg-primary-50" data-tab="memory">💾 Memory</button>
+                <button class="tab-button px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 bg-white border-2 border-primary-200 text-gray-700 hover:border-primary-400 hover:bg-primary-50" data-tab="training">⏱️ Training Time</button>
+                <button class="tab-button px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 bg-white border-2 border-primary-200 text-gray-700 hover:border-primary-400 hover:bg-primary-50" data-tab="convergence">📈 Convergence</button>
             </div>
 
             <!-- Accuracy Tab -->
@@ -768,7 +769,7 @@
                 <!-- ImageNet -->
                 <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 mb-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
                     <div class="absolute -top-10 -right-10 w-40 h-40 bg-primary-500/10 rounded-full blur-3xl group-hover:bg-primary-500/20 transition-colors duration-700"></div>
-                    <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">ImageNet Classification (ResNet-50)</h3>
+                    <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">🏆 ImageNet Classification (ResNet-50)</h3>
                     <div id="imagenet-chart" class="w-full" style="min-height: 350px;"></div>
                     <div class="text-center text-gray-600 dark:text-gray-300 text-sm font-semibold mt-6 bg-gradient-to-r from-primary-50/50 to-purple-50/50 dark:from-primary-900/20 dark:to-purple-900/20 rounded-xl p-4">
                         Top-1 Accuracy (10 runs, mean ± std: <span class="font-black text-primary-600 dark:text-primary-400">83.42% ± 0.19%</span>, 95% CI: [83.30%, 83.54%]) | Improvement over ReLU: <span class="font-black text-green-600 dark:text-green-400">+7.29%</span> | Improvement over best baseline: <span class="font-black text-green-600 dark:text-green-400">+2.75%</span>
@@ -778,7 +779,7 @@
                 <!-- CIFAR-10 -->
                 <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 mb-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="150">
                     <div class="absolute -top-10 -left-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-colors duration-700"></div>
-                    <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">CIFAR-10 Classification (ResNet-32)</h3>
+                    <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">🎨 CIFAR-10 Classification (ResNet-32)</h3>
                     <div id="cifar10-chart" class="w-full" style="min-height: 350px;"></div>
                     <div class="text-center text-gray-600 dark:text-gray-300 text-sm font-semibold mt-6 bg-gradient-to-r from-purple-50/50 to-pink-50/50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-4">
                         Test Accuracy (10 runs, mean ± std: <span class="font-black text-purple-600 dark:text-purple-400">96.08% ± 0.12%</span>, 95% CI: [96.00%, 96.16%]) | Improvement over ReLU: <span class="font-black text-green-600 dark:text-green-400">+3.74%</span> | Improvement over best baseline: <span class="font-black text-green-600 dark:text-green-400">+1.90%</span>
@@ -788,7 +789,7 @@
                 <!-- GLUE Benchmark -->
                 <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 mb-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
                     <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-colors duration-700"></div>
-                    <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">GLUE Benchmark (BERT-base)</h3>
+                    <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">🧠 GLUE Benchmark (BERT-base)</h3>
                     <div id="glue-chart" class="w-full" style="min-height: 350px;"></div>
                     <div class="text-center text-gray-600 dark:text-gray-300 text-sm font-semibold mt-6 bg-gradient-to-r from-blue-50/50 to-cyan-50/50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-xl p-4">
                         Average GLUE Score (10 runs, mean ± std: <span class="font-black text-blue-600 dark:text-blue-400">82.67 ± 0.28</span>, 95% CI: [82.50, 82.84]) | Improvement over GELU: <span class="font-black text-green-600 dark:text-green-400">+4.15 points</span> | Improvement over best baseline: <span class="font-black text-green-600 dark:text-green-400">+2.39 points</span>
@@ -798,7 +799,7 @@
                 <!-- CIFAR-100 -->
                 <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 mb-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="250">
                     <div class="absolute -top-10 -right-10 w-40 h-40 bg-accent-500/10 rounded-full blur-3xl group-hover:bg-accent-500/20 transition-colors duration-700"></div>
-                    <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">CIFAR-100 Classification (ResNet-32)</h3>
+                    <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">🎯 CIFAR-100 Classification (ResNet-32)</h3>
                     <div id="cifar100-chart" class="w-full" style="min-height: 350px;"></div>
                     <div class="text-center text-gray-600 dark:text-gray-300 text-sm font-semibold mt-6 bg-gradient-to-r from-accent-50/50 to-rose-50/50 dark:from-accent-900/20 dark:to-rose-900/20 rounded-xl p-4">
                         Test Accuracy (10 runs, mean ± std: <span class="font-black text-accent-600 dark:text-accent-400">74.23% ± 0.24%</span>, 95% CI: [74.08%, 74.38%]) | Improvement over ReLU: <span class="font-black text-green-600 dark:text-green-400">+5.81%</span> | Improvement over best baseline: <span class="font-black text-green-600 dark:text-green-400">+2.29%</span>
@@ -808,7 +809,7 @@
                 <!-- SQuAD v2.0 -->
                 <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl p-8 rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 mb-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="300">
                     <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl group-hover:bg-indigo-500/20 transition-colors duration-700"></div>
-                    <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">SQuAD v2.0 Question Answering (BERT-base)</h3>
+                    <h3 class="text-2xl font-black text-center mb-8 text-gray-900 dark:text-white">❓ SQuAD v2.0 Question Answering (BERT-base)</h3>
                     <div id="squad-chart" class="w-full" style="min-height: 350px;"></div>
                     <div class="text-center text-gray-600 dark:text-gray-300 text-sm font-semibold mt-6 bg-gradient-to-r from-indigo-50/50 to-purple-50/50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-xl p-4">
                         F1 Score (10 runs, mean ± std: <span class="font-black text-indigo-600 dark:text-indigo-400">80.34 ± 0.38</span>, 95% CI: [80.10, 80.58]) | Improvement over GELU: <span class="font-black text-green-600 dark:text-green-400">+3.51 points</span> | Improvement over best baseline: <span class="font-black text-green-600 dark:text-green-400">+1.43 points</span>
@@ -879,7 +880,8 @@
             <!-- Comprehensive Dataset Breakdown -->
             <div class="mt-16" data-aos="fade-up" data-aos-delay="300">
                 <h3 class="text-3xl sm:text-4xl font-black text-center mb-12 text-gray-900 dark:text-white">
-                    <span class="bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]">Comprehensive Dataset Results</span>
+                    <span class="bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]">📋 Comprehensive Dataset Results</span>
+                    <span class="inline-block ml-3 animate-bounce-slow">✨</span>
                 </h3>
                 <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-2xl rounded-3xl shadow-2xl border-2 border-primary-200/50 dark:border-primary-700/50 overflow-hidden" data-aos="zoom-in" data-aos-delay="400">
                     <div class="overflow-x-auto">
@@ -985,8 +987,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 bg-gradient-to-r from-primary-600 via-purple-600 to-accent-500 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto] drop-shadow-2xl">
-                    <span class="inline-block hover:scale-110 transition-transform duration-500">Interactive Visualizations</span>
+                    <span class="inline-block hover:scale-110 transition-transform duration-500">🎨 Interactive Visualizations</span>
                     <span class="inline-block ml-3 animate-bounce-slow">📈</span>
+                    <span class="inline-block ml-2 animate-pulse-slow">✨</span>
                 </h2>
                 <p class="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
                     Explore DDAF's performance through interactive SVG charts, graphs, and architectural diagrams.

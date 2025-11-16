@@ -276,21 +276,25 @@ function createPerformanceLineChart() {
         .attr('stroke', '#e2e8f0')
         .attr('stroke-dasharray', '4,4');
 
-    // Draw lines
+    // Draw lines with enhanced styling
     ['relu', 'gelu', 'swish', 'ddaf'].forEach(key => {
         const lineData = data.map(d => ({ epoch: d.epoch, value: d[key] }));
         
         g.append('path')
             .datum(lineData)
             .attr('fill', 'none')
-            .attr('stroke', colors[key])
-            .attr('stroke-width', key === 'ddaf' ? 3 : 2)
+            .attr('stroke', key === 'ddaf' ? 'url(#ddafLineGradient)' : colors[key])
+            .attr('stroke-width', key === 'ddaf' ? 4 : 2)
+            .attr('stroke-linecap', 'round')
+            .attr('stroke-linejoin', 'round')
             .attr('stroke-dasharray', key === 'relu' ? '5,5' : 'none')
             .attr('d', line)
             .attr('class', `line-${key}`)
+            .attr('filter', key === 'ddaf' ? 'url(#lineGlow)' : 'none')
             .style('opacity', 0)
             .transition()
-            .duration(1000)
+            .duration(1500)
+            .ease(d3.easeCubicOut)
             .style('opacity', 1);
 
         // Add dots
@@ -807,7 +811,7 @@ function initSVGDiagrams() {
     createNetworkDiagram();
 }
 
-// Create Architecture Diagram
+// Create Architecture Diagram with enhanced animations
 function createArchitectureDiagram() {
     const container = document.getElementById('architecture-diagram');
     if (!container) return;
@@ -820,10 +824,30 @@ function createArchitectureDiagram() {
     svg.setAttribute('height', height);
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
     svg.classList.add('diagram-svg');
-
-    // Define gradients
-    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
     
+    // Add animation definitions
+    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    const animateGlow = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+    animateGlow.setAttribute('attributeName', 'opacity');
+    animateGlow.setAttribute('values', '0.3;0.8;0.3');
+    animateGlow.setAttribute('dur', '2s');
+    animateGlow.setAttribute('repeatCount', 'indefinite');
+    defs.appendChild(animateGlow);
+    
+    // Add glow filter
+    const filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
+    filter.setAttribute('id', 'archGlow');
+    const feGaussianBlur = document.createElementNS('http://www.w3.org/2000/svg', 'feGaussianBlur');
+    feGaussianBlur.setAttribute('stdDeviation', '3');
+    feGaussianBlur.setAttribute('result', 'coloredBlur');
+    filter.appendChild(feGaussianBlur);
+    const feMerge = document.createElementNS('http://www.w3.org/2000/svg', 'feMerge');
+    feMerge.appendChild(document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode')).setAttribute('in', 'coloredBlur');
+    feMerge.appendChild(document.createElementNS('http://www.w3.org/2000/svg', 'feMergeNode')).setAttribute('in', 'SourceGraphic');
+    filter.appendChild(feMerge);
+    defs.appendChild(filter);
+    
+    // Define gradients
     const gradient1 = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
     gradient1.setAttribute('id', 'archGrad1');
     gradient1.setAttribute('x1', '0%');
@@ -889,12 +913,21 @@ function createArchitectureDiagram() {
         text.textContent = `Layer ${i + 1}`;
         svg.appendChild(text);
 
-        // DDAF Badge
+        // DDAF Badge with glow and animation
         const badge = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         badge.setAttribute('cx', x + 100);
         badge.setAttribute('cy', y + 10);
         badge.setAttribute('r', '8');
         badge.setAttribute('fill', '#ec4899');
+        badge.setAttribute('filter', 'url(#archGlow)');
+        badge.setAttribute('class', 'network-node');
+        // Add pulsing animation
+        const animate = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+        animate.setAttribute('attributeName', 'r');
+        animate.setAttribute('values', '8;10;8');
+        animate.setAttribute('dur', '2s');
+        animate.setAttribute('repeatCount', 'indefinite');
+        badge.appendChild(animate);
         svg.appendChild(badge);
 
         const badgeText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -1374,6 +1407,7 @@ function createBenchmarkBarChart(containerId, config) {
 
 // Create D3.js based benchmark chart
 function createD3BenchmarkChart(container, config) {
+    const containerId = container.id || 'default';
     const width = container.clientWidth || 800;
     const height = 350;
     const margin = { top: 20, right: 20, bottom: 60, left: 70 };
@@ -1411,7 +1445,38 @@ function createD3BenchmarkChart(container, config) {
         .attr('stroke-dasharray', '4,4')
         .attr('opacity', 0.7);
 
-    // Bars
+    // Add gradient definitions for jazzy bars
+    const defs = svg.append('defs');
+    const gradient = defs.append('linearGradient')
+        .attr('id', `barGradient-${containerId}`)
+        .attr('x1', '0%')
+        .attr('y1', '0%')
+        .attr('x2', '0%')
+        .attr('y2', '100%');
+    gradient.append('stop')
+        .attr('offset', '0%')
+        .attr('stop-color', '#6366f1')
+        .attr('stop-opacity', 1);
+    gradient.append('stop')
+        .attr('offset', '50%')
+        .attr('stop-color', '#8b5cf6')
+        .attr('stop-opacity', 1);
+    gradient.append('stop')
+        .attr('offset', '100%')
+        .attr('stop-color', '#ec4899')
+        .attr('stop-opacity', 0.9);
+    
+    // Add glow filter
+    const glowFilter = defs.append('filter')
+        .attr('id', `glow-${containerId}`);
+    glowFilter.append('feGaussianBlur')
+        .attr('stdDeviation', '3')
+        .attr('result', 'coloredBlur');
+    const feMerge = glowFilter.append('feMerge');
+    feMerge.append('feMergeNode').attr('in', 'coloredBlur');
+    feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
+
+    // Bars with enhanced styling
     const bars = g.selectAll('.bar')
         .data(config.values)
         .enter()
@@ -1421,46 +1486,71 @@ function createD3BenchmarkChart(container, config) {
         .attr('width', xScale.bandwidth())
         .attr('y', chartHeight)
         .attr('height', 0)
-        .attr('fill', (d, i) => config.colors[i] || '#6366f1')
-        .attr('rx', 4)
-        .attr('stroke', '#fff')
-        .attr('stroke-width', 2)
+        .attr('fill', (d, i) => {
+            // Use gradient for DDAF (last item), regular colors for others
+            if (i === config.values.length - 1 && config.labels[i] === 'DDAF') {
+                return `url(#barGradient-${containerId})`;
+            }
+            return config.colors[i] || '#6366f1';
+        })
+        .attr('rx', 6)
+        .attr('ry', 6)
+        .attr('stroke', (d, i) => i === config.values.length - 1 && config.labels[i] === 'DDAF' ? '#fff' : 'rgba(255,255,255,0.8)')
+        .attr('stroke-width', (d, i) => i === config.values.length - 1 && config.labels[i] === 'DDAF' ? 3 : 2)
+        .attr('filter', (d, i) => i === config.values.length - 1 && config.labels[i] === 'DDAF' ? `url(#glow-${containerId})` : 'none')
+        .attr('opacity', 0)
         .on('mouseenter', function(event, d) {
             d3.select(this)
-                .attr('opacity', 0.8)
-                .attr('transform', 'scale(1.05)')
-                .attr('transform-origin', `${xScale(config.labels[config.values.indexOf(d)]) + xScale.bandwidth()/2} ${chartHeight}`);
+                .attr('opacity', 0.9)
+                .attr('transform', 'scale(1.08) translate(0, -5)')
+                .attr('transform-origin', `${xScale(config.labels[config.values.indexOf(d)]) + xScale.bandwidth()/2} ${chartHeight}`)
+                .attr('filter', `url(#glow-${containerId})`);
         })
         .on('mouseleave', function() {
             d3.select(this)
                 .attr('opacity', 1)
-                .attr('transform', 'scale(1)');
+                .attr('transform', 'scale(1)')
+                .attr('filter', (d, i) => {
+                    const idx = config.values.indexOf(d);
+                    return idx === config.values.length - 1 && config.labels[idx] === 'DDAF' ? `url(#glow-${containerId})` : 'none';
+                });
         });
 
     bars.transition()
-        .duration(1000)
-        .delay((d, i) => i * 100)
+        .duration(1500)
+        .delay((d, i) => i * 120)
+        .ease(d3.easeElasticOut)
         .attr('y', d => yScale(d))
-        .attr('height', d => chartHeight - yScale(d));
+        .attr('height', d => chartHeight - yScale(d))
+        .attr('opacity', 1);
 
-    // Value labels on bars
+    // Value labels on bars with enhanced styling
     g.selectAll('.value-label')
         .data(config.values)
         .enter()
         .append('text')
         .attr('class', 'value-label')
         .attr('x', (d, i) => xScale(config.labels[i]) + xScale.bandwidth() / 2)
-        .attr('y', d => yScale(d) - 5)
+        .attr('y', d => yScale(d) - 8)
         .attr('text-anchor', 'middle')
-        .attr('fill', '#1e293b')
-        .attr('font-size', '11')
-        .attr('font-weight', '600')
+        .attr('fill', (d, i) => {
+            if (i === config.values.length - 1 && config.labels[i] === 'DDAF') {
+                return '#6366f1';
+            }
+            return '#1e293b';
+        })
+        .attr('font-size', (d, i) => i === config.values.length - 1 && config.labels[i] === 'DDAF' ? '13' : '11')
+        .attr('font-weight', (d, i) => i === config.values.length - 1 && config.labels[i] === 'DDAF' ? '900' : '600')
+        .attr('stroke', (d, i) => i === config.values.length - 1 && config.labels[i] === 'DDAF' ? '#fff' : 'none')
+        .attr('stroke-width', (d, i) => i === config.values.length - 1 && config.labels[i] === 'DDAF' ? '0.5' : '0')
         .style('opacity', 0)
         .text(d => config.formatValue ? config.formatValue(d) : d.toFixed(2))
         .transition()
-        .delay(1000)
-        .duration(500)
-        .style('opacity', 1);
+        .delay(1500)
+        .duration(800)
+        .ease(d3.easeBounceOut)
+        .style('opacity', 1)
+        .attr('y', d => yScale(d) - 5);
 
     // X-axis
     g.append('g')
