@@ -58,6 +58,15 @@ exclude:
   - Gemfile.lock
   - .gitignore
   - .github/
+  # Exclude LaTeX source files but keep PDFs
+  - docs/*.tex
+  - docs/*.aux
+  - docs/*.log
+  - docs/*.out
+  - docs/*.toc
+  - docs/*.nav
+  - docs/*.snm
+  - docs/*.vrb
 
 # Include files
 include:

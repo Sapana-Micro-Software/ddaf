@@ -76,6 +76,31 @@ jobs:
           echo "   JS files: $(find _site -name '*.js' | wc -l)"
           echo "   PDF files: $(find _site -name '*.pdf' | wc -l)"
           
+          echo ""
+          echo "📄 Verifying PDF files in docs folder:"
+          if [ ! -d "_site/docs" ]; then
+            echo "❌ Error: _site/docs directory not found!"
+            exit 1
+          fi
+          
+          PDFS=("paper.pdf" "presentation.pdf" "reference_manual.pdf")
+          MISSING_PDFS=()
+          for pdf in "${PDFS[@]}"; do
+            if [ -f "_site/docs/$pdf" ]; then
+              echo "   ✅ Found: docs/$pdf ($(du -h _site/docs/$pdf | cut -f1))"
+            else
+              echo "   ❌ Missing: docs/$pdf"
+              MISSING_PDFS+=("$pdf")
+            fi
+          done
+          
+          if [ ${#MISSING_PDFS[@]} -gt 0 ]; then
+            echo "❌ Error: Missing PDF files: ${MISSING_PDFS[*]}"
+            echo "📁 Contents of _site/docs:"
+            ls -lh _site/docs/ || echo "   (directory empty or not found)"
+            exit 1
+          fi
+          
           echo "✅ Build verification successful!"
           echo ""
           echo "📁 Top-level files:"
