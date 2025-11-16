@@ -2,27 +2,59 @@
 
 This repository is configured for GitHub Pages using **GitHub Actions** for automated builds and deployments.
 
-## Making the Repository Public
+## Quick Start
 
-1. Go to your repository settings on GitHub
-2. Scroll down to the "Danger Zone" section
-3. Click "Change visibility"
-4. Select "Make public"
-5. Confirm the change
+1. **Make Repository Public** (if needed):
+   - Go to repository settings → Scroll to "Danger Zone" → "Change visibility" → "Make public"
 
-## Enabling GitHub Pages with GitHub Actions
+2. **Enable GitHub Pages**:
+   - Go to repository settings → "Pages" in left sidebar
+   - Under "Source", select **"GitHub Actions"** (not "Deploy from a branch")
+   - Click "Save"
 
-1. Go to your repository settings on GitHub
-2. Navigate to "Pages" in the left sidebar
-3. Under "Source", select **"GitHub Actions"** (not "Deploy from a branch")
-4. Click "Save"
+3. **Update GitHub Information** (if needed):
+   - Open `_config.yml`
+   - Update `github_username` and `github_repo` fields
 
-The GitHub Actions workflow (`.github/workflows/pages.yml`) will automatically:
-- Build your site with Jekyll on every push to the `main` branch
-- Deploy the built site to GitHub Pages
-- Process Jekyll variables and generate the final static site
+4. **Push to Main Branch**:
+   - The workflow will automatically trigger on push to `main`
+   - Monitor progress in the "Actions" tab
 
-**Note:** The first deployment may take a few minutes. You can monitor the progress in the "Actions" tab of your repository.
+## GitHub Actions Workflows
+
+### Main Deployment Workflow (`pages.yml`)
+
+The workflow (`.github/workflows/pages.yml`) automatically:
+
+✅ **Builds** your site with Jekyll on every push to `main`  
+✅ **Verifies** the build output before deployment  
+✅ **Deploys** the built site to GitHub Pages  
+✅ **Processes** Jekyll variables (`{{ site.github_username }}`, etc.)  
+✅ **Caches** Ruby dependencies for faster builds  
+✅ **Reports** build statistics and deployment status  
+
+### Workflow Features
+
+- **Automatic triggers**: Runs on push to `main` branch
+- **Manual trigger**: Can be run manually via "Run workflow" in Actions tab
+  - Optional: Force rebuild (ignores cache)
+- **Build verification**: Comprehensive checks that build output is valid
+- **Build statistics**: Reports file counts, sizes, and types
+- **Dependency caching**: Ruby gems are cached for faster builds
+- **Latest Ruby**: Uses Ruby 3.3 for optimal performance
+- **Concurrency control**: Prevents multiple deployments from running simultaneously
+- **Timeout protection**: 10-minute timeout prevents hanging builds
+- **Detailed logging**: Emoji-enhanced logs for easy monitoring
+
+### Validation Workflow (`validate.yml`)
+
+A separate validation workflow runs on pull requests to:
+- ✅ Validate Jekyll configuration
+- ✅ Test build without deploying
+- ✅ Check for common issues (unresolved variables, etc.)
+- ✅ Provide early feedback before merging
+
+**Note:** The first deployment may take 2-3 minutes. Subsequent deployments are faster due to caching.
 
 ## Updating GitHub Links
 
@@ -74,7 +106,8 @@ jekyll serve
 ## File Structure
 
 The GitHub Pages site uses:
-- `.github/workflows/pages.yml` - GitHub Actions workflow for automated deployment
+- `.github/workflows/pages.yml` - Main GitHub Actions workflow for automated deployment
+- `.github/workflows/validate.yml` - Validation workflow for pull requests
 - `Gemfile` - Ruby dependencies for Jekyll
 - `_config.yml` - Jekyll configuration
 - `index.html` - Main page
@@ -84,14 +117,87 @@ The GitHub Pages site uses:
 
 ## How It Works
 
-1. **On Push**: When you push to the `main` branch, GitHub Actions automatically triggers
-2. **Build**: The workflow installs Jekyll and builds your site, processing all Jekyll variables
-3. **Deploy**: The built site is deployed to GitHub Pages
-4. **Result**: Your site is live at `https://yourusername.github.io/ddaf/`
+1. **Trigger**: Push to `main` branch or manual workflow dispatch
+2. **Checkout**: Repository code is checked out
+3. **Setup Ruby**: Ruby 3.3 and Bundler are configured with dependency caching
+4. **Install**: Jekyll and plugins are installed via Bundler
+5. **Build**: Jekyll processes all files, resolves variables, and generates static site
+6. **Verify**: Build output is verified (checks for `_site` directory and `index.html`)
+7. **Upload**: Built site is uploaded as artifact
+8. **Deploy**: Site is deployed to GitHub Pages
+9. **Result**: Your site is live at `https://yourusername.github.io/ddaf/`
 
-You can also manually trigger a deployment by:
-- Going to the "Actions" tab in your repository
-- Selecting "Deploy GitHub Pages" workflow
-- Clicking "Run workflow"
+### Manual Deployment
+
+You can manually trigger a deployment:
+1. Go to the "Actions" tab in your repository
+2. Select "Deploy GitHub Pages" workflow
+3. Click "Run workflow" → Select branch
+4. (Optional) Check "Force rebuild" to ignore cache
+5. Click "Run workflow"
+
+The workflow will show:
+- 📦 Installation progress
+- 🔧 Jekyll version information
+- 🏗️ Build progress
+- 📊 Build statistics (file counts, sizes)
+- ✅ Verification results
+- 🚀 Deployment status with site URL
+
+### Monitoring Deployments
+
+- **Actions Tab**: View workflow runs, logs, and status
+- **Pages Settings**: See deployment history and status
+- **Workflow Status**: Add badge to README (see below)
 
 All files are automatically processed by Jekyll during the build process.
+
+## Workflow Status Badge
+
+Add this to your README.md to show deployment status:
+
+```markdown
+![GitHub Pages](https://github.com/yourusername/ddaf/actions/workflows/pages.yml/badge.svg)
+```
+
+Replace `yourusername` with your actual GitHub username.
+
+## Troubleshooting
+
+### Build Fails
+
+1. **Check Actions Logs**: Go to Actions tab → Click on failed workflow → Review error messages
+2. **Verify Gemfile**: Ensure all required gems are listed
+3. **Check Jekyll Config**: Verify `_config.yml` syntax is correct
+4. **Test Locally**: Run `bundle exec jekyll build` locally to catch errors early
+
+### Site Not Updating
+
+1. **Check Deployment Status**: Go to Settings → Pages → Check deployment status
+2. **Verify Workflow Ran**: Check Actions tab for successful workflow completion
+3. **Clear Cache**: If issues persist, try clearing GitHub Actions cache
+4. **Check Permissions**: Ensure GitHub Pages has write permissions (should be automatic)
+
+### Jekyll Variables Not Resolving
+
+- Variables like `{{ site.github_username }}` are processed during build
+- Ensure `_config.yml` has correct values
+- Check that files using variables have proper front matter or are processed by Jekyll
+
+## Advanced Configuration
+
+### Custom Domain
+
+1. Add `CNAME` file to repository root with your domain
+2. Configure DNS settings as per GitHub Pages documentation
+3. Update `_config.yml` `url` field if needed
+
+### Environment Variables
+
+The workflow uses `JEKYLL_ENV=production` for optimized builds. You can add custom environment variables in the workflow file if needed.
+
+### Build Optimization
+
+- Dependencies are cached automatically
+- Only changed files trigger rebuilds
+- Jekyll incremental builds can be enabled if needed

@@ -1,0 +1,50 @@
+name: Validate Site Build
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Validate Jekyll build
+        run: |
+          echo "🔍 Validating Jekyll configuration and build..."
+          bundle exec jekyll build --destination ./_site_test
+          
+          if [ ! -f "_site_test/index.html" ]; then
+            echo "❌ Validation failed: index.html not found"
+            exit 1
+          fi
+          
+          echo "✅ Jekyll build validation passed!"
+          echo "📊 Build output size: $(du -sh _site_test | cut -f1)"
+
+      - name: Check for broken links (basic)
+        run: |
+          echo "🔗 Checking for common issues..."
+          if grep -r "{{ site." _site_test/ 2>/dev/null; then
+            echo "⚠️  Warning: Found unresolved Jekyll variables"
+            grep -r "{{ site." _site_test/ | head -5
+          else
+            echo "✅ No unresolved Jekyll variables found"
+          fi

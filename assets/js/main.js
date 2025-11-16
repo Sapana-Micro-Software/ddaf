@@ -1,4 +1,4 @@
-// DDAF GitHub Pages JavaScript - Enhanced & Snazzy
+// DDAF GitHub Pages JavaScript - Ultra Jazzy & Snazzy! 🚀✨
 // Copyright (C) 2025, Shyamal Suhana Chandra
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -12,6 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
     initActiveNav();
     initTypewriter();
     initCounters();
+    initMagneticEffect();
+    initCursorEffects();
+    initSmoothReveal();
+    init3DEffects();
+    initConfetti();
 });
 
 // Navigation Functions
@@ -475,8 +480,222 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+// Magnetic Effect for Interactive Elements
+function initMagneticEffect() {
+    const magneticElements = document.querySelectorAll('.btn, .feature-card, .doc-card, .tab-button, .arch-badge');
+    
+    magneticElements.forEach(element => {
+        element.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            const moveX = x * 0.15;
+            const moveY = y * 0.15;
+            
+            this.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            this.style.transform = 'translate(0, 0) scale(1)';
+        });
+    });
+}
+
+// Custom Cursor Effects
+function initCursorEffects() {
+    if (window.innerWidth < 768) return; // Skip on mobile
+    
+    const cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    cursor.style.cssText = `
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgba(99, 102, 241, 0.8);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transition: transform 0.1s ease;
+        mix-blend-mode: difference;
+    `;
+    document.body.appendChild(cursor);
+    
+    const cursorFollower = document.createElement('div');
+    cursorFollower.className = 'cursor-follower';
+    cursorFollower.style.cssText = `
+        width: 40px;
+        height: 40px;
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9998;
+        transition: transform 0.3s ease;
+    `;
+    document.body.appendChild(cursorFollower);
+    
+    let mouseX = 0, mouseY = 0;
+    let followerX = 0, followerY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        cursor.style.left = mouseX - 10 + 'px';
+        cursor.style.top = mouseY - 10 + 'px';
+    });
+    
+    function animateFollower() {
+        followerX += (mouseX - followerX) * 0.1;
+        followerY += (mouseY - followerY) * 0.1;
+        
+        cursorFollower.style.left = followerX - 20 + 'px';
+        cursorFollower.style.top = followerY - 20 + 'px';
+        
+        requestAnimationFrame(animateFollower);
+    }
+    animateFollower();
+    
+    // Scale cursor on hover
+    const interactiveElements = document.querySelectorAll('a, button, .btn, .feature-card, .doc-card');
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.style.transform = 'scale(1.5)';
+            cursorFollower.style.transform = 'scale(1.5)';
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor.style.transform = 'scale(1)';
+            cursorFollower.style.transform = 'scale(1)';
+        });
+    });
+}
+
+// Smooth Reveal Animation
+function initSmoothReveal() {
+    const revealElements = document.querySelectorAll('.section, .feature-card, .doc-card, .advantage-item');
+    
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('revealed');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    revealElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+        revealObserver.observe(el);
+    });
+}
+
+// 3D Tilt Effects
+function init3DEffects() {
+    const tiltElements = document.querySelectorAll('.feature-card, .doc-card, .advantage-item');
+    
+    tiltElements.forEach(element => {
+        element.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+        });
+    });
+}
+
+// Confetti Effect on Button Clicks
+function initConfetti() {
+    const buttons = document.querySelectorAll('.btn-primary, .tab-button.active');
+    
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            createConfetti(e.clientX, e.clientY);
+        });
+    });
+}
+
+function createConfetti(x, y) {
+    const colors = ['#667eea', '#764ba2', '#f093fb', '#f5576c', '#4facfe', '#00f2fe'];
+    const confettiCount = 20;
+    
+    for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        confetti.style.cssText = `
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: ${colors[Math.floor(Math.random() * colors.length)]};
+            left: ${x}px;
+            top: ${y}px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+        `;
+        
+        document.body.appendChild(confetti);
+        
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = 5 + Math.random() * 5;
+        const vx = Math.cos(angle) * velocity;
+        const vy = Math.sin(angle) * velocity;
+        
+        let posX = x;
+        let posY = y;
+        let opacity = 1;
+        
+        function animate() {
+            posX += vx;
+            posY += vy + 0.5; // gravity
+            opacity -= 0.02;
+            
+            confetti.style.left = posX + 'px';
+            confetti.style.top = posY + 'px';
+            confetti.style.opacity = opacity;
+            
+            if (opacity > 0 && posY < window.innerHeight) {
+                requestAnimationFrame(animate);
+            } else {
+                confetti.remove();
+            }
+        }
+        
+        requestAnimationFrame(animate);
+    }
+}
+
 // Performance optimization: Throttle scroll events
 function throttle(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Debounce function
+function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
         const later = () => {
@@ -492,3 +711,13 @@ function throttle(func, wait) {
 window.addEventListener('scroll', throttle(() => {
     // Scroll-based animations are handled by individual functions
 }, 16));
+
+// Add page load animation
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+    const loader = document.querySelector('.page-loader');
+    if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(() => loader.remove(), 500);
+    }
+});

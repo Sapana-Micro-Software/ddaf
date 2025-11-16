@@ -84,6 +84,20 @@ See `docs/` directory for:
 - `presentation.tex`: Beamer presentation
 - `reference_manual.tex`: Complete API reference
 
+## GitHub Pages
+
+🌐 **Live Website**: [View on GitHub Pages](https://Sapana-Micro-Software.github.io/ddaf/)
+
+![GitHub Pages](https://github.com/Sapana-Micro-Software/ddaf/actions/workflows/pages.yml/badge.svg)
+
+The website is automatically deployed using GitHub Actions. See [GITHUB_PAGES_SETUP.md](GITHUB_PAGES_SETUP.md) for setup instructions.
+
+### Quick Setup
+
+1. Enable GitHub Pages in repository settings (Source: GitHub Actions)
+2. Push to `main` branch - deployment happens automatically
+3. Site will be live at `https://Sapana-Micro-Software.github.io/ddaf/`
+
 ## License
 
 Copyright (C) 2025, Shyamal Suhana Chandra
